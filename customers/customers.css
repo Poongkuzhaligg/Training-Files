@@ -18,12 +18,16 @@
     /*display: inline-block;*/
     /*vertical-align: middle;*/
     box-shadow: 3px 3px 3px rgba(33, 32, 32, 0.539);
+    transform: skew(20deg) scale(0.75);
+    overflow: hidden;
 }
 
 .t-img{
-    width: 500px;
-    height: 400px;
+    width: 400px;
+    height: 300px;
     vertical-align: top; 
+    /* transform: skew(20deg) scale(0.75); */
+    box-shadow: 4px 4px 5px rgba(33, 32, 32, 0.543);
 }
 
 .test_info {
@@ -43,13 +47,13 @@
 }
   
 .test-name {
-    margin: 3px;
+    margin: 32px;
     color: #d64e62;
     font-size: 2rem;
 }
   
 .test-sub {
-    margin: 0;
+    margin: 32px;
     font-size: 18px;
     color: rgb(74, 57, 62);
 }
@@ -65,7 +69,7 @@
 }
   
 .test-txt {
-    margin: 3px;
+    margin: 32px;
 }
 
 @media (min-width: 40rem) {

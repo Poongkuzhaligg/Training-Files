@@ -16,6 +16,7 @@ main {
     border: 4px solid #88885c;
     border-left: none;
     position: relative;
+    overflow: hidden;
 
 }
 
@@ -26,21 +27,25 @@ main {
 }
 
 .package a {
-    text-decoration: none;
+    text-decoration: n one;
     color: inherit;
     display: block; 
     padding: 32px;
 }
 
 .p-badge {
-    position:absolute ;
+    position: absolute ;
     top: 0;
     right: 0;
-    margin: 20px; 
+    margin: 0; 
     font-size: 12px;
     color:white;
-    background-color: rgba(223, 32, 32, 0.693);
+    background-color: rgba(223, 32, 32, 0.787);
     padding: 8px;
+    transform: rotateZ(40deg) translateX(3.2rem) translateY(-1rem);
+    transform-origin: center;
+    width: 11.2rem;
+    text-align: center;
 }
 
 .p-sub{
