@@ -118,6 +118,7 @@ main {
 
 .main-nav__item--cta {
     animation: wiggle 400ms 2s 4 ease-out none;
+    animation-iteration-count: infinite;
 }
 
 .main-nav__item--cta a, 
