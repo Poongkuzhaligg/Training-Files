@@ -1,0 +1,25 @@
+.arrow {
+    
+    background-color: blue;
+    color: white;
+    padding: 8px 16px;
+    border-radius: 8px;
+
+}
+
+.arrow-cta {
+    animation: zoomin 400ms 2s 4 ease-out none;
+    animation-iteration-count: infinite;
+}
+
+@keyframes zoomin {
+    0% {
+        transform: rotateZ(0);
+    }
+    50% {
+      transform: rotateZ(-10deg);
+    }
+    100% {
+      transform: rotateZ(10deg);
+    }
+  }

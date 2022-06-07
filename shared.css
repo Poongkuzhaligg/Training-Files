@@ -8,14 +8,26 @@ html{
 body {
     font-family: 'Montserrat', sans-serif;
     margin: 0;
-    background-color: beige;
+    /* background-color: beige;
     display: grid;
     grid-template-rows: 3.5rem auto fit-content(8rem);
     grid-template-areas: "header"
                          "main"
-                         "footer";
-    /* padding-top: 3.5rem; */
+                         "footer"; */
+    padding-top: 3.5rem;
     height: 100%;
+}
+
+@supports (display: grid) {
+    body {
+        display: grid;
+        grid-template-rows: 3.5rem auto fit-content(8rem);
+        grid-template-areas: "header"
+                             "main"
+                             "footer";
+        padding-top: 0;
+        height: 100%;
+    }
 }
 
 main {
@@ -44,6 +56,9 @@ main {
     background: #abc213;
     padding: 8px 16px;
     z-index: 60;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: -webkit-flex;
     display: flex;
     align-items: center;
     justify-content: space-between;
