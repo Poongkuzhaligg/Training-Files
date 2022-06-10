@@ -67,9 +67,9 @@ main {
 
 }
 
-.signup-form input[type="checkbox"]:checked {
+.signup-form input[type="checkbox"]:checked,
+.fa-solid fa-check {
     background: rgb(172, 209, 232);
-    content: '✓';
     color: black;
     border: #0f6d7d;
 }
