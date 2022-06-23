@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta name="viewport" content="Width=device-width, initial-scale=1.0">
+    <title>pracjs</title>
+    <link href="https://fonts.googleapis.com/css?family=Anton" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet">
+    <link ref="stylesheet" href="jsprac.css">
+</head>
+
+<body>
+
+<div id="demo22"></div>
+
+<script>
+// var myArray = [
+//   {
+//     "display": "Greater Goods",
+//     "url": "https://greatergoods.com/"
+//   },
+//   {
+//     "display": "Programiz JS",
+//     "url": "https://www.programiz.com/javascript/setTimeout"
+//   },
+//   {
+//     "display": "Greater Goods products",
+//     "url": "https://greatergoods.com/products"
+//   }
+// ];
+
+// myFunction(myArray);
+
+// function myFunction(arr) {
+//   var out = "";
+//   var i;
+//   for(i = 0; i < arr.length; i++) {
+//     out += '<a href="' + arr[i].url + '">' + 
+//     arr[i].display + '</a><br>';
+//   }
+//   document.getElementById("demo22").innerHTML = out;
+// }
+
+var xmlhttp = new XMLHttpRequest();
+var url = "url.txt";
+
+xmlhttp.onreadystatechange = function() {
+  if (this.readyState == 4 && this.status == 200) {
+    var myArr = JSON.parse(this.responseText);
+    myFunction(myArr);
+  }
+};
+xmlhttp.open("GET", url, true);
+xmlhttp.send();
+
+function myFunction(arr) {
+  var out = "";
+  var i;
+  for(i = 0; i < arr.length; i++) {
+    out += '<a href="' + arr[i].url + '">' + 
+    arr[i].display + '</a><br>';
+  }
+  document.getElementById("demo22").innerHTML = out;
+}
+</script>
+
+</body>

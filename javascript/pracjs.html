@@ -91,7 +91,7 @@
         document.getElementById("demo11").innerHTML = t; 
     </script>
 
-    <p id="demo12"></p>
+    <!-- <p id="demo12"></p>
     <p id="demo13"></p>
     <script> //class
         class hey {
@@ -100,7 +100,94 @@
                 this.place = london;
             }
         }
+    </script> -->
+
+    <p id="demo14"></p>
+    <p id="demo15"></p>
+    <script>
+        const person = {
+            fname: "Ferb",
+            lname: "Grey",
+            age: 18,
+            place: "ohio",
+        }; 
+
+        delete person["age"];
+        let texxt = "";
+        for (let x in person) {
+            texxt += person[x] + " ";
+        }
+        document.getElementById("demo14").innerHTML = texxt;
+        document.getElementById("demo15").innerHTML = person.fname + " is " + person.age + " years old.";
     </script>
 
+    <p id="demo16"></p>
+    <p id="demo17"></p>
+    <p id="demo18"></p>
+    <script> //Function Call
+        const persons = {
+            fullName: function() {
+                return this.fname + " " + this.lname;
+            }
+        }
+        const p1 = {
+            fname : "Lily",
+            lname : "Pons"
+        }
+
+        const p2 = {
+            fname : "Henry",
+            lname : "Lu"
+        }
+        document.getElementById("demo16").innerHTML = persons.fullName.call(p2);
+        document.getElementById("demo17").innerHTML = persons.fullName.apply(p1);
+    </script>
+
+    <!-- <script>
+        const persns = {
+            countryp: function() {
+                return this.fname + " " + this.lname+ from+ this.country;
+            }
+        }
+        const p3 = {
+            fname : "Lily",
+            lname : "Pons",
+            country : "Turkey"
+        }
+
+        const p4 = {
+            fname : "Henry",
+            lname : "Lu"
+        }
+        let country = persns.country.bind(p4);
+        document.getElementById("demo19").innerHTML = persns.countryp.call(p4);
+    </script> -->
+
+    <p id="demo19"></p>
+    <script> //callbacks
+        function myDisplayer(some) {
+        document.getElementById("demo19").innerHTML = some;
+        }
+        function myCalculator(num1, num2, myCallback) {
+            let sum = num1 + num2;
+            myCallback(sum);
+        }
+        myCalculator(5, 5, myDisplayer);
+    </script>
+
+    <p id="demo20"></p>
+    <script>
+        setTimeout(function() { myFunction("HELLO THERE !!!"); }, 5000);
+        function myFunction(value) {
+            document.getElementById("demo20").innerHTML = value;
+        }
+    </script>
+
+    <p id="demo21"></p>
+    <script>
+        function.myDisplayr(sme) {
+            document.getElementById("demo21").innerHTML = 
+        }
+    </script>
 
 </body>
