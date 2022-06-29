@@ -8,6 +8,7 @@
     <title>pracjs</title>
     <link href="https://fonts.googleapis.com/css?family=Anton" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet">
+    <link rel="stylesheet" href="form.css">
     <script src="formjs.js"></script>
 </head>
 
@@ -19,8 +20,8 @@
     <form id="form" action="/action_page.php" onsubmit="return validateform()" method="post">
       First name: <input type="text" name="fname"><br>
       Last name: <input type="text" name="lname"><br>
-      Age: <input type="number" name="age"><br>
-      <input type="submit" value="Submit">
+      Age: <input type="number" max="100" min="18" name="age"><br>
+      <input type="submit" value="Submit" class="submit">
     </form> 
     
 </body>

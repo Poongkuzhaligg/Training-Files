@@ -1,0 +1,14 @@
+body {
+    background-color: antiquewhite;
+}
+
+.form {
+    color: brown;
+}
+
+.submit {
+    color: rgb(38, 49, 113);
+    background-color: rgb(227, 215, 234);
+    border-radius: 20px;
+    margin-top: 10px;
+}

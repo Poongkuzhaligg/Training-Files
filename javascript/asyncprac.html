@@ -8,14 +8,23 @@
     <title>pracjs</title>
     <link href="https://fonts.googleapis.com/css?family=Anton" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet">
-    <link ref="stylesheet" href="jsprac.css">
+    <script src="asyncjs.js"></script>
+    <script src="sample.js"></script>
 </head>
 
 <body>
+  <h2>some text</h2>
 
-<div id="demo22"></div>
+<p id="demo22"></p>
+<p id="demo23"></p>
+<p id="demo24"></p>
+<p id="demo25"></p>
+<p id="demo26"></p>
+<p id="demo27"></p>
+<p id="demo28"></p>
+<p id="demo29"></p>
 
-<script>
+<!-- <script>
 // var myArray = [
 //   {
 //     "display": "Greater Goods",
@@ -63,7 +72,19 @@ function myFunction(arr) {
     arr[i].display + '</a><br>';
   }
   document.getElementById("demo22").innerHTML = out;
+}-->
+<!-- <script>
+
+  //  const url = "https://jsonplaceholder.typicode.com/todos/1"
+
+async function fetchFunc(url)
+{
+    const result = await fetch(url);
+    //const varr = await fetchFunc();
+    const varrResult = await result.text();
+   document.getElementById("demo22").innerHTML = varrResult;
 }
-</script>
+fetchFunc("https://jsonplaceholder.typicode.com/todos/1");
+</script> -->
 
 </body>

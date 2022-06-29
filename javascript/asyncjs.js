@@ -1,0 +1,180 @@
+// let fetchRequest = fetch("https://jsonplaceholder.typicode.com/todos/1");
+// fetchRequest.then(
+//     response => response.json())
+//     .then(
+//         result => {console.log(result)})
+
+//to run this fetch function we need to include the import statement
+///import fetch from 'node-fetch';
+async function fetchFunc(url)
+{
+    const result = await fetch(url);
+    //const varr = await fetchFunc();
+    const varrResult = await result.text();
+    // console.log(varrResult);
+   document.getElementById("demo22").innerHTML = varrResult;
+}
+fetchFunc("https://jsonplaceholder.typicode.com/todos/1");
+// console.log(varrResult);
+
+// Get request using json placeholder api
+        async function createNewUser(file){
+            let createVariable = fetch(file, {
+                method : 'PUT',
+                body : JSON.stringify({
+                "id": 1,
+                "name": "Perry",
+                "username": "Perry_OG",
+                "email": "perry@lmix.com",
+                "address": {
+                    "street": "222 becker Street",
+                    "suite": "Apt. 556", "city": "Manchester",
+                    "zipcode": "92998-3874",
+                    "geo": { "lat": "-37.3159",
+                    "lng": "81.1496" } },
+                    "phone": "1-770-736-8031 x56442",
+                    "website": "hildegard.org",
+                    "company": {
+                        "name": "Romaguera-Crona",
+                        "catchPhrase": "Multi-layered client-server neural-net",
+                        "bs": "harness real-time e-markets" },
+
+                "id": 2,
+                "name": "Mirabel",
+                "username": "Mira",
+                "email": "mira23@disn.com",
+                "address": {
+                    "street": "1/4 cherry Street",
+                    "suite": "Apt. 20", "city": "Cairo",
+                    "zipcode": "54353-3874",
+                    "geo": { "lat": "-37.3159",
+                    "lng": "81.1496" } },
+                    "phone": "1-770-736-8031 x56442",
+                    "website": "hildegard.org",
+                    "company": {
+                        "name": "Romaguera-Crona",
+                        "catchPhrase": "Multi-layered client-server neural-net",
+                        "bs": "harness real-time e-markets" }  
+                }),
+                headers : {
+                    'Content-type' : 'application/json; charset = UTF-8'
+                },
+          })
+        .then((response) => response.text())
+        .then((user) => document.getElementById("demo24").innerHTML = "Sucessfully New ID is created")
+        .then((dataDisplay) => document.getElementById("demo24").innerHTML = dataDisplay)
+        }
+        createNewUser("https://jsonplaceholder.typicode.com/posts/1")
+        //Get request to see the result of post
+        async function getDetails(){
+            
+            const request = await fetch("https://jsonplaceholder.typicode.com/users");
+            const displayText = await request.text();
+            document.getElementById("para25").innerHTML = displayText;
+        }
+        getDetails();
+
+        async function updateUser(file){
+            let createVariable = fetch(file, {
+                method : 'POST',
+                body : JSON.stringify({
+                "id": 1,
+                "name": "Perry Lane",
+                "username": "Perry_OG",
+                "email": "perry@lmix.com",
+                "address": {
+                    "street": "222 becker Street",
+                    "suite": "Apt. 556", "city": "Manchester",
+                    "zipcode": "92998-3874",
+                    "geo": { "lat": "-37.3159",
+                    "lng": "81.1496" } },
+                    "phone": "1-770-736-8031 x56442",
+                    "website": "hildegard.org",
+                    "company": {
+                        "name": "Romaguera-Crona",
+                        "catchPhrase": "Multi-layered client-server neural-net",
+                        "bs": "harness real-time e-markets" },
+
+                "id": 2,
+                "name": "Mirabel Gomez",
+                "username": "Mira",
+                "email": "mira23@disn.com",
+                "address": {
+                    "street": "1/4 cherry Street",
+                    "suite": "Apt. 20", "city": "Cairo",
+                    "zipcode": "54353-3874",
+                    "geo": { "lat": "-37.3159",
+                    "lng": "81.1496" } },
+                    "phone": "1-770-736-8031 x56442",
+                    "website": "hildegard.org",
+                    "company": {
+                        "name": "Romaguera-Crona",
+                        "catchPhrase": "Multi-layered client-server neural-net",
+                        "bs": "harness real-time e-markets" }  
+                }),
+                headers : {
+                    'Content-type' : 'application/json; charset = UTF-8'
+                },
+          })
+        .then((response) => response.text())
+        .then((user) => document.getElementById("demo26").innerHTML = "Sucessfully New ID is Updated")
+        .then((dataDisplay) => document.getElementById("demo26").innerHTML = dataDisplay)
+        }
+        updateUser("https://jsonplaceholder.typicode.com/posts/1")
+        //Get request to see the result of post
+        async function getDetails(){
+            
+            const request = await fetch("https://jsonplaceholder.typicode.com/users/1");
+            const displayText = await request.text();
+            document.getElementById("demo27").innerHTML = displayText;
+        }
+        getDetails();
+        
+        async function deleteUser(file){
+            let createVariable = fetch(file, {
+                method : 'POST',
+                body : JSON.stringify({
+                "id": 1,
+                "name": "Perry Lane",
+                "username": "Perry_OG",
+                "email": "perry@lmix.com",
+                "address": {
+                    "street": "222 becker Street",
+                    "suite": "Apt. 556", "city": "Manchester",
+                    "zipcode": "92998-3874",
+                    "geo": { "lat": "-37.3159",
+                    "lng": "81.1496" } },
+                    "phone": "1-770-736-8031 x56442",
+                    "website": "hildegard.org",
+                    "company": {
+                        "name": "Romaguera-Crona",
+                        "catchPhrase": "Multi-layered client-server neural-net",
+                        "bs": "harness real-time e-markets" },
+
+                "id": 2,
+                "name": "Mirabel Gomez",
+                "username": "Mira",
+                "email": "mira23@disn.com",
+                "address": {
+                    "street": "1/4 cherry Street",
+                    "suite": "Apt. 20", "city": "Cairo",
+                    "zipcode": "54353-3874",
+                    "geo": { "lat": "-37.3159",
+                    "lng": "81.1496" } },
+                    "phone": "1-770-736-8031 x56442",
+                    "website": "hildegard.org",
+                    "company": {
+                        "name": "Romaguera-Crona",
+                        "catchPhrase": "Multi-layered client-server neural-net",
+                        "bs": "harness real-time e-markets" }  
+                }),
+                headers : {
+                    'Content-type' : 'application/json; charset = UTF-8'
+                },
+          })
+                
+        .then((response) => response.text())
+        .then((user) => document.getElementById("demo28").innerHTML = "Sucessfully deleted the User")
+        // .then((dataDisplay) => document.getElementById("demo").innerHTML = dataDisplay)
+        }
+        deleteUser("https://jsonplaceholder.typicode.com/posts/1")
