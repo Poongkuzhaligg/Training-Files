@@ -185,9 +185,29 @@
 
     <p id="demo21"></p>
     <script>
-        function.myDisplayr(sme) {
-            document.getElementById("demo21").innerHTML = 
-        }
+        const txt1 = '{"name":"StevenGrant", "age":30, "city":"Cairo"}'
+        const obj = JSON.parse(txt1); //To convert text to JS object
+        document.getElementById("demo21").innerHTML = obj.name + ", " + obj.age;
     </script>
+
+    <p id="demo22"></p>
+    <script>
+        const arr1 = ["Cherry", "Apple", "Grapes"];
+        const myJSON = JSON.stringify(arr1);
+        document.getElementById("demo22").innerHTML = myJSON;
+    </script>
+
+    <p id="demo23"></p> 
+    <script>
+    const myjSON = '{"name":"John", "age":30, "cars":["Ford", "BMW", "Fiat"]}';
+    const myObj = JSON.parse(myjSON);
+    let text = "";
+    for (let i = 0; i < myObj.cars.length; i++) {
+      text += myObj.cars[i] + ", ";
+    }
+    document.getElementById("demo23").innerHTML = text;
+    </script>
+    
+
 
 </body>

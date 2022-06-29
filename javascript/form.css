@@ -1,9 +1,29 @@
 body {
-    background-color: antiquewhite;
+    background-color: rgb(51, 47, 80);
+}
+
+h2 {
+    color: azure;
+    justify-content: center;
+    text-align: center;
+}
+div {
+    text-align: center;
+    width: 40rem;
+    height: 20rem;
+    background-color: rgb(195, 248, 126);
+    border: 0.5px solid rgb(255, 255, 255);
+    padding-top: 20px;
+    margin: auto;
 }
 
 .form {
     color: brown;
+
+}
+
+.form-el {
+    width: 9rem;
 }
 
 .submit {

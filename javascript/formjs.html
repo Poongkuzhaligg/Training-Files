@@ -15,13 +15,21 @@
 <body>
 
     <h2>JavaScript FORMS</h2>
+    <div>
+      <form id="form" action="/action_page.php" onsubmit="return validateform()" method="post">
+        First name: <input type="text" name="fname" class="form-el"><br>
+        Last name: <input type="text" name="lname" class="form-el"><br>
+        Age: <input type="number" max="100" min="18" name="age" class="form-el"><br>
+        Email: <input type="email" name="email" class="form-el"><br>
+        Male: <input type="radio" name="gender">
+        Female: <input type="radio" name="gender">
+        Others: <input type="radio" name="gender"><br>
+
+        <input type="submit" value="Submit" class="submit">
+      </form> 
+    </div>
     <p id="from"></p>
     
-    <form id="form" action="/action_page.php" onsubmit="return validateform()" method="post">
-      First name: <input type="text" name="fname"><br>
-      Last name: <input type="text" name="lname"><br>
-      Age: <input type="number" max="100" min="18" name="age"><br>
-      <input type="submit" value="Submit" class="submit">
-    </form> 
+    
     
 </body>

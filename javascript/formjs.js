@@ -16,4 +16,10 @@
             alert("Form must be filled out");
             return false;
         }
+
+        let k = document.forms["form"]["email"].value;
+        if (z != "@" && z=="") {
+            alert("Email ID Incorrect!");
+            return false;
+        }
 }
