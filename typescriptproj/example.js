@@ -7,17 +7,15 @@
 //         return x + y;
 //     }
 // }
-function add(x, y) {
-    var result;
-    if (typeof x === 'number' && typeof y === 'number') {
-        result = x + y;
-    }
-    else {
-        result = x.toString() + y.toString();
-    }
-    return result;
+var student1 = {
+    Sname: 'Harry',
+    StuID: '123A098',
+    Grade: 10,
+    marks: [78, 89, 75, 85, 80]
+};
+console.log(student1);
+var sum = 0;
+for (var i = 0; i < student1.marks.length; i++) {
+    sum += student1.marks[i];
 }
-var addname = add('Jef', ' Sadman');
-console.log(addname);
-var addage = add(34, 47);
-console.log(addage);
+console.log("The average mark of studemt 1 is : " + sum / 5);
