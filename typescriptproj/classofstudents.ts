@@ -37,3 +37,13 @@ console.log(S1, S2, S3, S4, S5);
 
 let marks = [S1.Smarks, S2.Smarks, S3.Smarks, S4.Smarks, S5.Smarks];
 console.log(marks);
+
+
+for( let i = 0; i<5; i++) {
+    var s = 0;
+    for(let j = 0; j<5; j++) {
+
+        s += marks[i][j];
+    }
+    console.log(s/5);
+}

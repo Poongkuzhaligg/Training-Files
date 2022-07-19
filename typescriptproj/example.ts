@@ -24,7 +24,7 @@
 //     console.log(brand.toLowerCase());   
 // }
 
-type combinable = number | string;
+// type combinable = number | string;
 // function add(x: combinable, y: combinable) { //union types
 //     let result;
 //     if(typeof x === 'number' && typeof y === 'number') {
@@ -92,38 +92,109 @@ type combinable = number | string;
 // S1.printSnameInfo();
 
 
-type stud1 = {
-    Sname: string;
-    StuID: String;
-    Grade: number; 
-};
+// type stud1 = { //interface
+//     Sname: string;
+//     StuID: String;
+//     Grade: number; 
+// };
 
-type Sdetails = {
-    Sname: string;
-    marks: number[];
+// type Sdetails = {
+//     Sname: string;
+//     marks: number[];
 
-};
+// };
 
-type Stu1rec = stud1 & Sdetails;
+// type Stu1rec = stud1 & Sdetails;
 
-const student1: Stu1rec = {
-    Sname: 'Harry',
-    StuID: '123A098',
-    Grade: 10,
-    marks: []
+// const student1: Stu1rec = {
+//     Sname: 'Harry',
+//     StuID: '123A098',
+//     Grade: 10,
+//     marks: [55, 80, 69, 83, 77]
     
-};
+// };
 
 
-console.log(student1);
+// console.log(student1);
 
-let avg: number[] = [];
-let sum=0;
-for(let i=0; i<student1.marks.length; i++)
-{
-    sum+= student1.marks[i];
+// let sum=0;
+// for(let i=0; i<student1.marks.length; i++)
+// {
+//     sum+= student1.marks[i];
+// }
+
+// const m1 = console.log("The average mark of studemt 1 is : " + sum/5)
+
+// interface bird { //discriminated unions
+//     type: 'B';
+//     flightspeed: number;
+// }
+
+// interface horse {
+//     type: 'A';
+//     runspeed: number;
+// }
+
+// type animal = bird | horse;
+
+// function animalspeed( animal: animal) {
+//     let s;
+//     switch (animal.type) {
+//         case 'B':
+//             s = animal.flightspeed;
+//             break;
+//         case 'A':
+//             s = animal.runspeed;
+//             break;
+//     }
+    
+//     console.log('Moves at speed: ' + s);
+// }
+
+// animalspeed({type: 'A', runspeed: 20});  
+
+// let intext = document.getElementById('input')! as HTMLInputElement;  //type casting
+// intext.value = 'jsdj';
+
+// let intext = document.getElementById('input')! ;  //type casting
+// if(intext ) {
+//     (intext as HTMLInputElement).value = 'HELLO!' ;
+// }
+
+// function combine<X, Y>(A: X, B: Y) { //create generic function
+//     return Object.assign(A, B);
+// }
+
+// const C = combine({color:'Purple', stat : ['Sketch', 'pencil', 'crayon']}, {nos:20} );
+// console.log(C.stat);
+
+// class H<T> {
+//     private details: T[] = [];
+
+//     addItem(item: T) {
+//         this.details.push(item);
+//     }
+
+//     removeItem(item:T) {
+//         this.details.splice(this.details.indexOf(item), 1);
+//     }
+
+//     getItems() {
+//         return[...this.details];
+//     }
+// }
+
+// const data1 = new H<string | number>();
+// data1.addItem('Jenna');
+// data1.addItem('Covey');
+// data1.addItem('hey');
+// data1.addItem('hy');
+// data1.addItem('hehee');
+// data1.removeItem("hy");
+// console.log(data1.getItems());
+
+function demo(constructor: Function) {
+    console.log('Demo decorator');
+    console.log(constructor);
 }
-
-const m1 = console.log("The average mark of studemt 1 is : " + sum/5)
-
- 
+@demo 
