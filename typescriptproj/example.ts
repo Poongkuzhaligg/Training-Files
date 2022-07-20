@@ -193,8 +193,34 @@
 // data1.removeItem("hy");
 // console.log(data1.getItems());
 
-function demo(constructor: Function) {
-    console.log('Demo decorator');
-    console.log(constructor);
-}
-@demo 
+// function demo(constructor: Function) { //decoratorss
+//     console.log('Demo decorator');
+//     console.log(constructor);
+// }
+// @demo 
+// class person {
+//     name = 'Lilly';
+
+//     constructor() {
+//         console.log('On process');
+//     }
+// }
+// const p = new person();
+// console.log(p);
+
+// function demo(dsrt: string) { //decorators factory
+//     return function(constructor: Function) {
+//         console.log(dsrt);
+//         console.log(constructor);
+//     };
+// }
+// @demo('Demo Decorator Factory Function')
+// class person {
+//     name = 'Lilly';
+
+//     constructor() {
+//         console.log('On process');
+//     }
+// }
+// const p = new person();
+// console.log(p);
