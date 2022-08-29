@@ -1,10 +1,18 @@
 {
   "dependencies": {
-    "eslint": "^8.19.0"
+    "axios": "^0.27.2",
+    "eslint": "^8.19.0",
+    "lodash": "^4.17.21"
   },
   "devDependencies": {
+    "@types/lodash": "^4.14.182",
     "lite-server": "^2.6.1",
-    "prettier": "2.7.1"
+    "prettier": "2.7.1",
+    "ts-loader": "^9.3.1",
+    "typescript": "^4.7.4",
+    "webpack": "^5.74.0",
+    "webpack-cli": "^4.10.0",
+    "webpack-dev-server": "^4.9.3"
   },
   "name": "typescriptproj",
   "version": "1.0.0",
@@ -15,4 +23,4 @@
   },
   "author": "",
   "license": "ISC"
-  }
+}

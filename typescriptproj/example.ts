@@ -224,3 +224,4 @@
 // }
 // const p = new person();
 // console.log(p);
+ 
