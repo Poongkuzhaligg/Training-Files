@@ -1,0 +1,31 @@
+<app-user-details></app-user-details>
+<div style="padding:16px">
+  <h3>Functionality Requirements</h3>
+  <br />
+  <ul>
+    <li>
+      An array of objects is passed as a input to the user-details component,
+      where each object contains information about a person. The object has 5
+      properties:<br />
+      <i>name</i>: Name of the person. [STRING]<br />
+      <i>designation</i>: His current designation[STRING]<br />
+      <i>university</i>: University from which he graduated. [STRING]<br />
+      <i> city</i>: Residing city. [STRING]<br />
+      <i>imgUrl</i>: Image of person<br />
+    </li>
+    <li>
+      There is an input field for the person name where the user can type the
+      name of a person to search the data of a particular person. (person name
+      is case-insensitive.)
+    </li>
+    <li>
+      If data exists for the typed input, render the person details
+      <br />
+      If no data exists for the typed input, do not render the person details
+      but instead render No Results Found
+    </li>
+    <li>
+      At component render, since nothing is typed, do not render above 2 divs.
+    </li>
+  </ul>
+</div>
