@@ -1,0 +1,31 @@
+<div class="container">
+  <div class="row">
+    <div class="col-xs-12">
+      <button
+        class="btn btn-primary"
+        (click)="onlyOdd = !onlyOdd">Only show odd numbers</button>
+      <br><br>
+      <ul class="list-group">
+        <div *ngIf="onlyOdd" >
+          <li
+          class="list-group-item"
+          [ngClass]="{odd: Onumber%2!== 0}"
+          [ngStyle]="{backgroundColor: Onumber%2 !== 0 ? 'violet' : 'transparent'}"
+          *ngFor="let Onumber of ONos">
+          {{ Onumber }}
+        </li>
+        </div>
+        <div *ngIf="!onlyOdd">
+          <li
+          class="list-group-item"
+          [ngClass]="{odd: Enumber%2!= 0}"
+          [ngStyle]="{backgroundColor: Enumber%2 !== 0 ? 'yellow' : 'transparent'}"
+          *ngFor="let Enumber of ENos">
+          {{ Enumber }}
+          </li>
+        </div>
+      </ul>
+      <p appBasicHighlight>Style me with Directive!</p>
+    </div>
+  </div>
+</div>
