@@ -17,15 +17,16 @@
         </div>
         <div *ngIf="!onlyOdd">
           <li
-          class="list-group-item"
-          [ngClass]="{odd: Enumber%2!= 0}"
-          [ngStyle]="{backgroundColor: Enumber%2 !== 0 ? 'yellow' : 'transparent'}"
-          *ngFor="let Enumber of ENos">
-          {{ Enumber }}
+            class="list-group-item"
+            [ngClass]="{odd: Enumber%2!= 0}"
+            [ngStyle]="{backgroundColor: Enumber%2 !== 0 ? 'yellow' : 'transparent'}"
+            *ngFor="let Enumber of ENos">
+            {{ Enumber }}
           </li>
         </div>
       </ul>
       <p appBasicHighlight>Style me with Directive!</p>
+      <p [appBetterHighlight]="'cornflowerblue'" defaultColor="'lightblue'" >Style me with a better Directive!</p>
     </div>
   </div>
 </div>

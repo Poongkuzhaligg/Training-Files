@@ -6,12 +6,15 @@
     id="fname"
     name="firstname"
     placeholder="John"
+    (input)="onInputEnter($event)"
+    (keydown)="onkeydown($event)"
   />
 </div>
 
-<section 
+
+<section
   style="display:grid; align-items:center;">
-  <div class="card">
+  <div class="card" *ngIf="!entered; else notMatch">
     <!-- Image -->
     <img src="" style="width:100%" />
     <!-- Name -->
@@ -23,7 +26,11 @@
     <!-- City -->
     <p></p>
   </div>
-  <div class="card-text">
-    No Results Found
-  </div>
+  <ng-template #notMatch >
+    <div class="card-text">
+      No Results Found
+    </div>
+  </ng-template> 
+
+
 </section>

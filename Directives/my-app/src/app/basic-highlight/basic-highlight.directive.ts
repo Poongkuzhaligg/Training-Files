@@ -8,6 +8,6 @@ export class HighLightDirective implements OnInit {
   }
 
   ngOnInit() {
-    this.eleRef.nativeElement.style.backgroundColor = 'green';
+    this.eleRef.nativeElement.style.backgroundColor = 'lightgreen';
   }
 }
