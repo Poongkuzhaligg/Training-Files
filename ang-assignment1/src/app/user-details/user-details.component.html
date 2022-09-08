@@ -7,16 +7,14 @@
     name="firstname"
     placeholder="John"
     (input)="onInputEnter($event)"
-    (keydown)="onkeydown($event)"
   />
 </div>
-
 
 <section
   style="display:grid; align-items:center;">
   <div class="card" *ngIf="!entered; else notMatch">
     <!-- Image -->
-    <img src="" style="width:100%" />
+    <img src="" style="width:100%"/>
     <!-- Name -->
     <h1></h1>
     <!-- Designation -->

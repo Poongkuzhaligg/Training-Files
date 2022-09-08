@@ -1,4 +1,4 @@
-import { Component, VERSION } from '@angular/core';
+import { Component, OnInit, VERSION } from '@angular/core';
 import { userData } from './user-data';
 
 @Component({
@@ -6,7 +6,8 @@ import { userData } from './user-data';
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css'],
 })
-export class AppComponent {
+export class AppComponent implements OnInit{
+  
   name = 'Angular ' + VERSION.major;
 
   userData: userData[] = [
@@ -43,4 +44,16 @@ export class AppComponent {
         'https://upload.wikimedia.org/wikipedia/commons/9/9e/Jimmy_Fallon%2C_Montclair_Film_Festival%2C_2013.jpg',
     },
   ];
+  currentUser:userData[] = [];
+
+  ngOnInit(): void {
+    this.getuserDetails();
+  }
+
+  getuserDetails(){
+    this.currentUser = this.userData;
+    console.log(this.userData);
+    console.log(this.currentUser);
+  }
+
 }
