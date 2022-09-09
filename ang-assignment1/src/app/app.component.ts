@@ -20,12 +20,12 @@ export class AppComponent implements OnInit{
         'https://www.soschildrensvillages.ca/sites/default/files/news/jhon-freddy-500x500.jpg',
     },
     {
-      name: 'Peter',
+      name: 'Hagrid',
       designation: 'Software director',
       city: 'Chicago',
       university: 'Chicago state university',
       imgUrl:
-        'https://pbs.twimg.com/profile_images/1268884074317393920/AbDBCOP-_400x400.jpg',
+        'https://i.pinimg.com/736x/41/8e/3c/418e3cde3884786d89da589b09d416fb--robbie-coltrane-hogwarts-professors.jpg',
     },
     {
       name: 'George',
