@@ -44,16 +44,11 @@ export class AppComponent implements OnInit{
         'https://upload.wikimedia.org/wikipedia/commons/9/9e/Jimmy_Fallon%2C_Montclair_Film_Festival%2C_2013.jpg',
     },
   ];
-  currentUser:userData[] = [];
 
   ngOnInit(): void {
-    this.getuserDetails();
+
   }
 
-  getuserDetails(){
-    this.currentUser = this.userData;
-    console.log(this.userData);
-    console.log(this.currentUser);
-  }
+
 
 }

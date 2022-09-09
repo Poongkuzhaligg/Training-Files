@@ -14,21 +14,19 @@
   style="display:grid; align-items:center;">
   <div class="card" *ngIf="!entered; else notMatch">
     <!-- Image -->
-    <img src="" style="width:100%"/>
+    <img src={{CurrentImg}} style="width:100%"/>
     <!-- Name -->
-    <h1></h1>
+    <h1>{{ CurrentName }}</h1>
     <!-- Designation -->
-    <p class="title"></p>
+    <p class="title">{{ CurrentDes }}</p>
     <!-- University -->
-    <p></p>
+    <p>{{ CurrentUni }}</p>
     <!-- City -->
-    <p></p>
+    <p>{{ CurrentCity}}</p>
   </div>
   <ng-template #notMatch >
     <div class="card-text">
       No Results Found
     </div>
   </ng-template> 
-
-
 </section>
