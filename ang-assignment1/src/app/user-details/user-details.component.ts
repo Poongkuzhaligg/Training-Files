@@ -14,9 +14,7 @@ export class UserDetailsComponent implements OnInit {
   CurrentCity:string = '';
   CurrentUni:string = '';
   CurrentImg:string = '';
-  constructor() { 
-
-  }
+  constructor() {}
 
   ngOnInit() {
   }
