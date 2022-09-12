@@ -1,6 +1,4 @@
-import { temporaryAllocator } from '@angular/compiler/src/render3/view/util';
 import { Component, Input, OnInit } from '@angular/core';
-import { AppComponent } from '../app.component';
 import { userData } from '../user-data';
 @Component({
   selector: 'app-user-details',
@@ -25,11 +23,7 @@ export class UserDetailsComponent implements OnInit {
     let inputValue = (<HTMLInputElement>event.target).value;
     if(inputValue.length <= 0){
       this.entered = false;
-      this.CurrentName = '';
-      this.CurrentDes = '';
-      this.CurrentCity = '';
-      this.CurrentUni = '';
-      this.CurrentImg = '';
+      this.userDet = [{name:'', designation: '', city: '', university: '', imgUrl: ''}];
     }
     console.log(inputValue);
     for( let i=0; i<this.userDet.length;i++){
