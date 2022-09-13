@@ -35,7 +35,6 @@ export class UserDetailsComponent implements OnInit {
         this.CurrentUni = this.userDet[i].university;
         this.CurrentImg = this.userDet[i].imgUrl;
       }
-
     }
   }
 }
