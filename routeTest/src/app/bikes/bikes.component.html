@@ -1,0 +1,14 @@
+<div style="padding-top:16px">
+<div style="margin:10px">
+    <mat-card>
+        <h2>Click on the bike to get its info</h2>
+        <ul class="items">
+            <li *ngFor="let bike of bikes" (click)="showInfo(bike)" style="cursor:pointer">
+
+                <span class="badge">{{bike.model}}</span>{{bike.manufacturer}}
+            </li>
+        </ul>
+    </mat-card>
+</div>
+
+</div>

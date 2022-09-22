@@ -1,0 +1,15 @@
+<div>
+  <div style="margin:10px">
+    <mat-card>
+      <div *ngIf="bike">
+        <h2>{{ bike.model }} details!</h2>
+        <div><label>id: </label>{{ bike.id }}</div>
+        <div>
+          <label>model: </label>
+          <input type="text" [(ngModel)]="bike.model" />
+        </div>
+        <div><label>Manufacturer: </label> {{ bike.manufacturer }}</div>
+      </div>
+    </mat-card>
+  </div>
+</div>
