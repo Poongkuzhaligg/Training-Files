@@ -10,12 +10,13 @@ import { BikeService } from '../bike-service.service';
 })
 export class BikesComponent implements OnInit {
   bikes: Bike[] = [];
-  selectedBike: Bike;
+  selectedBike!: Bike;
   
   constructor(private router: Router, private bikeService: BikeService) {
   }
  
   ngOnInit() {
+    
   }
  
   showInfo(bike: Bike): void {

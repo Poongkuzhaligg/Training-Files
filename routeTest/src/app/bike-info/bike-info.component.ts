@@ -10,7 +10,7 @@ import { BikeService } from '../bike-service.service';
 })
 export class BikeInfoComponent implements OnInit {
   bike: Bike;
-
+  id:number;
   constructor(
     private bikeService: BikeService,
     private route: ActivatedRoute
