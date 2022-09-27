@@ -2,12 +2,10 @@
 <div style="margin:10px">
         <h2>Click on the bike to get its info</h2>
         <ul class="items">
-            <li *ngFor="let bike of bikes" (click)="showInfo(bike)" style="cursor:pointer">
-
+            <li *ngFor="let bike in bikes" (click)="showInfo(bike)" style="cursor:pointer">
                 <span class="badge">{{bike.model}}</span>{{bike.manufacturer}}
             </li>
         </ul>
-
-</div>
+    </div>
 
 </div>

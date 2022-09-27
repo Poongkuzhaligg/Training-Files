@@ -9,17 +9,22 @@ import { BikeService } from '../bike-service.service';
   styleUrls: ['./bikes.component.css']
 })
 export class BikesComponent implements OnInit {
-  bikes: Bike[] = [];
+  public bikes: Bike[] = [];
   selectedBike!: Bike;
+
   
   constructor(private router: Router, private bikeService: BikeService) {
   }
  
   ngOnInit() {
-    
+   this.bikeService.getBikes().then(bikeinf =>{
+    this.bikes = bikeinf;
+    console.log(this.bikes);
+    })
   }
  
-  showInfo(bike: Bike): void {
+  showInfo(bike: Bike) {
+    this.router.navigate(['/bikes',bike.id])
   }
 
 }
