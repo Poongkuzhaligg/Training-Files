@@ -43,7 +43,8 @@ export class PostsService {
     .get<{ [key:string]: Post }>('https://my-first-app-4033d-default-rtdb.asia-southeast1.firebasedatabase.app/posts.json',
     {
       headers: new HttpHeaders({ 'custom-Header': 'Hello' }),
-      params: searchParams
+      params: searchParams,
+      responseType: 'json'
     }
     )
     .pipe(
@@ -63,9 +64,11 @@ export class PostsService {
   }
 
   deletePosts() {
-    return this.http.delete('https://my-first-app-4033d-default-rtdb.asia-southeast1.firebasedatabase.app/posts.json',
+    return this.http
+    .delete('https://my-first-app-4033d-default-rtdb.asia-southeast1.firebasedatabase.app/posts.json',
     {
-      observe: 'events'
+      observe: 'events',
+      responseType: 'text'
     })
     .pipe(
         tap(event => {
