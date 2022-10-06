@@ -26,16 +26,16 @@ export class RecipeDetailComponent implements OnInit {
       );
   }
 
-  onAddToShoppingList(){
+  onAddToShoppingList() {
     this.recipeService.addIngToShoppingList(this.recipe.ingredients);
   }
 
-  onEditRecipe(){
+  onEditRecipe() {
     this.router.navigate(['edit'], {relativeTo: this.route});
     // this.router.navigate(['../', this.id, 'edit'], {relativeTo: this.route});
   }
 
-  onDeleteRecipe(){
+  onDeleteRecipe() {
     this.recipeService.deleteRecipe(this.id);
   }
 }
