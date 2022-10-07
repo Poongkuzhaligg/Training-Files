@@ -11,13 +11,17 @@ import { RecipeService } from '../recipe.service';
 export class RecipeEditComponent implements OnInit {
   id:number;
   editMode = false;
-  recipeForm: FormGroup
+  recipeForm: FormGroup;
+
+  get ingControls() { // a getter!
+    return (this.recipeForm.get('ingredients') as FormArray).controls;
+  }
 
   constructor(private route: ActivatedRoute,
     private recipeService: RecipeService,
     private router: Router) { }
 
-  ngOnInit(): void {
+  ngOnInit() {
     this.route.params
       .subscribe(
         (params: Params) => {
@@ -95,8 +99,6 @@ export class RecipeEditComponent implements OnInit {
     });
 
   }
-  get controls() { // a getter!
-    return (<FormArray>this.recipeForm.get('ingredients')).controls;
-  }
+
 
 }

@@ -23,7 +23,22 @@ export class RecipeService {
   //   [
   //     new Ingredient('Cheese', 2),
   //     new Ingredient('Patty', 1)
-  //   ])
+  //   ]),
+  // new Recipe('Chocolate Milkshake',
+  //   'With rich Belgium Chocolate!',
+  //   'https://www.gameartguppy.com/wp-content/uploads/2019/04/object-object_chocolate-milkshake.png',
+  //   [
+  //     new Ingredient('Whipped cream', 2),
+  //     new Ingredient('Vanilla syrup', 1)
+  //   ]),
+  // new Recipe('Pepperoni Pizza',
+  //   'Cheesy and more cheesy!',
+  //   'https://t3.ftcdn.net/jpg/01/88/09/62/360_F_188096235_MAB6os5VcSOpggp2Hctu7eTlULleQXyd.jpg',
+  //   [
+  //     new Ingredient('Basil', 2),
+  //     new Ingredient('Mushroom', 1)
+  //   ]),
+
   // ];
 
   constructor(private slService: ShoppingListService){}
