@@ -1,0 +1,50 @@
+<!-- TODO: Set form group and control name to corresponding element -->
+<!-- TODO: Show errors wherever required -->
+<!-- TODO: set is-invlaid class on input element if form is submitted and control has error -->
+<h1 *ngIf="isAddMode">Add User</h1>
+<h1 *ngIf="!isAddMode">Edit User</h1>
+<form>
+    <div class="form-row">
+        <div class="form-group col">
+            <label for="firstName">First Name</label>
+            <input type="text" class="form-control" />
+            <div class="invalid-feedback">
+                <div>First Name is required</div>
+            </div>
+        </div>
+        <div class="form-group col">
+            <label for="lastName">Last Name</label>
+            <input type="text" class="form-control" />
+            <div class="invalid-feedback">
+                <div>Last Name is required</div>
+            </div>
+        </div>
+    </div>
+    <div class="form-row">
+        <div class="form-group col">
+            <label for="username">Username</label>
+            <input type="text" class="form-control" />
+            <div class="invalid-feedback">
+                <div>Username is required</div>
+            </div>
+        </div>
+        <div class="form-group col">
+            <label for="password">
+                Password
+                <em *ngIf="!isAddMode">(Leave blank to keep the same password)</em>
+            </label>
+            <input type="password" class="form-control" />
+            <div class="invalid-feedback">
+                <div>Password is required</div>
+                <div>Password must be at least 6 characters</div>
+            </div>
+        </div>
+    </div>
+    <div class="form-group">
+        <button [disabled]="loading" class="btn btn-primary">
+            <span *ngIf="loading" class="spinner-border spinner-border-sm mr-1"></span>
+            Save
+        </button>
+        <a routerLink="/users" class="btn btn-link">Cancel</a>
+    </div>
+</form>
