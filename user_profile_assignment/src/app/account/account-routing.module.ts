@@ -8,7 +8,7 @@ import { RegisterComponent } from './register/register.component';
 // navigate to layout by default with login and register as children
 const routes: Routes = [
 {
-    path: '', component: LayoutComponent, pathMatch: 'full',
+    path: '', component: LayoutComponent,
     children: [
         { path: 'login', component: LoginComponent },
         { path: 'register', component: RegisterComponent }

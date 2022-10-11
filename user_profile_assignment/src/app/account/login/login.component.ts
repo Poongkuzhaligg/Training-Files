@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
-import { FormBuilder, FormGroup, NgForm, Validators } from '@angular/forms';
+import { FormBuilder, FormControl, FormGroup, NgForm, Validators } from '@angular/forms';
 import { first } from 'rxjs/operators';
 import { AccountService } from 'src/app/services/account.service';
 import { AlertService } from 'src/app/services/alert.service';
@@ -27,6 +27,8 @@ export class LoginComponent implements OnInit {
   ngOnInit() {
     //TODO: Create login form with username and password controls and both are required
     this.form = this.formBuilder.group({
+      'username' : new FormControl(null, Validators.required),
+      'password': new FormControl(null, Validators.required)
     });
   }
 
@@ -47,6 +49,7 @@ export class LoginComponent implements OnInit {
     }
 
     this.loading = true;
+    this.accountService.login(this.f.username.value, this.f.password.value)
     //TODO: call login method from account service and navigate to home if success else alert error
   }
 }
