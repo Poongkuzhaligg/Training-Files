@@ -1,0 +1,21 @@
+<div class="container">
+  <ul class="card-list">
+    <li *ngFor="fru in fruitss" style="cursor:pointer"
+      routerLinkActive="active">
+    <a routerLink="/lemon">{{fruitss.name}}</a></li>
+    <!-- <li role="presentation"
+      routerLinkActive="active">
+    <a routerLink="/grape">GRAPE</a></li>
+    <li role="presentation"
+      routerLinkActive="active">
+    <a [routerLink]="['./mango']">MANGO</a></li>
+    <li
+    routerLinkActive="active">
+    <a [routerLink]="['./strawberry']">STRAWBERRY</a></li> -->
+  </ul>
+</div>
+<div class="row">
+  <div class="col-mg-5">
+    <router-outlet></router-outlet>
+  </div>
+</div>
