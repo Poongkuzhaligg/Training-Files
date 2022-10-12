@@ -40,10 +40,10 @@ export class AddEditComponent implements OnInit {
         //TODO: Build form with firstname, lastname, username and password all are required
         //TODO: set passwordValidators for password
         this.form = this.formBuilder.group({
-            'firstname' : new FormControl(null, Validators.required),
-            'lastname' : new FormControl(null, Validators.required),
-            'username' : new FormControl(null, Validators.required),
-            'password': new FormControl(null, [Validators.required, Validators.minLength(6)]),
+            firstName: ['', Validators.required],
+            lastName: ['', Validators.required],
+            username: ['', Validators.required],
+            password: ['', passwordValidators]
         });
 
         if (!this.isAddMode) {

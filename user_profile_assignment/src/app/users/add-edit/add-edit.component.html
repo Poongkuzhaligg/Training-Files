@@ -13,7 +13,7 @@
                 formControlName="firstName"
                 required
             />
-            <div class="invalid-feedback">
+            <div *ngIf="submitted && f.firstName.errors" class="invalid-feedback">
                 <div>First Name is required</div>
             </div>
         </div>
@@ -25,7 +25,7 @@
                 formControlName="lastName"
                 required 
             />
-            <div class="invalid-feedback">
+            <div *ngIf="submitted && f.lastName.errors" class="invalid-feedback">
                 <div>Last Name is required</div>
             </div>
         </div>
@@ -39,7 +39,7 @@
                 formControlName="username"
                 required 
             />
-            <div class="invalid-feedback">
+            <div *ngIf="submitted && f.username.errors"  class="invalid-feedback">
                 <div>Username is required</div>
             </div>
         </div>
@@ -54,9 +54,9 @@
                 formControlName="password"
                 required    
             />
-            <div class="invalid-feedback">
-                <div>Password is required</div>
-                <div>Password must be at least 6 characters</div>
+            <div *ngIf="submitted && f.password.errors" class="invalid-feedback" [ngClass]="{ 'is-invalid': submitted && f.password.errors }">
+                <div *ngIf="f.password.errors.required">Password is required</div>
+                <div *ngIf="f.password.errors.minlength">Password must be at least 6 characters</div>
             </div>
         </div>
     </div>
@@ -65,6 +65,8 @@
             <span *ngIf="loading" class="spinner-border spinner-border-sm mr-1"></span>
             Save
         </button>
-        <a routerLink="/users" class="btn btn-link">Cancel</a>
+        <a routerLink="/users" class="btn btn-link">
+        <button type="button" class="btn btn-danger">Cancel</button>
+        </a>
     </div>
 </form>

@@ -20,7 +20,7 @@ export class AccountService {
         private router: Router,
         private http: HttpClient
     ) {
-        // this.apiUrl = environment.FirebaseApiUrl;
+        this.apiUrl = environment.apiUrl;
         this.userSubject = new BehaviorSubject<User>(JSON.parse(localStorage.getItem('user')));
         this.user = this.userSubject.asObservable();
     }
@@ -35,7 +35,7 @@ export class AccountService {
           //  password: password
        // }
        return this.http.post<User>(
-           'https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key='+environment.FirebaseApiUrl+'/users/authenticate',
+            environment.apiUrl+'/users/authenticate',
             {
                 username: username,
                 password: password
@@ -58,21 +58,22 @@ export class AccountService {
 
     register(user: User): any {
         //TODO post apiurl/users/register with body object as user
-        return this.http.post<User>('https://identitytoolkit.googleapis.com/v1/accounts:signUp?key='+environment.FirebaseApiUrl+'/users/register',
+        return this.http.post<User>(environment.apiUrl+'/users/register',
         user);
     }
 
     getAll(): any {
         //TODO get apiurl/users and return
-        return this.http.get<User>('https://userdetails-b2352-default-rtdb.firebaseio.com/user.json');
+        return this.http.get<User[]>(environment.apiUrl+'/users');
     }
 
     getById(id: string): any {
         //TODO get apiurl/users/id and return
+        return this.http.get<User>(environment.apiUrl+`/users/${id}`);
     }
 
     update(id, params) {
-        return this.http.put('https://userdetails-b2352-default-rtdb.firebaseio.com/user.json'+environment.FirebaseApiUrl+`/users/${id}`, params)
+        return this.http.put(environment.apiUrl+`/users/${id}`, params)
             .pipe(map(x => {
                 // update stored user if the logged in user updated their own record
                 if (id == this.userValue.id) {
@@ -88,7 +89,7 @@ export class AccountService {
     }
 
     delete(id: string) {
-        return this.http.delete(environment.FirebaseApiUrl+`/users/${id}`)
+        return this.http.delete(environment.apiUrl+`/users/${id}`)
             .pipe(map(x => {
                 // auto logout if the logged in user deleted their own record
                 if (id == this.userValue.id) {
