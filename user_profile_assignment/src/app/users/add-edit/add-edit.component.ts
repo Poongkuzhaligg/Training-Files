@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { first } from 'rxjs/operators';
 import { AccountService } from 'src/app/services/account.service';
 import { AlertService } from 'src/app/services/alert.service';
@@ -39,7 +39,12 @@ export class AddEditComponent implements OnInit {
 
         //TODO: Build form with firstname, lastname, username and password all are required
         //TODO: set passwordValidators for password
-        this.form = this.formBuilder.group({});
+        this.form = this.formBuilder.group({
+            'firstname' : new FormControl(null, Validators.required),
+            'lastname' : new FormControl(null, Validators.required),
+            'username' : new FormControl(null, Validators.required),
+            'password': new FormControl(null, [Validators.required, Validators.minLength(6)]),
+        });
 
         if (!this.isAddMode) {
             this.accountService.getById(this.id)
@@ -72,10 +77,34 @@ export class AddEditComponent implements OnInit {
 
     private createUser() {
         //TODO: call register alert success and navigate to users, alert failure on error
+        this.accountService.register(this.form.value)
+        .pipe(first())
+        .subscribe({
+            next: () => {
+                this.alertService.success('User added successfully', { keepAfterRouteChange: true });
+                this.router.navigate(['../'], { relativeTo: this.route });
+            },
+            error: error => {
+                this.alertService.error(error);
+                this.loading = false;
+            }
+        });
     }
 
     private updateUser() {
         //TODO: call update alert success and navigate to users, alert failure on error
+        this.accountService.update(this.id, this.form.value)
+        .pipe(first())
+        .subscribe({
+            next: () => {
+                this.alertService.success('User updated successful', { keepAfterRouteChange: true });
+                this.router.navigate(['../../'], { relativeTo: this.route });
+            },
+            error: error => {
+                this.alertService.error(error);
+                this.loading = false;
+            }
+        });
     }
 
 }

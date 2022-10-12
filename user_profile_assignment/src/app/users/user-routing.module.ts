@@ -7,7 +7,7 @@ import { ListComponent } from './list/list.component';
 // navigate to layout by default with list, add and edit/id as children
 const routes: Routes = [
     {
-        path: '', component: LayoutComponent, pathMatch: 'full',
+        path: '', component: LayoutComponent,
         children: [
             { path: '', component: ListComponent },
             { path: 'add', component: AddEditComponent  },

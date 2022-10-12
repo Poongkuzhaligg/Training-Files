@@ -15,6 +15,9 @@ export class ListComponent implements OnInit {
 
   ngOnInit() {
     //TODO: call getALL and set users on success
+    this.accountService.getAll()
+    .pipe(first())
+    .subscribe(users => this.users = users);
   }
 
   deleteUser(id: string) {

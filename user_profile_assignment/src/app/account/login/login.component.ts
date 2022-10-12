@@ -27,8 +27,8 @@ export class LoginComponent implements OnInit {
   ngOnInit() {
     //TODO: Create login form with username and password controls and both are required
     this.form = this.formBuilder.group({
-      'username' : new FormControl(null, Validators.required),
-      'password': new FormControl(null, Validators.required)
+        username: ['', Validators.required],
+        password: ['', Validators.required]
     });
   }
 
@@ -49,7 +49,18 @@ export class LoginComponent implements OnInit {
     }
 
     this.loading = true;
-    this.accountService.login(this.f.username.value, this.f.password.value)
+    this.accountService.login(this.f.username.value, this.f.password.value).pipe(first())
+    .subscribe({
+        next: () => {
+            const returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/';
+            this.router.navigateByUrl(returnUrl);
+        },
+        error: error => {
+            this.alertService.error(error);
+            this.loading = false;
+        }
+    });
     //TODO: call login method from account service and navigate to home if success else alert error
+    
   }
 }

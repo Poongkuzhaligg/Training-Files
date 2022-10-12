@@ -11,20 +11,20 @@
     </thead>
     <tbody>
         <!-- TODO:Iterate users and list first name last name and username -->
-        <tr>
+        <tr *ngFor="ley uDet of users">
             <!-- first name -->
-            <td></td>
+            <td>{{uDet.firstName}}</td>
             <!-- last name -->
-            <td></td>
-            <td></td>
+            <td>{{uDet.lastName}}</td>
+            <td>{{uDet.username}}</td>
             <td style="white-space: nowrap">
                 <!-- TODO:navigate to edit with user id -->
-                <a  class="btn btn-sm btn-primary mr-1">Edit</a>
+                <a  routerLink="edit/{{user.id}}" class="btn btn-sm btn-primary mr-1">Edit</a>
                 <!-- TODO:Delete user on click disabled when use is deleting-->
-                <button  class="btn btn-sm btn-danger btn-delete-user" [disabled]="">
+                <button  class="btn btn-sm btn-danger btn-delete-user" [disabled]="user.isDeleting">
                     <!-- TODO: uncomment -->
-                    <!-- <span *ngIf="user.isDeleting" class="spinner-border spinner-border-sm"></span>
-                    <span *ngIf="!user.isDeleting">Delete</span> -->
+                    <span *ngIf="user.isDeleting" class="spinner-border spinner-border-sm"></span>
+                    <span *ngIf="!user.isDeleting">Delete</span>
                 </button>
             </td>
         </tr>

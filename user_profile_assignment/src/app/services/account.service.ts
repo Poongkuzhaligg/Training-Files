@@ -20,7 +20,7 @@ export class AccountService {
         private router: Router,
         private http: HttpClient
     ) {
-        this.apiUrl = environment.apiUrl;
+        // this.apiUrl = environment.FirebaseApiUrl;
         this.userSubject = new BehaviorSubject<User>(JSON.parse(localStorage.getItem('user')));
         this.user = this.userSubject.asObservable();
     }
@@ -34,19 +34,37 @@ export class AccountService {
          //   username: username,
           //  password: password
        // }
+       return this.http.post<User>(
+           'https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key='+environment.FirebaseApiUrl+'/users/authenticate',
+            {
+                username: username,
+                password: password
+            }      
+       ).pipe(map(user => {
+           localStorage.setItem('user', JSON.stringify(user));
+           this.userSubject.next(user);
+           return user;
+       }))
+
        //map and set user to local storage and call usersubject with that user fwd the response
     }
 
     logout() {
         // TODO: remove user from local storage and set current user to null and navigate to login
+        this.userSubject.next(null);
+        this.router.navigate(['/account/login']);
+        localStorage.removeItem('user')
     }
 
     register(user: User): any {
         //TODO post apiurl/users/register with body object as user
+        return this.http.post<User>('https://identitytoolkit.googleapis.com/v1/accounts:signUp?key='+environment.FirebaseApiUrl+'/users/register',
+        user);
     }
 
     getAll(): any {
         //TODO get apiurl/users and return
+        return this.http.get<User>('https://userdetails-b2352-default-rtdb.firebaseio.com/user.json');
     }
 
     getById(id: string): any {
@@ -54,7 +72,7 @@ export class AccountService {
     }
 
     update(id, params) {
-        return this.http.put(`${environment.apiUrl}/users/${id}`, params)
+        return this.http.put('https://userdetails-b2352-default-rtdb.firebaseio.com/user.json'+environment.FirebaseApiUrl+`/users/${id}`, params)
             .pipe(map(x => {
                 // update stored user if the logged in user updated their own record
                 if (id == this.userValue.id) {
@@ -70,7 +88,7 @@ export class AccountService {
     }
 
     delete(id: string) {
-        return this.http.delete(`${environment.apiUrl}/users/${id}`)
+        return this.http.delete(environment.FirebaseApiUrl+`/users/${id}`)
             .pipe(map(x => {
                 // auto logout if the logged in user deleted their own record
                 if (id == this.userValue.id) {

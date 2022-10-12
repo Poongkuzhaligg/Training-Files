@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { first } from 'rxjs/operators';
 import { AccountService } from 'src/app/services/account.service';
 import { AlertService } from 'src/app/services/alert.service';
@@ -28,6 +28,10 @@ export class RegisterComponent implements OnInit {
         //TODO: Create register form with firstName, lastName, username and password controls 
         // All are required and password min length is 6
         this.form = this.formBuilder.group({
+            firstName: ['', Validators.required],
+            lastName: ['', Validators.required],
+            username: ['', Validators.required],
+            password: ['', [Validators.required, Validators.minLength(6)]]
         });
     }
 
