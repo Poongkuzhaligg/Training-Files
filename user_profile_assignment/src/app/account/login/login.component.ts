@@ -52,8 +52,8 @@ export class LoginComponent implements OnInit {
     this.accountService.login(this.f.username.value, this.f.password.value).pipe(first())
     .subscribe({
         next: () => {
-            const returnUrl = this.route.snapshot.queryParams['/'];
-            this.router.navigateByUrl(returnUrl);
+            const userpage = this.route.snapshot.queryParams['/'];
+            this.router.navigateByUrl(userpage);
         },
         error: error => {
             this.alertService.error(error);
