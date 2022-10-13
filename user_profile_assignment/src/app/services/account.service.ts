@@ -64,16 +64,16 @@ export class AccountService {
 
     getAll(): any {
         //TODO get apiurl/users and return
-        return this.http.get<User[]>(environment.apiUrl+'/users');
+        return this.http.get<User>(environment.apiUrl+'/users');
     }
 
     getById(id: string): any {
         //TODO get apiurl/users/id and return
-        return this.http.get<User>(environment.apiUrl+`/users/${id}`);
+        return this.http.get<User>(environment.apiUrl+'/users/'+id);
     }
 
     update(id, params) {
-        return this.http.put(environment.apiUrl+`/users/${id}`, params)
+        return this.http.put(environment.apiUrl+'/users/'+id, params)
             .pipe(map(x => {
                 // update stored user if the logged in user updated their own record
                 if (id == this.userValue.id) {
@@ -89,7 +89,7 @@ export class AccountService {
     }
 
     delete(id: string) {
-        return this.http.delete(environment.apiUrl+`/users/${id}`)
+        return this.http.delete(environment.apiUrl+'/users/'+id)
             .pipe(map(x => {
                 // auto logout if the logged in user deleted their own record
                 if (id == this.userValue.id) {

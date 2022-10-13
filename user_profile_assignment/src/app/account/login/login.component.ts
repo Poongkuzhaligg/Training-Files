@@ -28,7 +28,7 @@ export class LoginComponent implements OnInit {
     //TODO: Create login form with username and password controls and both are required
     this.form = this.formBuilder.group({
         username: ['', Validators.required],
-        password: ['', Validators.required]
+        password: ['', [Validators.required, Validators.minLength(6)]]
     });
   }
 
@@ -52,7 +52,7 @@ export class LoginComponent implements OnInit {
     this.accountService.login(this.f.username.value, this.f.password.value).pipe(first())
     .subscribe({
         next: () => {
-            const returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/';
+            const returnUrl = this.route.snapshot.queryParams['/'];
             this.router.navigateByUrl(returnUrl);
         },
         error: error => {

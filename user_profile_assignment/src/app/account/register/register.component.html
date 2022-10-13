@@ -9,8 +9,8 @@
             <label for="firstName">First Name</label>
             <input 
                 type="text" 
-                formControlName="firstName" 
                 class="form-control" 
+                formControlName="firstName"
             />
             <div *ngIf="submitted && f.firstName.errors" class="invalid-feedback">
                 <div *ngIf="f.firstName.errors.required">First Name is required</div>
@@ -32,7 +32,8 @@
             <input 
                 type="text" 
                 formControlName="username" 
-                class="form-control" />
+                class="form-control" 
+            />
             <div *ngIf="submitted && f.username.errors" class="invalid-feedback">
                 <div *ngIf="f.username.errors.required">Username is required</div>
             </div>
@@ -44,7 +45,7 @@
                 formControlName="password" 
                 class="form-control" 
              />
-            <div *ngIf="submitted && f.password.errors" [ngClass]="{ 'is-invalid': submitted && f.password.errors }" class="invalid-feedback">
+            <div *ngIf="submitted && f.password.errors" class="invalid-feedback">
                 <div *ngIf="f.password.errors.required">Password is required</div>
                 <div *ngIf="f.password.errors.minlength">Password must be at least 6 characters</div>
             </div>

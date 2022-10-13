@@ -16,11 +16,11 @@ const routes: Routes = [
   { path: 'users', 
   loadChildren:() => import('./users/users.module').then(m => m.UsersModule),
   canActivate: [AuthGuard]
-   },
+  },
   { path: 'account',
    loadChildren:() => import('./account/account.module').then(m => m.AccountModule)
-   },
-   { path: '**', redirectTo: '' }
+  },
+  { path: '**', redirectTo: '' }
 ];
 
 
