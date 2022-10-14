@@ -18,7 +18,9 @@ export class LayoutComponent implements OnInit {
 
   ngOnInit(): void {
     // redirect to home if already logged in
-    
+    if (this.accountService.userValue) {
+      this.router.navigate(['/']);
+  }
   }
 
 }
