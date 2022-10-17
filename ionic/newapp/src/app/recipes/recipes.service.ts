@@ -10,7 +10,7 @@ export class RecipesService {
       id: 'r1',
       title: 'Eggs n Bacon',
       imageUrl: 'https://i.pinimg.com/736x/ff/c3/d3/ffc3d3f7e25c28ea2d3fe42231736f00--vector-clipart-bacon.jpg',
-      ingredients: ['Sausage', 'Fries' ]
+      ingredients: ['Sausage', 'Fries']
     },
     {
       id: 'r2',
@@ -39,9 +39,11 @@ export class RecipesService {
     return [...this.recipes];
   }
 
-  getRecipe(recipeId: string){
+  getRecipe(recipeId: string) {
     return {
-      ...this.recipes.find(recipe => recipe.id === recipeId)
+      ...this.recipes.find(recipe =>
+        recipe.id === recipeId)
     };
   }
+
 }
