@@ -22,9 +22,7 @@ addBtn.addEventListener('click', () => {
             message: 'Please enter valid data!', 
             header: 'Invalid inputs', 
             buttons: ['Okay']
-        }).then(alertElement => {
-            alertElement.present();
-        });
+        }).then(alertElement => alertElement.present());
         return;
     }
     console.log(entReason, entAmt);
