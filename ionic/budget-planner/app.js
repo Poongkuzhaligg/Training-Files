@@ -13,16 +13,25 @@ const clear = () => {
     InAmt.value = '';
 };
 
-addBtn.addEventListener('click', () => {
+addBtn.addEventListener('click', async () => {
     const entReason = InReason.value;
     const entAmt = InAmt.value;
     
     if( entReason.trim().length <= 0 || entAmt <=0 || entAmt.trim().length <= 0 ) {
-        alertCtrl.create({
-            message: 'Please enter valid data!', 
-            header: 'Invalid inputs', 
-            buttons: ['Okay']
-        }).then(alertElement => alertElement.present());
+        // let alert = alertCtrl.create({
+        //     message: 'Please enter valid data!', 
+        //     header: 'Invalid inputs', 
+        //     buttons: ['Okay']
+        // });
+        // alert.present();
+        const alert = document.createElement('ion-alert');
+        alert.header = 'Alert';
+        alert.subHeader = 'Please enter valid data!';
+        alert.message = 'Invalid inputs';
+        alert.buttons = ['OK'];
+    
+        document.body.appendChild(alert);
+        await alert.present();
         return;
     }
     console.log(entReason, entAmt);
