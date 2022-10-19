@@ -1,0 +1,25 @@
+<ion-content class="content">
+	<div class="img-area">
+		<div class="img-container">
+			<img src="assets/icon/icon.png" alt="">
+		</div>
+	</div>
+	<div class="login-signup-buttons">
+		<button
+			ion-button
+			class="signup-button"
+			name="SIGN UP"
+			routerLink="/landing/signup" >SIGN UP</button>
+		<button
+			ion-button
+			class="login-button"
+			name="LOG IN"
+			routerLink="/landing/login" >LOG IN</button>
+	</div>
+	<div class="footer">
+		<div class="footer-content">
+			<span>Version {{version}}</span> | <span (click)="openPrivacyLink()">PRIVACY POLICY</span><br/>
+			<span (click)="openHelpModal()">QUESTIONS?</span>
+		</div>
+	</div>
+</ion-content>

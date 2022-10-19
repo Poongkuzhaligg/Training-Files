@@ -1,0 +1,14 @@
+<ion-item class="item-code" mode=“ios”>
+	<ion-icon
+		(click)="toggleFavorite()"
+		class="favorite-star"
+		[color]="code.favorite ? 'primary' : ''"
+		[name]="code.favorite ? 'star' : 'star-outline'">
+	</ion-icon>
+	<span class="ion-text-wrap">
+		{{ code.name }}
+	</span>
+	<span slot="end" class="code">
+		{{ code.code }}
+	</span>
+</ion-item>

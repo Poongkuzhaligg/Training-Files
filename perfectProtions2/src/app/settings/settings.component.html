@@ -1,0 +1,112 @@
+<ion-header>
+	<ion-toolbar>
+		<ion-button
+			(click)="attemptToGoBack()"
+			class="back-button"
+			slot="start"
+			mode="ios">
+			<ion-icon name="arrow-back"></ion-icon>
+		</ion-button>
+		<ion-title mode="ios" class="toolbar-title">SETTINGS</ion-title>
+	</ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+	<div class="form-container">
+		<form class="change-info-form" [formGroup]="changeInfoForm">
+			<ion-list>
+				<ion-item-divider>
+					<ion-label>
+						Update Account Info
+					</ion-label>
+				  </ion-item-divider>
+				<ion-item>
+					<ion-label position="stacked">First Name</ion-label>
+					<ion-input formControlName="firstName" required></ion-input>
+				</ion-item>
+				<div class="error-wrap">
+					<span
+						class="error"
+						*ngIf="firstName.hasError('required') && firstName.dirty">
+						Must not be left blank
+					</span>
+				</div>
+				<ion-item>
+					<ion-label position="stacked">Last Name</ion-label>
+					<ion-input formControlName="lastName" required></ion-input>
+				</ion-item>
+				<div class="error-wrap">
+					<span
+						class="error"
+						*ngIf="lastName.hasError('required') && lastName.dirty">
+						Must not be left blank
+					</span>
+				</div>
+				<ion-item>
+					<ion-label position="stacked">Email</ion-label>
+					<ion-input formControlName="email" type="email" required></ion-input>
+				</ion-item>
+				<div class="error-wrap">
+					<span
+						class="error"
+						*ngIf="email.hasError('pattern') && email.touched">
+						Must use a valid email
+					</span>
+				</div>
+				<ion-list class="stores-select" *ngIf="showScaleSelect">
+					<ion-radio-group formControlName="scale">
+						<ion-list-header class="list-header" mode="md">
+							Where did you buy your scale? (optional)
+						</ion-list-header>
+							<ion-item>
+								<ion-label class="store-label">
+									Amazon &nbsp;(Model #451)
+								</ion-label>
+								<ion-radio
+									(click)="scaleModelChange('0451')"
+									value="0451">
+								</ion-radio>
+							</ion-item>
+							<ion-item>
+								<ion-label class="store-label">
+									Bed, Bath, & Beyond / Target &nbsp;(Model #450)
+								</ion-label>
+								<ion-radio
+									(click)="scaleModelChange('0450')"
+									value="0450">
+								</ion-radio>
+							</ion-item>
+						</ion-radio-group>
+					</ion-list>
+				<ion-button
+					expand="full"
+					class="save-button"
+					mode="ios"
+					color="primary"
+					(click)="saveUserInfo()"
+					[disabled]="changeInfoForm.pristine || changeInfoForm.untouched || changeInfoForm.invalid">
+					SAVE
+				</ion-button>
+			</ion-list>
+		</form>
+	</div>
+	<ion-list class="secondary-list">
+		<ion-item-divider>
+			<ion-label>
+				More Options
+			</ion-label>
+		</ion-item-divider>
+		<ion-item button (click)="openChangePasswordModal()">
+			Change Password
+		</ion-item>
+		<ion-item button (click)="attemptToLogOut()">
+			Log Out
+		</ion-item>
+		<ion-item button (click)="openHelpModal()">
+			Get Help
+		</ion-item>
+		<ion-item button (click)="openLegalModal()">
+			Privacy Policy
+		</ion-item>
+	</ion-list>
+</ion-content>

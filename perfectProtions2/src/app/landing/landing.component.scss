@@ -1,0 +1,76 @@
+ion-content.content::part(background) {
+	background-color: var(--ion-color-primary);
+}
+
+ion-content {
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+	align-items: stretch;
+	height: 100vh;
+
+	.img-area {
+		height: 35vh;
+		margin: 4vh auto 0;
+		max-width: 600px;
+
+		.img-container {
+			height: 35vh;
+			max-width: 600px;
+			margin: 0 0 0 7%;
+			
+			img {
+				display: block;
+				width: auto;
+				height: 100%;
+			}
+		}
+	}
+
+	.login-signup-buttons {
+		height: 40vh;
+		text-align: center;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		flex-direction: column;
+
+		.signup-button {
+			background-color: var(--ion-color-primary-contrast);
+			color: var(--ion-color-primary);
+		}
+
+		.login-button {
+			background-color: var(--ion-color-secondary);
+			color: var(--ion-color-light);
+		}
+
+		button {
+			border-radius: 5rem;
+			box-shadow:
+				0 2px 2px 0 rgba(0, 0, 0, 0.14),
+				0 3px 1px -2px rgba(0, 0, 0, 0.2),
+				0 1px 5px 0 rgba(0, 0, 0, 0.12);
+			display: block;
+			font-size: calc(.75rem + 6vw);
+			font-weight: 500;
+			height: calc(4rem + 6vw);
+			max-height: 30%;
+			margin: 0 auto 5%;
+			padding: 0 1.1em;
+			width: 80%;
+			max-width: 600px;
+		}
+	}
+
+	.footer {
+		height: 15vh;
+		color: var(--ion-color-dark-contrast);
+		font-weight: 300;
+		text-align: center;
+		width: 100vw;
+		display: flex;
+		align-items: flex-end;
+		justify-content: center;
+	}
+}

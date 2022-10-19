@@ -1,0 +1,39 @@
+.category-list {
+	padding-bottom: 0px;
+	padding-top: 0px;
+	width: 100%;
+
+	ion-list {
+		--border-color: transparent;
+	}
+
+	ion-icon {
+		align-self: center;
+		font-size: 1.5rem;
+		right: 8px;
+		top: 12px;
+		position: absolute;
+	}
+
+	ion-list-header {
+		font-weight: 600;
+		padding: 4px 4px 4px 16px;
+		border-bottom: 1px solid var(--ion-color-medium-tint);
+	}
+}
+
+.count {
+	opacity: .5;
+	font-size: .7em;
+	padding-left: .5rem;
+	padding-top: .35em;
+}
+
+ion-list-header ion-icon {
+	opacity: .4;
+	
+	&.open {
+		opacity: 1;
+		transform: rotate(180deg);
+	}
+}

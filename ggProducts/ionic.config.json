@@ -1,0 +1,7 @@
+{
+  "name": "ggProducts",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}

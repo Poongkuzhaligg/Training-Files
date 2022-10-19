@@ -1,0 +1,27 @@
+.item-code {
+	align-items: flex-start;
+	font-weight: 600;
+	display: flex;
+	white-space: normal;
+
+	ion-icon.favorite-star {
+		align-self: center;
+		font-size: 1.2rem;
+		max-width: 1rem;
+		margin-left: .75rem;
+		min-width: 1rem;
+	}
+
+	span.ion-text-wrap {
+		align-self: center;
+		font-size: .75rem;
+		margin: .75rem;
+		white-space: normal;
+	}
+
+	span.code {
+		font-size: 1rem;
+		font-weight: 700;
+		margin: .75rem .5rem .75rem 2vw;
+	}
+}

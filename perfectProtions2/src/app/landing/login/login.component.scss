@@ -1,0 +1,42 @@
+ion-content {
+	font-size: 12px;
+
+	.form-wrapper {
+		padding: 1rem 0 0 1rem;
+
+		.error-wrap {
+			align-self: start;
+			color: var(--ion-color-danger);
+			min-height: 17px;
+			max-height: 17px;
+			display: block;
+		}
+
+		.password {
+			padding-top: 12px;
+		}
+
+		.forgot-password {
+			margin-top: 24px;
+
+			a {
+				cursor: pointer;
+			}
+		}
+	}
+}
+
+ion-item {
+	font-weight: 400;
+	font-size: 16px;
+	margin-top: 0;
+	width: 100%;
+
+	ion-label {
+		color: var(--ion-color-medium);
+		font-weight: 400;
+		font-family: Open Sans, sans-serif;
+		margin-bottom: 1px;
+		margin-right: 6px;
+	}
+}

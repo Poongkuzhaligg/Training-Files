@@ -1,0 +1,183 @@
+<ion-header>
+	<ion-toolbar>
+	</ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+	<div class="slides-container">
+		<div
+			class="slide-container name-scale-slide"
+			[ngClass]="{
+				'previous-slide': currentSlide === 1,
+				'current-slide': currentSlide === 0}">
+			<form class="name-form" [formGroup]="signupFormName">
+				<ion-item>
+					<ion-label position="floating">First Name*</ion-label>
+					<ion-input formControlName="firstName"></ion-input>
+				</ion-item>
+				<div class="error-wrap">
+					<span
+						class="error"
+						*ngIf="firstName.hasError('required') && firstName.touched">
+						Must not be left blank
+					</span>
+				</div>
+				<ion-item>
+					<ion-label position="floating">Last Name*</ion-label>
+					<ion-input formControlName="lastName"></ion-input>
+				</ion-item>
+				<div class="error-wrap">
+					<span
+						class="error"
+						*ngIf="lastName.hasError('required') && lastName.touched">
+						Must not be left blank
+					</span>
+				</div>
+			</form>
+		<ion-list class="stores" >
+			<ion-radio-group>
+				<ion-list-header class="list-header" mode="md">
+					Where did you buy your scale? (optional)
+				</ion-list-header>
+					<ion-item>
+						<ion-label class="store-label">
+							Amazon &nbsp;(Model #451)
+						</ion-label>
+						<ion-radio
+							color="primary"
+							(click)="scaleModelChange('0451')"
+							value="0451">
+						</ion-radio>
+					</ion-item>
+					<ion-item>
+						<ion-label class="store-label">
+							Bed, Bath, & Beyond / Target &nbsp;(Model #450)
+						</ion-label>
+						<ion-radio
+							color="primary"
+							(click)="scaleModelChange('0450')"
+							value="0450">
+						</ion-radio>
+					</ion-item>
+				</ion-radio-group>
+			</ion-list>
+		</div>
+
+		<div
+			class="slide-container email-password-slide"
+			[ngClass]="{
+			'current-slide': currentSlide === 1,
+			'next-slide': currentSlide === 0}">
+			<form class="email-password-form" [formGroup]="signupFormEmailPassword">
+				<ion-item>
+					<ion-label position="floating">Email*</ion-label>
+					<ion-input formControlName="email" type="email"></ion-input>
+				</ion-item>
+				<div class="error-wrap">
+					<span
+						class="error"
+						*ngIf="email.hasError('pattern') && email.touched">
+						Must use a valid email
+					</span>
+				</div>
+				<div class="inline-wrapper">
+					<ion-item>
+						<ion-label position="floating">Password*</ion-label>
+						<ion-input
+							formControlName="password"
+							[type]="hidePassword ? 'password' : 'text'">
+						</ion-input>
+					</ion-item>
+					<img
+						*ngIf="currentSlide === 1"
+						id="pass-toggle"
+						[src]="hidePassword ? '/assets/icon/App_Icon_View_Off.svg' : '/assets/icon/App_Icon_View_On.svg'"
+						(click)="toggleHidePassword()">
+				</div>
+				<div class="error-wrap">
+					<span
+						class="error"
+						*ngIf="password.hasError('required') && password.touched">
+						Must not leave blank
+					</span>
+					<span
+						class="error"
+						*ngIf="password.hasError('minlength')">
+						Password must be 6 characters long
+					</span>
+				</div>
+				<div class="inline-wrapper">
+					<ion-item>
+						<ion-label position="floating">Confirm Password*</ion-label>
+						<ion-input
+						[type]="hidePassword ? 'password' : 'text'"
+						formControlName="confirmPassword">
+					</ion-input>
+				</ion-item>
+				<img
+					*ngIf="currentSlide === 1"
+					id="confirm-pass-toggle"
+					[src]="hidePassword ? '/assets/icon/App_Icon_View_Off.svg' : '/assets/icon/App_Icon_View_On.svg'"
+					(click)="toggleHidePassword()">
+				</div>
+				<div class="error-wrap">
+					<span
+						class="error"
+						*ngIf="confirmPassword.hasError('minlength') && confirmPassword.touched">
+						Password must be 6 characters long
+					</span>
+					<span
+						class="error"
+						*ngIf="confirmPassword.hasError('isMatching') && confirmPassword.touched">
+						Passwords must be matching
+					</span>
+				</div>
+				<div class="opt-in">
+					<ion-checkbox formControlName="willReceiveEmails" [checked]="willReceiveEmails"></ion-checkbox>
+					<label (click)="willReceiveEmails.setValue(!willReceiveEmails.value)">Opt-in to Greater Goods Deals</label>
+				</div>
+			</form>
+		</div>
+	</div>
+</ion-content>
+
+<ion-footer>
+	<ion-toolbar class="footer-buttons">
+		<ion-button
+			*ngIf="currentSlide === 0"
+			mode="ios"
+			slot="start"
+			routerDirection="back"
+			routerLink="/landing">
+			<ion-icon name="arrow-back"></ion-icon>
+			BACK
+		</ion-button>
+		<ion-button
+			*ngIf="currentSlide !== 0"
+			mode="ios"
+			slot="start"
+			(click)="slideBack()">
+			<ion-icon name="arrow-back"></ion-icon>
+			BACK
+		</ion-button>
+		<ion-button
+			*ngIf="!showSignup"
+			ion-button mode="ios"
+			slot="end"
+			(click)="slideNext()"
+			[disabled]="signupFormName.invalid">
+			NEXT
+			<ion-icon name="arrow-forward"></ion-icon>
+		</ion-button>
+		<ion-button
+			*ngIf="showSignup"
+			ion-button mode="ios"
+			slot="end"
+			(click)="signUp()"
+			type="submit"
+			[disabled]="signupFormEmailPassword.invalid">
+			SIGN UP
+			<ion-icon name="arrow-forward"></ion-icon>
+		</ion-button>
+	</ion-toolbar>
+</ion-footer>

@@ -1,0 +1,27 @@
+<ion-header>
+	<ion-toolbar>
+		<ion-button
+			(click)="dismiss()"
+			class="back-button"
+			slot="start"
+			mode="ios">
+			<ion-icon name="arrow-back"></ion-icon>
+		</ion-button>
+		<ion-title class="toolbar-title">LEGAL</ion-title>
+	</ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+	<div class="content-wrapper">
+		<h2>Privacy Policy</h2>
+		<p>We don’t think you should have to read a complicated legal document to understand
+			what to expect from us (but you can if you want to!). It’s simple: we don’t sell your data, and we won’t
+			share it without your express permission. (Don’t worry—we don’t think clicking “Agree” to get through a
+			hundred-page service agreement counts as permission.) We only collect data about you to deliver a more personalized
+			experience, and to serve as a backup in case something goes wrong with your device or account. If you
+			have any questions about what we store and why, please give us a call.</p>
+		<p>
+			We will not share or sell any of your personal information. Check out our full <a (click)="openPrivacyLink()"><strong>PRIVACY POLICY</strong></a> here.
+		</p>
+	</div>
+</ion-content>

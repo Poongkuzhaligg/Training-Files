@@ -1,0 +1,13 @@
+{
+	"rulesDirectory": [
+		"node_modules/codelyzer"
+	],
+	"extends": "@greatergoods/tslint-config-gg",
+	"rules": {
+		"no-console": [true],
+		"import-blacklist": [false, "rxjs"],
+		"switch-default": [false],
+		"interface-name": [false, "always-prefix"],
+		"no-inferrable-types": false
+	}
+}

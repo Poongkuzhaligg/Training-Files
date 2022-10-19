@@ -1,0 +1,76 @@
+ion-toolbar {
+	ion-button.back-button::part(native) {
+		padding: 0 0 0 4px;
+	}
+
+	ion-icon{
+		color: var(--ion-color-primary-contrast);
+		font-size: 1.7rem;
+	}
+
+	.toolbar-title {
+		color: var(--ion-color-primary-contrast);
+		margin-right: 2rem;
+		font-size: 1.1rem;
+		font-weight: 700;
+	}
+}
+
+ion-item {
+	--inner-padding-start: 1em;
+	--inner-padding-end: 1em;
+	font-weight: 400;
+	width: 100%;
+}
+
+ion-label {
+	color: var(--ion-color-medium);
+	font-weight: 400;
+	font-family: Open Sans, sans-serif;
+	margin-bottom: 1px;
+	margin-right: 6px;
+}
+
+ion-item-divider {
+	--background: transparent;
+	--inner-padding-start: 0;
+	--padding-start: .9em;
+	--padding-bottom: .5em;
+
+	ion-label {
+		font-weight: bold;
+	}
+}
+
+div.form-container {
+	ion-item {
+		font-size: .9rem
+	}
+
+	form.change-info-form {
+		font-size: .8rem;
+
+		.error-wrap {
+			align-self: start;
+			color: var(--ion-color-danger);
+			min-height: 1.1rem;
+			max-height: 1.1rem;
+			display: block;
+		}
+	}
+}
+
+.stores-select {
+	margin-bottom: 1rem;
+}
+
+.secondary-list {
+	margin-top: 50px;
+	margin-bottom: 100px;
+
+	ion-item {
+		font-size: 1rem;
+		--inner-padding-top: 1em;
+		--inner-padding-bottom: 1em;
+	}
+}

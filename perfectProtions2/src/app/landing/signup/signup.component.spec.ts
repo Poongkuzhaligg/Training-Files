@@ -1,0 +1,32 @@
+import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { ReactiveFormsModule } from '@angular/forms';
+import { RouterTestingModule } from '@angular/router/testing';
+import { IonicModule } from '@ionic/angular';
+
+import { HttpService } from 'src/app/services/http.service';
+import { MockHttpService } from 'src/app/services/mocks/mock-http.service';
+
+import { SignupComponent } from './signup.component';
+
+describe('SignupComponent', () => {
+	let component: SignupComponent;
+	let fixture: ComponentFixture<SignupComponent>;
+
+	beforeEach(async(() => {
+		TestBed.configureTestingModule({
+			declarations: [ SignupComponent ],
+			imports: [ ReactiveFormsModule, RouterTestingModule, IonicModule.forRoot()],
+			providers: [
+				{ provide: HttpService, useClass: MockHttpService },
+			]
+		}).compileComponents();
+
+		fixture = TestBed.createComponent(SignupComponent);
+		component = fixture.componentInstance;
+		fixture.detectChanges();
+	}));
+
+	it('should create', () => {
+		expect(component).toBeTruthy();
+	});
+});

@@ -1,0 +1,135 @@
+ion-content {
+	font-size: 12px;
+
+	.slides-container {
+		display: flex;
+		width: 95vw;
+
+		.slide-container {
+			height: auto;
+			padding-right: 9vw;
+			width: 100vw;
+
+			form {
+				div.error-wrap {
+					align-self: start;
+					display: flex;
+					flex-direction: column;
+					color: var(--ion-color-danger);
+					min-height: 17px;
+					max-height: 17px;
+				}
+			}
+
+				ion-item {
+					margin-top: 1rem;
+				}
+
+				ion-list {
+					ion-item {
+						margin: 0;
+					}
+				}
+
+			form.email-password-form {
+				margin: 1rem -0.5rem 0 1rem;
+
+				div.inline-wrapper {
+					display: flex;
+					flex-direction: row;
+					align-items: center;
+					justify-content: space-between;
+					width: 100%;
+
+					img {
+						animation-duration: 1s;
+						animation-name: fade-in;
+						color: var(--ion-color-dark);
+						position: absolute;
+						right: 24px;
+						width: 25px;
+						z-index: 1;
+					}
+
+					img#pass-toggle {
+						top: 150px;
+					}
+
+					img#confirm-pass-toggle {
+						top: 244px;
+					}
+				}
+
+				.opt-in {
+					display: flex;
+					margin-top: 35px;
+
+					label {
+						color: var(--ion-color-medium-tint);
+						margin-left: 10px;
+					}
+				}
+			}
+				ion-item {
+					font-weight: 400;
+					font-size: 14px;
+					margin-top: 18px;
+					width: 100%;
+			}
+		}
+	}
+		ion-item {
+			font-weight: 400;
+			font-size: 14px;
+			margin-top: 0;
+			width: 100%;
+
+			ion-label {
+				color: var(--ion-color-medium);
+				font-weight: 400;
+				font-family: Open Sans, sans-serif;
+				margin-bottom: 1px;
+				margin-right: 6px;
+			}
+		}
+
+		.previous-slide {
+			margin: 0 0 0 -100vw;
+			transition: margin 0.5s;
+		}
+
+		.current-slide {
+			margin: 0 0 0 0;
+			transition: margin 0.5s;
+		}
+
+		.next-slide {
+			margin: 0 -100vw 0 0;
+			transition: margin 0.5s;
+		}
+	}
+
+.stores {
+	margin-top: 20px;
+	text-align: left;
+
+.list-header {
+	padding: 0;
+}
+
+	.store-label {
+		font-weight: 400;
+		font-size: 12px;
+	}
+
+	.item-radio-checked {
+		ion-label {
+			font-weight: 700;
+		}
+	}
+}
+
+@keyframes fade-in {
+	0% {opacity:  0; visibility: visible;}
+	100% {opacity:  1; visibility: visible;}
+}

@@ -1,0 +1,22 @@
+<ion-header>
+	<ion-toolbar>
+		<ion-button
+			slot="start"
+			mode="ios"
+			(click)="dismiss()">
+			<ion-icon name="arrow-back"></ion-icon>
+		</ion-button>
+		<ion-title mode="ios" class="toolbar-title">FAVORITES</ion-title>
+	</ion-toolbar>
+</ion-header>
+
+<ion-content>
+	<ion-list>
+		<ng-container *ngFor="let code of favorites; trackBy:trackByCode">
+			<code
+				(favoriteEmitter)="toggleFavorite($event)"
+				[code]="code">
+			</code>
+		</ng-container>
+	</ion-list>
+</ion-content>

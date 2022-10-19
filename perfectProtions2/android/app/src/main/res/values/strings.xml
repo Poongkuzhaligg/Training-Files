@@ -1,0 +1,7 @@
+<?xml version='1.0' encoding='utf-8'?>
+<resources>
+    <string name="app_name">GG Food Scale</string>
+    <string name="title_activity_main">GG Food Scale</string>
+    <string name="package_name">com.dmdbrands.perfectportions</string>
+    <string name="custom_url_scheme">com.dmdbrands.perfectportions</string>
+</resources>

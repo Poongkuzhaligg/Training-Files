@@ -1,0 +1,42 @@
+<ion-header>
+	<ion-toolbar>
+		<ion-button
+			(click)="dismiss()"
+			class="back-button"
+			slot="start"
+			mode="ios">
+			<ion-icon name="arrow-back"></ion-icon>
+		</ion-button>
+		<ion-title class="toolbar-title" (click)="incrementLog()">HELP</ion-title>
+	</ion-toolbar>
+</ion-header>
+
+<ion-content>
+	<div class="content-wrapper">
+		<div class="img-container">
+			<img src="/assets/img/Pat_Ashley.jpg">
+		</div>
+		<div class="ion-padding">
+			<p>Have a question? We’re here for you. Contact us and we'll be happy to help.</p>
+			<div class="contact-info">
+				<span>User Manual: </span><a (click)="openScaleLink()">greatergoods.com/{{ scale }}</a><br />
+				<span>Phone: </span><a href="tel:866.991.8494">866.991.8494</a><br />
+				<span>Email: </span><a href="mailto:info@greatergoods.com">info@greatgoods.com</a><br />
+			</div>
+			<ion-button
+				class="about-us"
+				color="primary"
+				(click)="openAboutLink()"> 
+					ABOUT US
+			</ion-button>
+		</div>
+	</div>
+</ion-content>
+
+<ion-footer>
+	<div class="app-version">
+		<span>
+			App Version: {{ version }}
+		</span>
+	</div>
+</ion-footer>

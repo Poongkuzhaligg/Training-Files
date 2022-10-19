@@ -1,0 +1,20 @@
+{
+	"appId": "com.dmdbrands.perfectportions",
+	"appName": "GG Food Scale",
+	"bundledWebRuntime": false,
+	"npmClient": "npm",
+	"webDir": "www",
+	"plugins": {
+		"SplashScreen": {
+			"launchAutoHide": false,
+			"backgroundColor": "#00C18BFF",
+			"androidScaleType": "CENTER_CROP",
+			"showSpinner": true,
+			"splashFullScreen": false,
+			"splashImmersive": false,
+			"androidSpinnerStyle": "small",
+			"iosSpinnerStyle": "small"
+		}
+	},
+	"cordova": {}
+}

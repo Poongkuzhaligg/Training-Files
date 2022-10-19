@@ -1,0 +1,61 @@
+<ion-header>
+	<ion-toolbar>
+	</ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+	<form [formGroup]="loginForm" class="form-wrapper">
+		<ion-item class="email-field">
+			<ion-label position="floating">Email</ion-label>
+			<ion-input formControlName="email" type="email"></ion-input>
+		</ion-item>
+		<div class="error-wrap">
+			<span
+				class="error"
+				*ngIf="email.hasError('pattern') && email.touched">
+				Must use a valid email
+			</span>
+		</div>
+		<ion-item class="password">
+			<ion-label position="floating">Password</ion-label>
+			<ion-input formControlName="password" type="password"></ion-input>
+		</ion-item>
+		<div class="error-wrap">
+			<span
+				class="error"
+				*ngIf="password.hasError('required') && password.touched">
+				Must not leave blank
+			</span>
+			<span
+				class="error"
+				*ngIf="password.hasError('minlength') && password.touched">
+				Password must be 6 characters long
+			</span>
+		</div>
+		<div class="forgot-password">
+			<a (click)="showPasswordResetPrompt()">Forgot your password?</a>
+		</div>
+	</form>
+</ion-content>
+
+<ion-footer>
+	<ion-toolbar>
+		<ion-button
+			mode="ios"
+			slot="start"
+			routerDirection="back"
+			routerLink="/landing">
+			<ion-icon name="arrow-back"></ion-icon>
+			BACK
+		</ion-button>
+		<ion-button
+			mode="ios"
+			slot="end"
+			type="submit"
+			(click)="login()"
+			[disabled]="loginForm.invalid">
+			LOG IN
+			<ion-icon name="arrow-forward"></ion-icon>
+		</ion-button>
+	</ion-toolbar>
+</ion-footer>

@@ -1,0 +1,42 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 20 20">
+  <defs>
+    <style>
+      .cls-1 {
+        clip-path: url(#clip-View_Off_-_20_);
+      }
+
+      .cls-2, .cls-3, .cls-4 {
+        fill: none;
+      }
+
+      .cls-3, .cls-4 {
+        stroke: #909090;
+        stroke-linecap: round;
+        stroke-width: 1.25px;
+      }
+
+      .cls-3 {
+        stroke-linejoin: round;
+        stroke-miterlimit: 10;
+      }
+
+      .cls-5 {
+        fill: #fff;
+      }
+    </style>
+    <clipPath id="clip-View_Off_-_20_">
+      <rect width="20" height="20"/>
+    </clipPath>
+  </defs>
+  <g id="View_Off_-_20_" data-name="View Off - 20 " class="cls-1">
+    <rect class="cls-5" width="20" height="20"/>
+    <g id="View_No_-_20" data-name="View No - 20">
+      <rect id="Rectangle_10" data-name="Rectangle 10" class="cls-2" width="20" height="20"/>
+      <g id="Group_19" data-name="Group 19" transform="translate(2.167 4.858)">
+        <path id="Path_8" data-name="Path 8" class="cls-3" d="M10.292,2.2A9.418,9.418,0,0,0,2.838,5.861a2.864,2.864,0,0,0,0,3.478,9.418,9.418,0,0,0,14.908,0,2.864,2.864,0,0,0,0-3.478A9.38,9.38,0,0,0,10.292,2.2Z" transform="translate(-2.417 -2.058)"/>
+        <ellipse id="Ellipse_4" data-name="Ellipse 4" class="cls-3" cx="2.643" cy="2.643" rx="2.643" ry="2.643" transform="translate(5.232 2.913)"/>
+      </g>
+      <path id="Path_9" data-name="Path 9" class="cls-4" d="M-11855.625-13611l-12.364,12.363" transform="translate(11871.489 13615.5)"/>
+    </g>
+  </g>
+</svg>

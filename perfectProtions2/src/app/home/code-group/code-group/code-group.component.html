@@ -1,0 +1,24 @@
+<ion-list class="category-list" mode=“ios”>
+	<ion-list-header
+		*ngIf="!showCodesOnly"
+		mode="md"
+		(click)="openCategory()"
+		[color]="categoryOpen ? 'primary' : ''">
+		{{ name }} 
+		<span class="count" *ngIf="foodCodes">
+			{{ foodCodes.length }}
+		</span>
+		<ion-icon
+			[class.open]="categoryOpen"
+			name="chevron-up-outline">
+		</ion-icon>
+	</ion-list-header>
+	<ng-container
+		*ngIf="categoryOpen || showCodesOnly">
+		<code
+			*ngFor="let code of foodCodes"
+			(favoriteEmitter)="addToFavorite($event)"
+			[code]="code">
+		</code>
+	</ng-container>
+</ion-list>

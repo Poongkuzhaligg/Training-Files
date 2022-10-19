@@ -1,0 +1,39 @@
+ion-toolbar {
+	ion-button.back-button::part(native) {
+		padding: 0 0 0 4px;
+	}
+	ion-icon{
+		color: var(--ion-color-primary-contrast);
+		font-size: 1.7rem;
+	}
+
+	.toolbar-title {
+		color: var(--ion-color-primary-contrast);
+		font-size:18px;
+		font-weight: 700;
+		margin-right: 32px;
+		text-align: center;
+	}
+}
+
+.content-wrapper {
+	max-width: 450px;
+	margin: auto;
+}
+
+.contact-info {
+	margin-bottom: 1rem;
+}
+
+.img-container {
+	width: 100%;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+
+.app-version {
+	width: 100%;
+	margin-bottom: calc(50px + 5vh);
+	text-align: center;
+}
