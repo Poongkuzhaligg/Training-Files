@@ -15,6 +15,7 @@
                   <ion-label for="email" position="floating">Email ID</ion-label>
                   <ion-input
                   type="email"
+                  email="true"
                   class="form-control"
                   formControlName="email"
                   [clearOnEdit]="true"></ion-input>
@@ -31,9 +32,11 @@
             </ion-card-content>
             <ion-grid>
               <ion-row>
-                <ion-col offsetMd="4">
-                  <ion-button fill="clear">Login</ion-button>
-                  <ion-button fill="clear"><a routerLink="../register" style="text-decoration-line:none;">Register</a></ion-button>
+                <ion-col offsetSm="2.6">
+                  <ion-button type="submit" color="dark">Login</ion-button>
+                </ion-col>
+                <ion-col>
+                  <ion-button color="dark" routerLink="../register">Register</ion-button>
                 </ion-col>
               </ion-row>
             </ion-grid>

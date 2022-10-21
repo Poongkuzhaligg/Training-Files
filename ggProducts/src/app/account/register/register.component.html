@@ -1,8 +1,14 @@
 <ion-content color="tertiary">
+
+  <ion-fab vertical="top" horizontal="start" slot="fixed">
+    <ion-fab-button color="light">
+      <ion-icon name="chevron-back-circle-outline" color="dark" routerLink="../login"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
   <ion-grid>
     <ion-row>
       <ion-col sizeMd="6" offsetMd="3">
-        <ion-card >
+        <ion-card  >
           <ion-card-header >
             <ion-img  src="https://cdn.shopify.com/s/files/1/1088/6518/files/GG_Logo_fe76c075-d81c-42cc-96d2-e46f6af721d8_138x@2x.png?v=1631891100" style="width:150px ;"></ion-img>
             <ion-card-title>Greater Goods Product Codes</ion-card-title>
@@ -42,6 +48,7 @@
                   <ion-label for="email" position="floating">Email ID</ion-label>
                   <ion-input
                   type="email"
+                  email="true"
                   class="form-control"
                   formControlName="email"
                   [clearOnEdit]="true"></ion-input>
@@ -58,9 +65,8 @@
             </ion-card-content>
             <ion-grid>
               <ion-row>
-                <ion-col offsetMd="4">
-                  <ion-button fill="clear">Register</ion-button>
-                  <ion-button fill="clear" routerLink="../login">Login></ion-button>
+                <ion-col>
+                  <ion-button type="submit" color="dark">Register</ion-button>
                 </ion-col>
               </ion-row>
             </ion-grid>
