@@ -8,15 +8,15 @@
             <ion-card-title>Greater Goods Product Codes</ion-card-title>
           </ion-card-header>
 
-          <form  (ngSubmit)="onSubmit()" [formGroup]="loginForm">
+          <form (ngSubmit)="onSubmit()" [formGroup]="loginForm">
             <ion-card-content>
               <ion-list>
                 <ion-item>
-                  <ion-label for="Email" position="floating">Email ID</ion-label>
+                  <ion-label for="email" position="floating">Email ID</ion-label>
                   <ion-input
-                  type="Email"
+                  type="email"
                   class="form-control"
-                  formControlName="Email"
+                  formControlName="email"
                   [clearOnEdit]="true"></ion-input>
                 </ion-item>
 

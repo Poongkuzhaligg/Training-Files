@@ -10,8 +10,6 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 export class LoginComponent implements OnInit {
 
   loginForm: FormGroup;
-
-
   constructor(
     private formBuilder: FormBuilder) { }
 
@@ -25,8 +23,6 @@ export class LoginComponent implements OnInit {
       password: ['', Validators.required]
     });
   }
-
-
 
   onSubmit(){}
 

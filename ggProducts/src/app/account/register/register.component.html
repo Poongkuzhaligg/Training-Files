@@ -8,33 +8,42 @@
             <ion-card-title>Greater Goods Product Codes</ion-card-title>
           </ion-card-header>
 
-          <form>
+          <form (ngSubmit)="onSubmit()" [formGroup]="regForm">
             <ion-card-content>
               <ion-list>
                 <ion-item>
-                  <ion-label for="Username" position="floating">First Name</ion-label>
+                  <ion-label for="firstname" position="floating">First Name</ion-label>
                   <ion-input
-                  type="Username"
+                  type="firstname"
                   class="form-control"
-                  formControlName="Email"
+                  formControlName="firstname"
                   [clearOnEdit]="true"></ion-input>
                 </ion-item>
 
                 <ion-item>
-                  <ion-label for="Email" position="floating">Last Name</ion-label>
+                  <ion-label for="lastname" position="floating">Last Name</ion-label>
                   <ion-input
-                  type="Email"
+                  type="lastname"
                   class="form-control"
-                  formControlName="Email"
+                  formControlName="lastname"
                   [clearOnEdit]="true"></ion-input>
                 </ion-item>
 
                 <ion-item>
-                  <ion-label for="Email" position="floating">Username</ion-label>
+                  <ion-label for="username" position="floating">Username</ion-label>
                   <ion-input
-                  type="Email"
+                  type="username"
                   class="form-control"
-                  formControlName="Email"
+                  formControlName="username"
+                  [clearOnEdit]="true"></ion-input>
+                </ion-item>
+
+                <ion-item>
+                  <ion-label for="email" position="floating">Email ID</ion-label>
+                  <ion-input
+                  type="email"
+                  class="form-control"
+                  formControlName="email"
                   [clearOnEdit]="true"></ion-input>
                 </ion-item>
 
