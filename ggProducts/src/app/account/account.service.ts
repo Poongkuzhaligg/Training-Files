@@ -10,6 +10,7 @@ import { User } from '../user';
   providedIn: 'root'
 })
 export class AccountService {
+  userDet = [];
   apiUrl: string;
   public user: Observable<User>;
   private userSubject: BehaviorSubject<User>;
@@ -20,30 +21,26 @@ export class AccountService {
     this.user = this.userSubject.asObservable();
    }
 
-  login(email, password){
-    return this.http.post(
-      environment.apiUrl, {
-        email,
-        password
-      }
-    ).pipe(map(user => {
-      localStorage.setItem('user', JSON.stringify(user));
-      // this.userSubject.next());
-    }));
+  login(email: string, password: string){
+    console.log(email, password);
+    // return this.http.post(
+    //   environment.apiUrl, {
+    //     email,
+    //     password
+    //   }
+    // ).pipe(map(user => {
+    //   localStorage.setItem('user', JSON.stringify(user));
+    // }));
   }
 
-  register(user: User): any {
-    //TODO post apiurl/users/register with body object as user
-    // this.addUser(user);
-    return this.http.post<User>(`${environment.apiUrl}`,
-    user);
+  register(userD: User): any {
+    console.log(userD);
   }
 
-  // addUser(user: User) {
-  //   let users = [];
+  addUser(userD: User) {
+    this.userDet.push(userD);
 
-
-  // }
+  }
 
 
 }

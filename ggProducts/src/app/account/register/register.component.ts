@@ -51,17 +51,20 @@ export class RegisterComponent implements OnInit {
       return;
     }
     console.log(this.user.id);
+    this.user.id++;
     this.user = Object.assign(this.user, this.regForm.value);
     localStorage.setItem('Users', JSON.stringify(this.user));
     console.log(this.user);
     this.user.id++;
-    this.accountServ.register(this.regForm.value)
-    .pipe(first())
-    .subscribe({
-        next: () => {
-            this.router.navigate(['../login'], { relativeTo: this.route });
-        }
-    });
+    this.accountServ.register(this.user);
+    // .pipe(first())
+    // .subscribe({
+    //     next: () => {
+    //         this.router.navigate(['../login'], { relativeTo: this.route });
+    //     }
+    // });
   }
+
+
 
 }

@@ -4,6 +4,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { AccountService } from '../account.service';
 import { first } from 'rxjs/operators';
 import { ActivatedRoute, Router } from '@angular/router';
+import { pipe } from 'rxjs';
 
 @Component({
   selector: 'app-login',
@@ -24,10 +25,6 @@ export class LoginComponent implements OnInit {
     private accountServ: AccountService
     ) { }
 
-  get flog() {
-      return this.loginForm.controls;
-  }
-
   ngOnInit() {
     this.loginForm = this.formBuilder.group({
       email: ['', Validators.required],
@@ -43,18 +40,43 @@ export class LoginComponent implements OnInit {
       return;
     }
 
-    this.accountServ.login(this.flog.username.value, this.flog.password.value).pipe(first())
-    .subscribe({
-        next: () => {
-            const userpage = this.route.snapshot.queryParams['/'];
-            this.router.navigateByUrl(userpage);
-        }
-    });
+    const email = this.loginForm.value.email;
+    const password = this.loginForm.value.password;
 
-    this.user = Object.assign(this.user, this.loginForm.value);
-    localStorage.setItem('Users', JSON.stringify(this.user));
-    console.log(this.user);
+
+
+    this.accountServ.login( email, password);
+    // .pipe(first())
+    // .subscribe({
+    //     next: () => {
+    //         const userpage = this.route.snapshot.queryParams['/'];
+    //         this.router.navigateByUrl(userpage);
+    //     }
+    // });
+
+
 
   }
 
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+   // this.user = Object.assign(this.user, this.loginForm.value);
+    // localStorage.setItem('Users', JSON.stringify(this.user));
+    // console.log(this.user);
