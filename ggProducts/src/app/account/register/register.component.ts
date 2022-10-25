@@ -14,10 +14,10 @@ export class RegisterComponent implements OnInit {
   i=0;
   submit = false;
   regForm: FormGroup;
-  user: User = {
+  userD: User = {
     id:0,
-    firstName: '',
-    lastName: '',
+    firstname: '',
+    lastname: '',
     username: '',
     email: '',
     password: ''
@@ -50,19 +50,16 @@ export class RegisterComponent implements OnInit {
       alert('Data Invalid!');
       return;
     }
-    console.log(this.user.id);
-    this.user.id++;
-    this.user = Object.assign(this.user, this.regForm.value);
-    localStorage.setItem('Users', JSON.stringify(this.user));
-    console.log(this.user);
-    this.user.id++;
-    this.accountServ.register(this.user);
-    // .pipe(first())
-    // .subscribe({
-    //     next: () => {
-    //         this.router.navigate(['../login'], { relativeTo: this.route });
-    //     }
-    // });
+    this.userD = Object.assign(this.userD, this.regForm.value);
+    localStorage.setItem('Users', JSON.stringify(this.userD));
+    console.log('regUser',this.userD);
+    this.accountServ.addUser(this.userD)
+    .subscribe({
+      next: () => {
+        this.router.navigate(['../login']);
+      }
+    });
+    this.userD.id++;
   }
 
 

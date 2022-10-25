@@ -6,6 +6,7 @@ import { AccountRoutingModule } from './account.routing.module';
 import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
 import { IonicModule } from '@ionic/angular';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
     imports: [
@@ -13,7 +14,8 @@ import { IonicModule } from '@ionic/angular';
         FormsModule,
         ReactiveFormsModule,
         AccountRoutingModule,
-        IonicModule
+        IonicModule,
+        HttpClientModule
     ],
     declarations: [
         LoginComponent,

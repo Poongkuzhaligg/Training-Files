@@ -1,16 +1,32 @@
-<ion-header [translucent]="true">
-  <ion-list-header routerLink="../account">hey</ion-list-header>
+<ion-content  color="tertiary" [fullscreen]="true">
+<ion-header [translucent]="true"  >
+  <ion-list-header routerLink="../account">Login</ion-list-header>
 </ion-header>
 
-<ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">Blank</ion-title>
+
+  <ion-header>
+    <ion-toolbar color="dark">
+      <ion-title >GREATER GOODS PRODUCTS</ion-title>
     </ion-toolbar>
   </ion-header>
 
-  <div id="container">
-    <strong>Ready to create an app?</strong>
-    <p>Start with Ionic <a target="_blank" rel="noopener noreferrer" href="https://ionicframework.com/docs/components">UI Components</a></p>
-  </div>
+  <ion-content>
+    <ion-list  >
+      <ion-item *ngFor="let prdt of products" color="light">
+        <ion-thumbnail slot="start">
+          <ion-img [src]="prdt.imgSrc" ></ion-img>
+        </ion-thumbnail>
+        <ion-grid>
+          <ion-row>
+            <ion-col [routerLink]="['product', prdt.code]">
+              <ion-label color="dark"><b>{{ prdt.name }}</b></ion-label>
+              <ion-label color="dark">{{ prdt.code }}</ion-label>
+            </ion-col>
+          </ion-row>
+        </ion-grid>
+
+      </ion-item>
+    </ion-list>
+  </ion-content>
+
 </ion-content>
