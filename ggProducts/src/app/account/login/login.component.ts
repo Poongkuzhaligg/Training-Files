@@ -30,6 +30,7 @@ export class LoginComponent implements OnInit {
       email: ['', Validators.required],
       password: ['', Validators.required]
     });
+
   }
 
   onSubmit(){
@@ -43,20 +44,12 @@ export class LoginComponent implements OnInit {
     const email = this.loginForm.value.email;
     const password = this.loginForm.value.password;
 
-
-
-    this.accountServ.login( email, password);
-    // .pipe(first())
-    // .subscribe({
-    //     next: () => {
-    //         const userpage = this.route.snapshot.queryParams['/'];
-    //         this.router.navigateByUrl(userpage);
-    //     }
-    // });
-
+    this.accountServ.login(email, password);
 
 
   }
+
+
 
 }
 
