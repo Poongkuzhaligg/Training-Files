@@ -1,14 +1,18 @@
-<ion-content color="tertiary">
+<ion-header>
+  <ion-toolbar color="medium">
+    <ion-buttons slot="start">
+        <ion-back-button></ion-back-button>
+<!-- <ion-img style="width: 7rem; height: 7rem; margin-trim: 100px;" src="https://res.cloudinary.com/crunchbase-production/image/upload/c_lpad,h_256,w_256,f_auto,q_auto:eco,dpr_1/mgutykdpfvvbbxftrb8h"></ion-img> -->
+    </ion-buttons>
+    <ion-title>GG PRODUCT CODES</ion-title>
+  </ion-toolbar>
+</ion-header>
 
-  <ion-fab vertical="top" horizontal="start" slot="fixed">
-    <ion-fab-button color="light">
-      <ion-icon name="chevron-back-circle-outline" color="dark" routerLink="../login"></ion-icon>
-    </ion-fab-button>
-  </ion-fab>
+<ion-content color="tertiary">
   <ion-grid>
     <ion-row>
       <ion-col sizeMd="6" offsetMd="3">
-        <ion-card  >
+        <ion-card>
           <ion-card-header >
             <ion-img  src="https://cdn.shopify.com/s/files/1/1088/6518/files/GG_Logo_fe76c075-d81c-42cc-96d2-e46f6af721d8_138x@2x.png?v=1631891100" style="width:150px ;"></ion-img>
             <ion-card-title>Greater Goods Product Codes</ion-card-title>
@@ -18,7 +22,7 @@
             <ion-card-content>
               <ion-list>
                 <ion-item>
-                  <ion-label for="firstname" position="floating">First Name</ion-label>
+                  <ion-label for="firstname" position="floating" >First Name</ion-label>
                   <ion-input
                   type="firstname"
                   class="form-control"

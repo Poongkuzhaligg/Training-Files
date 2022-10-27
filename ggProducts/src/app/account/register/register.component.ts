@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
-import { first } from 'rxjs/operators';
 import { User } from 'src/app/user';
 import { AccountService } from '../account.service';
+import { Storage } from '@capacitor/storage';
 
 @Component({
   selector: 'app-register',
@@ -29,7 +29,7 @@ export class RegisterComponent implements OnInit {
     private accountServ: AccountService
     ) { }
 
-  get flog() {
+  get f() {
       return this.regForm.controls;
   }
 
@@ -51,16 +51,16 @@ export class RegisterComponent implements OnInit {
       return;
     }
     this.userD = Object.assign(this.userD, this.regForm.value);
-    localStorage.setItem('Users', JSON.stringify(this.userD));
-    console.log('regUser',this.userD);
-    this.accountServ.addUser(this.userD)
-    .subscribe({
-      next: () => {
-        this.router.navigate(['../login']);
-      }
-    });
+    this.accountServ.addUser(this.userD);
     this.userD.id++;
+    this.accountServ.register(this.userD);
   }
+
+
+
+
+
+
 
 
 

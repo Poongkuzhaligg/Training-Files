@@ -13,20 +13,31 @@ import { ProductsService } from './products.service';
 export class HomePage implements OnInit {
   products: Product[];
   users: User[];
+  isModalOpen = false;
+  currentPd: Product;
 
-  constructor(private productServ: ProductsService,
-    private accountServ: AccountService) {}
+  constructor(private productServ: ProductsService) {}
+
+  setClose(isOpen: boolean) {
+    this.isModalOpen = isOpen;
+  }
+
+  setOpen(isOpen: boolean, code: string) {
+    this.isModalOpen = isOpen;
+    console.log(code);
+    this.currentPd = this.products.find((obj) => obj.code === code);
+    console.log(this.currentPd);
+  }
 
   ngOnInit() {
     this.products = this.productServ.getAllProducts();
-    this.loadAllUsers();
 
   }
 
   private loadAllUsers() {
-    this.accountServ.getAll().pipe(first()).subscribe(users => {
-        this.users = users;
-    });
+    // this.accountServ.getAll().pipe(first()).subscribe(users => {
+    //     this.users = users;
+    // });
   }
 
 }

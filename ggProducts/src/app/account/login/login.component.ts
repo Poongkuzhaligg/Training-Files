@@ -25,13 +25,19 @@ export class LoginComponent implements OnInit {
     private accountServ: AccountService
     ) { }
 
+  get f() {
+    return this.loginForm.controls;
+  }
+
   ngOnInit() {
     this.loginForm = this.formBuilder.group({
       email: ['', Validators.required],
-      password: ['', Validators.required]
+      password: ['', [Validators.required, Validators.minLength(6)]]
     });
 
   }
+
+
 
   onSubmit(){
     this.submit = true;

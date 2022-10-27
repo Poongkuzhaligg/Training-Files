@@ -7,6 +7,8 @@ import { HomePage } from './home.page';
 import { HomePageRoutingModule } from './home-routing.module';
 import { HttpClientModule } from '@angular/common/http';
 import { ProductsComponent } from './products/products.component';
+import { HelpComponent } from './help/help.component';
+import { PrivacyComponent } from './privacy/privacy.component';
 
 
 @NgModule({
@@ -19,7 +21,9 @@ import { ProductsComponent } from './products/products.component';
   ],
   declarations: [
     HomePage,
-    ProductsComponent
+    ProductsComponent,
+    HelpComponent,
+    PrivacyComponent
 ]
 })
 export class HomePageModule {}

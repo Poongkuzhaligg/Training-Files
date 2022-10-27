@@ -7,6 +7,7 @@ import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
 import { IonicModule } from '@ionic/angular';
 import { HttpClientModule } from '@angular/common/http';
+import { LandingPageComponent } from './landing-page/landing-page.component';
 
 @NgModule({
     imports: [
@@ -18,8 +19,9 @@ import { HttpClientModule } from '@angular/common/http';
         HttpClientModule
     ],
     declarations: [
+        LandingPageComponent,
         LoginComponent,
-        RegisterComponent
+        RegisterComponent,
     ]
 })
 export class AccountModule { }

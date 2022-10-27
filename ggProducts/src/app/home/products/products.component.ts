@@ -9,6 +9,7 @@ import { ProductsService } from '../products.service';
   styleUrls: ['./products.component.scss'],
 })
 export class ProductsComponent implements OnInit {
+  allPrdt: Product[];
   prdt: Product;
   code: string;
 
@@ -22,7 +23,9 @@ export class ProductsComponent implements OnInit {
     this.route.paramMap.subscribe(paramMap => {
     this.code = paramMap.get('code');
   });
-  this.prdt = this.products.getAllProducts();
+  this.allPrdt = this.products.getAllProducts();
+  this.prdt = this.allPrdt.find((obj) => obj.code === this.code);
+  console.log(this.prdt);
 }
 
 

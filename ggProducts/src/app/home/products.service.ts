@@ -30,28 +30,28 @@ export class ProductsService {
     },
     {
       name: 'Wi-Fi Smart Scale' ,
-      code: ' 0385' ,
+      code: '0385' ,
       imgSrc: 'https://s3.amazonaws.com/gg-mark/gsg/variation58ZvxyphhXANGMTmBiXvCv.jpg' ,
       category: 'Fitness' ,
       searchbar: ' 0385 Wi-Fi Smart Scale white fitness weight gurus'
     },
     {
       name: 'Bluetooth Smart Scale' ,
-      code: ' 0382' ,
+      code: '0382' ,
       imgSrc: 'https://s3.amazonaws.com/gg-mark/gsg/variation2FyyrbMHZOQOhlZ4DzeJy1.jpg' ,
       category: 'Fitness' ,
       searchbar: ' 0382 Bluetooth Smart Scale white fitness weight gurus'
     },
     {
       name: 'Body Composition Scale' ,
-      code: ' 0343' ,
+      code: '0343' ,
       imgSrc: 'https://s3.amazonaws.com/gg-mark/gsg/variation0rHMleIaqMUnjKspBRH4nA.jpg' ,
       category: 'Fitness' ,
       searchbar: '0343 Body Composition Scale fitness weight gurus'
     },
     {
       name: 'Smart Bathroom Scale (Bed, Bath, & Beyond)' ,
-      code: ' 0380',
+      code: '0380',
       imgSrc: 'https://s3.amazonaws.com/gg-mark/gsg/variation5hrnoCh3a3mFAtdoL64QLL.jpg' ,
       category: 'Fitness' ,
       searchbar: '0380 Smart Bathroom Scale Bed Bath Beyond fitness weight gurus'
