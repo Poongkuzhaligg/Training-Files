@@ -1,9 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { first } from 'rxjs/operators';
-import { AccountService } from '../account/account.service';
 import { User } from '../user';
 import { Product } from './product';
-import { ProductsService } from './products.service';
+import { ProductsService } from 'src/app/services/products.service';
 
 @Component({
   selector: 'app-home',
@@ -11,10 +9,13 @@ import { ProductsService } from './products.service';
   styleUrls: ['home.page.scss'],
 })
 export class HomePage implements OnInit {
+  searchTerm: string;
   products: Product[];
+  favProducts: Product[] =[];
   users: User[];
   isModalOpen = false;
-  currentPd: Product;
+  viewProduct: Product;
+  favorite = false;
 
   constructor(private productServ: ProductsService) {}
 
@@ -25,19 +26,24 @@ export class HomePage implements OnInit {
   setOpen(isOpen: boolean, code: string) {
     this.isModalOpen = isOpen;
     console.log(code);
-    this.currentPd = this.products.find((obj) => obj.code === code);
-    console.log(this.currentPd);
+    this.viewProduct = this.products.find((obj) => obj.code === code);
   }
 
   ngOnInit() {
     this.products = this.productServ.getAllProducts();
-
   }
 
-  private loadAllUsers() {
-    // this.accountServ.getAll().pipe(first()).subscribe(users => {
-    //     this.users = users;
-    // });
+  addFav(favProd: Product){
+    favProd.isFavourite = !favProd.isFavourite;
+    if(favProd.isFavourite === true){
+      this.favProducts.push(favProd);
+      console.log(this.favProducts);
+    }
+    else{
+      const indx = this.favProducts.indexOf(favProd);
+      this.favProducts.splice(indx);
+      console.log(this.favProducts);
+    }
   }
 
 }

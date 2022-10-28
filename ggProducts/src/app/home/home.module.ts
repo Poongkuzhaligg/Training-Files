@@ -6,9 +6,9 @@ import { HomePage } from './home.page';
 
 import { HomePageRoutingModule } from './home-routing.module';
 import { HttpClientModule } from '@angular/common/http';
-import { ProductsComponent } from './products/products.component';
 import { HelpComponent } from './help/help.component';
-import { PrivacyComponent } from './privacy/privacy.component';
+import { Ng2SearchPipeModule } from 'ng2-search-filter';
+import { FavoritesComponent } from './favorites/favorites.component';
 
 
 @NgModule({
@@ -18,12 +18,12 @@ import { PrivacyComponent } from './privacy/privacy.component';
     IonicModule,
     HomePageRoutingModule,
     HttpClientModule,
+    Ng2SearchPipeModule
   ],
   declarations: [
     HomePage,
-    ProductsComponent,
     HelpComponent,
-    PrivacyComponent
+    FavoritesComponent
 ]
 })
 export class HomePageModule {}

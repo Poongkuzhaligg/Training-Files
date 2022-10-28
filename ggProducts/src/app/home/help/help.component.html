@@ -1,60 +1,21 @@
-<ion-menu contentId="main-content">
-  <ion-header>
-    <ion-toolbar color="tertiary">
-      <ion-title>MENU</ion-title>
-    </ion-toolbar>
-  </ion-header>
-  <ion-grid>
-    <ion-row>
-      <ion-col>
-        <p routerLink="../account">LOGOUT</p>
-      </ion-col>
-    </ion-row>
-    <ion-row>
-      <ion-col>
-        <p [routerLink]="['/home']">HOME</p>
-      </ion-col>
-    </ion-row>
-    <ion-row>
-      <ion-col>
-        <p routerLink="../help">HELP</p>
-      </ion-col>
-    </ion-row>
-    <ion-row>
-      <ion-col offset="-3">
-        <p routerLink="./privacy">PRIVACY POLICY</p>
-      </ion-col>
-    </ion-row>
-  </ion-grid>
 
-  </ion-menu>
-  <div class="ion-page" id="main-content">
   <ion-header>
     <ion-toolbar color="dark">
       <ion-buttons slot="start">
-        <ion-menu-button></ion-menu-button>
-      </ion-buttons>
-      <ion-title>GG PRODUCT CODES</ion-title>
-      <ion-icon slot="end" name="arrow-forward-outline" [routerLink]="['/home']" ></ion-icon>
-
+        <ion-back-button></ion-back-button>
+    </ion-buttons>
+      <ion-title class="header-title">GG PRODUCT CODES</ion-title>
     </ion-toolbar>
-
   </ion-header>
 
-  <ion-content>
-    <div class="content-wrapper">
-      <div class="img-container">
-        <img src="/assets/img/Pat_Ashley.jpg">
-      </div>
-      <div class="ion-padding">
-        <p>Have a question? We’re here for you. Contact us and we'll be happy to help.</p>
-        <div class="contact-info">
-          <span>User Manual: </span><a></a><br />
-          <span>Phone: </span><a href="tel:866.991.8494">866.991.8494</a><br />
-          <span>Email: </span><a href="mailto:info@greatergoods.com">info@greatgoods.com</a><br />
-        </div>
-      </div>
-    </div>
+  <ion-content color="light">
+    <ion-img src="assets/icon/ggCircleLogo.svg"></ion-img>
+    <ion-title class="title">Have a question? We’re here for you.<br>Contact us and we'll be happy to help.</ion-title>
+    <ion-card-content>
+      <span>User Manual: </span><a href="https://greatergoods.com/">Greater Goods</a><br />
+      <span>Phone: </span><a href="tel:866.991.8494">866.991.8494</a><br />
+      <span>Email: </span><a href="mailto:info@greatergoods.com">info@greatgoods.com</a><br />
+    </ion-card-content>
   </ion-content>
 
 

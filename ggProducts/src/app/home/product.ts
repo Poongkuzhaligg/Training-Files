@@ -3,5 +3,5 @@ export class Product {
   code: string;
   imgSrc: string;
   category: string;
-  searchbar: string;
+  isFavourite?: boolean;
 }

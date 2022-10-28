@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { User } from '../user';
 import { Storage } from '@capacitor/storage';
 import { Router } from '@angular/router';
+import { AlertController } from '@ionic/angular';
 
 
 
@@ -12,9 +13,10 @@ import { Router } from '@angular/router';
 export class AccountService {
   users: User[] = [];
 
-  constructor(private http: HttpClient,
+  constructor(
+    private http: HttpClient,
     private router: Router,
-    ) {
+    private alertController: AlertController) {
     this.getObject();
    }
 
@@ -22,21 +24,23 @@ export class AccountService {
     const eId = this.users.find( user => user.email === email);
     const pw = this.users.find( user => user.password === password);
     console.log(eId, pw);
-    if(eId.email !== email ){
-      return alert('Email does not exists, Kindly register!');
+    if(eId === undefined  ){
+      this.presentAlert('Email does not exist, Kindly register!');
+      return;
     }
-    else if(pw.password !== password){
-      return alert('Password does not match, Try again!');
+    else if(pw === undefined){
+      this.presentAlert('Password does not match, Try again!');
+      return;
     }
     else if(eId === undefined && pw === undefined){
-      return alert('Not registered!');
+      this.presentAlert('Not registered!');
+      return;
     }
     else{
     this.router.navigate(['../home']);
     }
 
   }
-
 
   async setObject(): Promise<void> {
     await Storage.set({
@@ -48,7 +52,6 @@ export class AccountService {
   async getObject() {
     const ret = await Storage.get({ key: 'users' });
     const user = JSON.parse(ret.value);
-    console.log('user', ret);
     if(ret !== null){
       this.regUser(user);
     }
@@ -61,7 +64,7 @@ export class AccountService {
     else {
       const foundUser = this.users.find((obj) => obj.email === userD.email);
       if(foundUser){
-        alert(userD.email + '" is already taken');
+        this.presentAlert('"'+ userD.email + '" is already taken');
         return;
       }
       this.users = [userD, ...this.users];
@@ -71,8 +74,14 @@ export class AccountService {
     console.log(this.users);
   }
 
-  getAll() {
-
+  async presentAlert(message: string) {
+    const alert = await this.alertController.create({
+      header: 'ALERT',
+      subHeader: 'Data Invalid!',
+      message,
+      buttons: ['OK'],
+    });
+    await alert.present();
   }
 
 

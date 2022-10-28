@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta name="viewport" content="Width=device-width, initial-scale=1.0">
+    <title>Pattern</title>
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300&display=swap" rel="stylesheet">
+</head>
+
+<body>
+    <p id="star"></p>
+    <!-- <script>
+        let n = 6;
+        var r,c,k;
+        let str = "";
+        for(r=1; r<=n; r++) {
+            for(c=0; c<r; c++) {
+                str+=" ";
+            }
+        }
+        for(k=1; k<=2*r-1; k++){
+            str+= " *";
+        }
+        document.getElementById("star").innerHTML = str;
+    </script> -->
+
+    <!-- <script>
+        let n = 6;
+        var r,c,k;
+        let str = "";
+        for(r=1; r<=n; r++) {
+            for(c=1; c<r; c++) {
+                str+= "*";
+            }
+            str+= "<br>";
+        }
+        document.getElementById("star").innerHTML = str;
+    </script> -->
+
+    <!-- <script>
+        let n = 6;
+        var r,c,k;
+        let str = "";
+        for(r=1; r<=n; r++) 
+        {
+            for(c=1; c<=n-r; c++) 
+            {
+                str +=" ";
+            }
+            for(k=0; k<2*r-1; k++)
+            {
+                str +="*";
+            }
+            str +="<br>";
+        }
+        document.getElementById("star").innerHTML = str;
+    </script> -->
+
+    <script>
+        let n=6;
+        var r,c,k;
+        let str="";
+        for(r=1;r<=n;r++)
+        {
+            str+= "<br>";
+            for(c=1;c<=r;c++){
+                str+= c;
+            }
+            // str+= "<br";
+        }
+        document.getElementById("star").innerHTML = str;
+    </script>
+
+    <!-- <script>
+        let n = 6;
+        var r,c,k;
+        let str = "";
+        for(r=1; r<=n; r++) {
+            for(c=1; c<=r; c++) {
+                str+= "*";
+            }
+            str+= "<br>";
+        }
+        document.getElementById("star").innerHTML = str;
+    </script> -->
+
+</body>

@@ -2,9 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { User } from 'src/app/user';
-import { AccountService } from '../account.service';
-import { Storage } from '@capacitor/storage';
-import { first } from 'rxjs/operators';
+import { AccountService } from 'src/app/services/account.service';
+import { AlertController } from '@ionic/angular';
 
 @Component({
   selector: 'app-register',
@@ -25,9 +24,8 @@ export class RegisterComponent implements OnInit {
   };
   constructor(
     private formBuilder: FormBuilder,
-    private router: Router,
-    private route: ActivatedRoute,
-    private accountServ: AccountService
+    private accountServ: AccountService,
+    private alertController: AlertController
     ) { }
 
   get f() {
@@ -47,7 +45,7 @@ export class RegisterComponent implements OnInit {
   onSubmit(){
     this.submit = true;
     if(this.regForm.invalid){
-      alert('Data Invalid!');
+      this.presentAlert();
       return;
     }
     this.userD = Object.assign(this.userD, this.regForm.value);
@@ -57,6 +55,16 @@ export class RegisterComponent implements OnInit {
 
   }
 
+  async presentAlert() {
+    const alert = await this.alertController.create({
+      header: 'ALERT',
+      subHeader: 'Data Invalid!',
+      message: 'Try again',
+      buttons: ['OK'],
+    });
+
+    await alert.present();
+  }
 
 
 

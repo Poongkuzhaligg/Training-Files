@@ -1,10 +1,9 @@
 
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { AccountService } from '../account.service';
-import { first } from 'rxjs/operators';
+import { AccountService } from 'src/app/services/account.service';
 import { ActivatedRoute, Router } from '@angular/router';
-import { pipe } from 'rxjs';
+import { AlertController } from '@ionic/angular';
 
 @Component({
   selector: 'app-login',
@@ -18,11 +17,11 @@ export class LoginComponent implements OnInit {
     password: ''
   };
   loginForm: FormGroup;
+
   constructor(
     private formBuilder: FormBuilder,
-    private route: ActivatedRoute,
-    private router: Router,
-    private accountServ: AccountService
+    private accountServ: AccountService,
+    private alertController: AlertController
     ) { }
 
   get f() {
@@ -43,7 +42,7 @@ export class LoginComponent implements OnInit {
     this.submit = true;
 
     if(this.loginForm.invalid) {
-      alert('Data Invalid!');
+      this.presentAlert();
       return;
     }
 
@@ -51,8 +50,17 @@ export class LoginComponent implements OnInit {
     const password = this.loginForm.value.password;
     this.accountServ.login(email, password);
     this.loginForm.reset();
+  }
 
+  async presentAlert() {
+    const alert = await this.alertController.create({
+      header: 'ALERT',
+      subHeader: 'Data Invalid!',
+      message: 'Try again',
+      buttons: ['OK'],
+    });
 
+    await alert.present();
   }
 
 
