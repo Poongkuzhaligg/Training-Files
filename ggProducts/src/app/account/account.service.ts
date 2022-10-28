@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { User } from '../user';
 import { Storage } from '@capacitor/storage';
+import { Router } from '@angular/router';
 
 
 
@@ -9,27 +10,37 @@ import { Storage } from '@capacitor/storage';
   providedIn: 'root'
 })
 export class AccountService {
-  currentUser: User;
   users: User[] = [];
 
-  constructor(private http: HttpClient) {
+  constructor(private http: HttpClient,
+    private router: Router,
+    ) {
     this.getObject();
    }
 
   login(email: string, password: string){
-    console.log(email, password);
+    const eId = this.users.find( user => user.email === email);
+    const pw = this.users.find( user => user.password === password);
+    console.log(eId, pw);
+    if(eId.email !== email ){
+      return alert('Email does not exists, Kindly register!');
+    }
+    else if(pw.password !== password){
+      return alert('Password does not match, Try again!');
+    }
+    else if(eId === undefined && pw === undefined){
+      return alert('Not registered!');
+    }
+    else{
+    this.router.navigate(['../home']);
+    }
 
   }
 
-  register(userD: User) {
-    const foundUser = this.users.find( user => user.email === userD.email);
-    this.currentUser = userD;
-  }
 
-
-  async setObject() {
+  async setObject(): Promise<void> {
     await Storage.set({
-      key: 'user',
+      key: 'users',
       value: JSON.stringify(this.users)
     });
   }
@@ -39,16 +50,22 @@ export class AccountService {
     const user = JSON.parse(ret.value);
     console.log('user', ret);
     if(ret !== null){
-      this.addUser(user);
+      this.regUser(user);
     }
   }
 
-  async addUser(userD: User) {
+  async regUser(userD: User) {
     if(this.users.length === 0){
       this.users.push(userD);
     }
     else {
+      const foundUser = this.users.find((obj) => obj.email === userD.email);
+      if(foundUser){
+        alert(userD.email + '" is already taken');
+        return;
+      }
       this.users = [userD, ...this.users];
+      this.router.navigate(['../login']);
     }
     await this.setObject();
     console.log(this.users);

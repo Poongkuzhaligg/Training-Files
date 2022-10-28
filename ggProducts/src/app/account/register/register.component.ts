@@ -4,6 +4,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { User } from 'src/app/user';
 import { AccountService } from '../account.service';
 import { Storage } from '@capacitor/storage';
+import { first } from 'rxjs/operators';
 
 @Component({
   selector: 'app-register',
@@ -45,15 +46,15 @@ export class RegisterComponent implements OnInit {
 
   onSubmit(){
     this.submit = true;
-
-    if(this.regForm.invalid) {
+    if(this.regForm.invalid){
       alert('Data Invalid!');
       return;
     }
     this.userD = Object.assign(this.userD, this.regForm.value);
-    this.accountServ.addUser(this.userD);
+    this.accountServ.regUser(this.userD);
+    this.regForm.reset();
     this.userD.id++;
-    this.accountServ.register(this.userD);
+
   }
 
 

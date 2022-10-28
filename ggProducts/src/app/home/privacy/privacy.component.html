@@ -8,7 +8,7 @@
     <ion-grid>
       <ion-row>
         <ion-col>
-          <p routerLink="../account">LOGIN</p>
+          <p routerLink="../account">LOGOUT</p>
         </ion-col>
       </ion-row>
       <ion-row>
@@ -36,8 +36,8 @@
           <ion-menu-button></ion-menu-button>
         </ion-buttons>
         <ion-title>GG PRODUCT CODES</ion-title>
+        <ion-icon slot="end" name="arrow-forward-outline" [routerLink]="['/home']" ></ion-icon>
+
       </ion-toolbar>
-      <ion-button slot="end">
-        hey
-      </ion-button>
+
     </ion-header>
