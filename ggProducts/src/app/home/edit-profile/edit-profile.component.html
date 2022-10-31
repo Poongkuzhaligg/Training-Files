@@ -1,0 +1,83 @@
+<ion-header>
+  <ion-toolbar color="dark">
+    <ion-buttons slot="start">
+      <ion-back-button></ion-back-button>
+  </ion-buttons>
+    <ion-title class="header-title">EDIT PROFILE</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+
+<ion-content color="tertiary">
+  <ion-grid>
+    <ion-row>
+      <ion-col sizeMd="6" offsetMd="3">
+        <ion-card>
+          <ion-header>
+            <ion-card-header style="text-align: center; font-size: large"><b>Welcome to your Profile</b></ion-card-header>
+          </ion-header>
+
+          <ion-item>
+            <ion-avatar slot="start">
+              <img alt="Silhouette of a person's head" src="https://ionicframework.com/docs/img/demos/avatar.svg" />
+            </ion-avatar>
+
+            <ion-label>
+               <ion-card-subtitle style="font-size: large">{{currentUser.username}}</ion-card-subtitle>
+            </ion-label>
+          </ion-item>
+          <ion-card-header >
+            <ion-card-subtitle>EDIT YOUR PROFILE HERE!</ion-card-subtitle>
+          </ion-card-header>
+
+
+          <form (ngSubmit)="onSubmit()" [formGroup]="editForm">
+            <ion-card-content>
+              <ion-list>
+
+                <ion-item>
+                  <ion-label for="username" position="floating">Username</ion-label>
+                  <ion-input
+                  type="username"
+                  class="form-control"
+                  formControlName="username"
+                  ></ion-input>
+                </ion-item>
+
+                <ion-item>
+                  <ion-label for="oldPassword" position="floating">Old Password</ion-label>
+                  <ion-input
+                  type="password"
+                  class="form-control"
+                  formControlName="oldPassword"></ion-input>
+                </ion-item>
+
+                <ion-item>
+                  <ion-label for="newPassword" position="floating">New Password</ion-label>
+                  <ion-input
+                  type="password"
+                  class="form-control"
+                  formControlName="newPassword"></ion-input>
+                </ion-item>
+
+                <ion-item>
+                  <ion-label for="confirmPassword" position="floating">Confirm Password</ion-label>
+                  <ion-input
+                  type="password"
+                  class="form-control"
+                  formControlName="confirmPassword"></ion-input>
+                </ion-item>
+
+              </ion-list>
+            </ion-card-content>
+            <ion-card-content>
+              <ion-card-title>
+                <ion-button type="submit" color="dark">DONE</ion-button>
+              </ion-card-title>
+            </ion-card-content>
+          </form>
+        </ion-card>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-content>

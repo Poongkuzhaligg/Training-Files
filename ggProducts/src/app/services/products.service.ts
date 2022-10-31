@@ -335,7 +335,7 @@ export class ProductsService {
     {
       name: '75cm Yoga Ball' ,
       code: '0816' ,
-      imgSrc: 'https://s3.amazonaws.com/gg-mark/gsg/variation/7HlfTiYqL5WMFImVGNJ6hd.jpg' ,
+      imgSrc: 'https://s3.amazonaws.com/gg-mark/gsg/variation/2yxvmpXh58nRQcAmn2rdyW.jpg' ,
       category: 'health and wellness' ,
     },
     {
@@ -353,7 +353,7 @@ export class ProductsService {
     {
       name: '65cm Yoga Ball' ,
       code: '0811' ,
-      imgSrc: 'https://s3.amazonaws.com/gg-mark/gsg/variation/2VEsWVzPg6XGcoYPiBwn7f.jpg' ,
+      imgSrc: 'https://s3.amazonaws.com/gg-mark/gsg/variation/5kgOhSJpG7PsL5BtIR2p31.jpg' ,
       category: 'health and wellness',
     },
     {

@@ -12,9 +12,9 @@ import { AlertController } from '@ionic/angular';
 })
 export class AccountService {
   users: User[] = [];
+  currentUser: User;
 
   constructor(
-    private http: HttpClient,
     private router: Router,
     private alertController: AlertController) {
     this.getObject();
@@ -37,9 +37,17 @@ export class AccountService {
       return;
     }
     else{
+    this.currentUser = pw;
     this.router.navigate(['../home']);
     }
 
+  }
+
+  async editForm(username: string, password: string){
+      const ret = await Storage.get({ key: 'users' });
+      const user = JSON.parse(ret.value);
+      const cUser = user.find( (obj)=> obj.username === this.currentUser.username );
+      console.log(username, password);
   }
 
   async setObject(): Promise<void> {
@@ -57,17 +65,17 @@ export class AccountService {
     }
   }
 
-  async regUser(userD: User) {
+  async regUser(userDetails: User) {
     if(this.users.length === 0){
-      this.users.push(userD);
+      this.users.push(userDetails);
     }
     else {
-      const foundUser = this.users.find((obj) => obj.email === userD.email);
+      const foundUser = this.users.find((obj) => obj.email === userDetails.email);
       if(foundUser){
-        this.presentAlert('"'+ userD.email + '" is already taken');
+        this.presentAlert('"'+ userDetails.email + '" is already taken');
         return;
       }
-      this.users = [userD, ...this.users];
+      this.users = [userDetails, ...this.users];
       this.router.navigate(['../login']);
     }
     await this.setObject();

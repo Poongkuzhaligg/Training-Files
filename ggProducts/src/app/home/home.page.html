@@ -1,14 +1,15 @@
 <ion-menu contentId="main-content">
   <ion-header>
     <ion-toolbar color="tertiary">
-      <ion-title>MENU</ion-title>
+      <ion-title><ion-icon name="options-outline"></ion-icon>MENU</ion-title>
     </ion-toolbar>
   </ion-header>
   <ion-grid class="menu">
-    <p [routerLink]="['/home']" style="cursor:pointer;" class="menu-title"><ion-icon name="home"></ion-icon>HOME</p>
-    <p routerLink="./help" class="menu-title" style="cursor:pointer ;" ><ion-icon name="help-circle"></ion-icon>HELP</p>
-    <a style="text-decoration:none; color: black; cursor: pointer; padding: 10px; " class="menu-title" href="https://greatergoods.com/legal/privacy-policy"><ion-icon name="shield-half"></ion-icon>PRIVACY POLICY</a>
-    <p routerLink="../account" style="cursor:pointer ;" class="menu-title"><ion-icon name="log-out-outline"></ion-icon>LOGOUT</p>
+    <p [routerLink]="['/home']" class="menu-title"><ion-icon name="home"></ion-icon>HOME</p>
+    <p class="menu-title" routerLink="./edit-profile"><ion-icon name="person-outline"></ion-icon>PROFILE</p>
+    <p routerLink="./help" class="menu-title" style="padding-bottom: 18px;" ><ion-icon name="help-circle"></ion-icon>HELP</p>
+    <a style="text-decoration:none; color: black; " class="menu-title" href="https://greatergoods.com/legal/privacy-policy"><ion-icon name="shield-half"></ion-icon>PRIVACY POLICY</a>
+    <p routerLink="../account" class="menu-title" style="padding-top: 18px;" ><ion-icon name="log-out-outline"></ion-icon>LOGOUT</p>
   </ion-grid>
 
   </ion-menu>
@@ -20,7 +21,7 @@
       </ion-buttons>
       <ion-title>GG PRODUCT CODES</ion-title>
       <ion-buttons slot="end">
-        <ion-button routerLink="./favorite">FAVORITES</ion-button>
+        <ion-button routerLink="./favorite" fill="outline" style="padding-right: 20px;"> <ion-icon style="width:1.4rem; height: 1.4rem; margin: 0px;" name="star"></ion-icon></ion-button>
       </ion-buttons>
     </ion-toolbar>
   </ion-header>

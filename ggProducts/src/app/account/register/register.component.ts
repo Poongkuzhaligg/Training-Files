@@ -3,7 +3,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { User } from 'src/app/user';
 import { AccountService } from 'src/app/services/account.service';
-import { AlertController } from '@ionic/angular';
+import { AlertController, ToastController } from '@ionic/angular';
 
 @Component({
   selector: 'app-register',
@@ -11,10 +11,8 @@ import { AlertController } from '@ionic/angular';
   styleUrls: ['./register.component.scss'],
 })
 export class RegisterComponent implements OnInit {
-  i=0;
-  submit = false;
   regForm: FormGroup;
-  userD: User = {
+  userDetails: User = {
     id:0,
     firstname: '',
     lastname: '',
@@ -25,12 +23,9 @@ export class RegisterComponent implements OnInit {
   constructor(
     private formBuilder: FormBuilder,
     private accountServ: AccountService,
-    private alertController: AlertController
+    private alertController: AlertController,
+    private toastController: ToastController
     ) { }
-
-  get f() {
-      return this.regForm.controls;
-  }
 
   ngOnInit() {
     this.regForm = this.formBuilder.group({
@@ -43,15 +38,15 @@ export class RegisterComponent implements OnInit {
   }
 
   onSubmit(){
-    this.submit = true;
     if(this.regForm.invalid){
       this.presentAlert();
       return;
     }
-    this.userD = Object.assign(this.userD, this.regForm.value);
-    this.accountServ.regUser(this.userD);
+    this.userDetails = Object.assign(this.userDetails, this.regForm.value);
+    this.accountServ.regUser(this.userDetails);
+    this.presentToast();
     this.regForm.reset();
-    this.userD.id++;
+    this.userDetails.id++;
 
   }
 
@@ -62,10 +57,18 @@ export class RegisterComponent implements OnInit {
       message: 'Try again',
       buttons: ['OK'],
     });
-
     await alert.present();
   }
 
+  async presentToast() {
+    const toast = await this.toastController.create({
+      message: 'Registration successful!',
+      duration: 1500,
+      position: 'top',
+      color: 'light'
+    });
+    await toast.present();
+  }
 
 
 

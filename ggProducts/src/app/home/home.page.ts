@@ -11,11 +11,9 @@ import { ProductsService } from 'src/app/services/products.service';
 export class HomePage implements OnInit {
   searchTerm: string;
   products: Product[];
-  favProducts: Product[] =[];
   users: User[];
   isModalOpen = false;
   viewProduct: Product;
-  favorite = false;
 
   constructor(private productServ: ProductsService) {}
 
@@ -35,15 +33,6 @@ export class HomePage implements OnInit {
 
   addFav(favProd: Product){
     favProd.isFavourite = !favProd.isFavourite;
-    if(favProd.isFavourite === true){
-      this.favProducts.push(favProd);
-      console.log(this.favProducts);
-    }
-    else{
-      const indx = this.favProducts.indexOf(favProd);
-      this.favProducts.splice(indx);
-      console.log(this.favProducts);
-    }
   }
 
 }
