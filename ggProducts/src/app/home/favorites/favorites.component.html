@@ -6,8 +6,23 @@
     <ion-title class="header-title">GG PRODUCT CODES</ion-title>
   </ion-toolbar>
 </ion-header>
-<ion-content>
-  <p>
-    favorites works!
-  </p>
+
+<ion-content  color="medium">
+  <ion-grid>
+    <ion-row>
+      <ion-col>
+        <ion-card color="primary">
+          <ion-item *ngFor="let product of favProducts" color="light">
+            <ion-thumbnail style="width: 4.9rem ; height: 4.5rem;" slot="start">
+                <ion-img [src]="product.imgSrc" ></ion-img>
+            </ion-thumbnail>
+            <ion-card-header>
+              <ion-card-title>{{ product.name }}</ion-card-title>
+              <ion-card-subtitle>{{ product.code }}</ion-card-subtitle>
+            </ion-card-header>
+          </ion-item>
+        </ion-card>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
 </ion-content>

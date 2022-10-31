@@ -4,27 +4,11 @@
       <ion-title>MENU</ion-title>
     </ion-toolbar>
   </ion-header>
-  <ion-grid>
-    <ion-row>
-      <ion-col>
-        <p routerLink="../account" style="cursor:pointer ;">LOGOUT</p>
-      </ion-col>
-    </ion-row>
-    <ion-row>
-      <ion-col>
-        <p [routerLink]="['/home']" style="cursor:pointer ;">HOME</p>
-      </ion-col>
-    </ion-row>
-    <ion-row>
-      <ion-col>
-        <p routerLink="./help" style="cursor:pointer ;">HELP</p>
-      </ion-col>
-    </ion-row>
-    <ion-row>
-      <ion-col offset="-3">
-        <a style="text-decoration:none; color: black; cursor: pointer; " href="https://greatergoods.com/legal/privacy-policy">PRIVACY POLICY</a>
-      </ion-col>
-    </ion-row>
+  <ion-grid class="menu">
+    <p [routerLink]="['/home']" style="cursor:pointer;" class="menu-title"><ion-icon name="home"></ion-icon>HOME</p>
+    <p routerLink="./help" class="menu-title" style="cursor:pointer ;" ><ion-icon name="help-circle"></ion-icon>HELP</p>
+    <a style="text-decoration:none; color: black; cursor: pointer; padding: 10px; " class="menu-title" href="https://greatergoods.com/legal/privacy-policy"><ion-icon name="shield-half"></ion-icon>PRIVACY POLICY</a>
+    <p routerLink="../account" style="cursor:pointer ;" class="menu-title"><ion-icon name="log-out-outline"></ion-icon>LOGOUT</p>
   </ion-grid>
 
   </ion-menu>
