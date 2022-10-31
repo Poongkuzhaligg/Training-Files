@@ -13,6 +13,7 @@ export class HomePage implements OnInit {
   products: Product[];
   users: User[];
   isModalOpen = false;
+  isFavourite = false;
   viewProduct: Product;
 
   constructor(private productServ: ProductsService) {}

@@ -48,21 +48,7 @@ export class AccountService {
       const user = JSON.parse(ret.value);
       const cUser = user.find( (obj)=> obj.username === this.currentUser.username );
       console.log(username, password);
-  }
-
-  async setObject(): Promise<void> {
-    await Storage.set({
-      key: 'users',
-      value: JSON.stringify(this.users)
-    });
-  }
-
-  async getObject() {
-    const ret = await Storage.get({ key: 'users' });
-    const user = JSON.parse(ret.value);
-    if(ret !== null){
-      this.regUser(user);
-    }
+      //update current user with new values.
   }
 
   async regUser(userDetails: User) {
@@ -80,6 +66,21 @@ export class AccountService {
     }
     await this.setObject();
     console.log(this.users);
+  }
+
+  async setObject(): Promise<void> {
+    await Storage.set({
+      key: 'users',
+      value: JSON.stringify(this.users)
+    });
+  }
+
+  async getObject() {
+    const ret = await Storage.get({ key: 'users' });
+    const user = JSON.parse(ret.value);
+    if(ret !== null){
+      this.regUser(user);
+    }
   }
 
   async presentAlert(message: string) {
