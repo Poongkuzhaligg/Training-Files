@@ -10,6 +10,7 @@ import { HelpComponent } from './help/help.component';
 import { Ng2SearchPipeModule } from 'ng2-search-filter';
 import { FavoritesComponent } from './favorites/favorites.component';
 import { EditProfileComponent } from './edit-profile/edit-profile.component';
+import { ProductComponent } from './product/product.component';
 
 
 @NgModule({
@@ -26,7 +27,8 @@ import { EditProfileComponent } from './edit-profile/edit-profile.component';
     HomePage,
     HelpComponent,
     FavoritesComponent,
-    EditProfileComponent
+    EditProfileComponent,
+    ProductComponent
 ]
 })
 export class HomePageModule {}

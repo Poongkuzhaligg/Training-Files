@@ -2,7 +2,7 @@
 // http://ionicframework.com/docs/theming/
 /** Ionic CSS Variables **/
 :root {
-  --ion-font-family: ;
+  --ion-font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
 
   /** primary **/
   --ion-color-primary: #3880ff;
@@ -45,7 +45,7 @@
   --ion-color-warning-tint: #ffca22;
 
   /** danger **/
-  --ion-color-danger: #eb445a;
+  --ion-color-danger: #df5b6d;
   --ion-color-danger-rgb: 235, 68, 90;
   --ion-color-danger-contrast: #ffffff;
   --ion-color-danger-contrast-rgb: 255, 255, 255;

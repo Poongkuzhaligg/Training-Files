@@ -35,7 +35,7 @@ export class AccountService {
       this.presentAlert('Not registered!');
       return;
     }
-    this.router.navigate(['/', 'home']);
+    this.router.navigate(['../home']);
     this.currentUser = pw;
 
   }
@@ -59,8 +59,8 @@ export class AccountService {
         return;
       }
       this.users = [userDetails, ...this.users];
-      this.router.navigate(['../login']);
     }
+    this.router.navigate(['../login']);
     await this.setObject();
     console.log(this.users);
   }

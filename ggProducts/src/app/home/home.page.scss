@@ -1,6 +1,5 @@
 #container {
   text-align: center;
-
   position: absolute;
   left: 0;
   right: 0;
@@ -72,7 +71,10 @@ ion-icon {
 @media (max-width: 670px) {
 
   .ggTitle{
-    font-size: medium;
+    font-size: 1.1rem ;
     padding-right: 100px;
+  }
+  ion-card-title {
+    font-size: 0.9rem;
   }
 }

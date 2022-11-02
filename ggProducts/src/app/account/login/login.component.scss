@@ -40,3 +40,11 @@ ion-text {
 .footer-title{
   font-size: 1rem;
 }
+
+@media (max-width: 670px) {
+
+  .ggTitle{
+    font-size: 1.1rem ;
+    padding-right: 100px;
+  }
+}
