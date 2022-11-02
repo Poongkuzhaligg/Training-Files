@@ -1,8 +1,9 @@
 // Ionic Variables and Theming. For more info, please see:
 // http://ionicframework.com/docs/theming/
-
 /** Ionic CSS Variables **/
 :root {
+  --ion-font-family: ;
+
   /** primary **/
   --ion-color-primary: #3880ff;
   --ion-color-primary-rgb: 56, 128, 255;
@@ -12,12 +13,12 @@
   --ion-color-primary-tint: #4c8dff;
 
   /** secondary **/
-  --ion-color-secondary: #3dc2ff;
+  --ion-color-secondary: #1985b6;
   --ion-color-secondary-rgb: 61, 194, 255;
   --ion-color-secondary-contrast: #ffffff;
   --ion-color-secondary-contrast-rgb: 255, 255, 255;
-  --ion-color-secondary-shade: #36abe0;
-  --ion-color-secondary-tint: #50c8ff;
+  --ion-color-secondary-shade: #11678f;
+  --ion-color-secondary-tint: #5fa2c1;
 
   /** tertiary **/
   --ion-color-tertiary: #c4ea52;
@@ -56,8 +57,8 @@
   --ion-color-dark-rgb: 34, 36, 40;
   --ion-color-dark-contrast: #ffffff;
   --ion-color-dark-contrast-rgb: 255, 255, 255;
-  --ion-color-dark-shade: #3a4365;
-  --ion-color-dark-tint: #4b566b;
+  --ion-color-dark-shade: #28304a;
+  --ion-color-dark-tint: #6c7687;
 
   /** medium **/
   --ion-color-medium: #67b3bd;

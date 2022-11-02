@@ -23,7 +23,6 @@ export class AccountService {
   login(email: string, password: string){
     const eId = this.users.find( user => user.email === email);
     const pw = this.users.find( user => user.password === password);
-    console.log(eId, pw);
     if(eId === undefined  ){
       this.presentAlert('Email does not exist, Kindly register!');
       return;
@@ -36,10 +35,8 @@ export class AccountService {
       this.presentAlert('Not registered!');
       return;
     }
-    else{
+    this.router.navigate(['/', 'home']);
     this.currentUser = pw;
-    this.router.navigate(['../home']);
-    }
 
   }
 
@@ -78,9 +75,6 @@ export class AccountService {
   async getObject() {
     const ret = await Storage.get({ key: 'users' });
     const user = JSON.parse(ret.value);
-    if(ret !== null){
-      this.regUser(user);
-    }
   }
 
   async presentAlert(message: string) {

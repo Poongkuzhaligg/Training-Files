@@ -8,7 +8,7 @@
 </ion-header>
 
 
-<ion-content color="light">
+<ion-content color="medium">
   <ion-grid>
     <ion-row>
       <ion-col sizeMd="6" offsetMd="3">
@@ -16,20 +16,18 @@
           <ion-header>
             <ion-card-header style="text-align: center; font-size: large"><b>Welcome to your Profile</b></ion-card-header>
           </ion-header>
-
           <ion-item>
             <ion-avatar slot="start">
               <img alt="Silhouette of a person's head" src="https://ionicframework.com/docs/img/demos/avatar.svg" />
             </ion-avatar>
 
             <ion-label>
-               <ion-card-subtitle style="font-size: large">claire</ion-card-subtitle>
+               <ion-card-subtitle color="dark" style="font-size: large">claire</ion-card-subtitle>
             </ion-label>
           </ion-item>
-          <ion-card-header >
-            <ion-card-subtitle>EDIT YOUR PROFILE HERE!</ion-card-subtitle>
-          </ion-card-header>
-
+          <ion-item>
+            <ion-label><ion-card-subtitle>Edit your profile here!</ion-card-subtitle></ion-label>
+          </ion-item>
 
           <form (ngSubmit)="onSubmit()" [formGroup]="editForm">
             <ion-card-content>

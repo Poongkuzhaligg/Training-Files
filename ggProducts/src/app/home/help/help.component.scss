@@ -1,7 +1,5 @@
 
-*{
-  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
-}
+
 
 .header-title{
   font-size: 1.5rem;
@@ -31,4 +29,19 @@ ion-img {
 ion-card-content{
   text-align: center;
   font-size: 1rem;
+}
+
+
+@media (max-width: 670px) {
+
+  .header-title{
+    font-size: medium;
+    padding-right: 85px;
+  }
+  ion-img {
+    width: 9rem;
+    height: 9rem;
+    margin: auto;
+    margin-top: 2rem;
+  }
 }
