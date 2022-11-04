@@ -19,8 +19,8 @@ export class EditProfileComponent implements OnInit {
     private alertController: AlertController
   ) { }
 
-  ngOnInit() {
-    this.currentUser = this.accountServ.currentUser;
+  async ngOnInit() {
+    this.currentUser = await this.accountServ.loggedUser();
     this.editForm = this.formBuilder.group({
       username: ['', Validators.required],
       oldPassword: ['', [Validators.required, Validators.minLength(6)]],

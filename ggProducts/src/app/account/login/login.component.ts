@@ -68,7 +68,3 @@ export class LoginComponent implements OnInit {
 
 
 
-
-   // this.user = Object.assign(this.user, this.loginForm.value);
-    // localStorage.setItem('Users', JSON.stringify(this.user));
-    // console.log(this.user);

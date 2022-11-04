@@ -43,8 +43,16 @@ ion-text {
 
 @media (max-width: 670px) {
 
-  .ggTitle{
-    font-size: 1.1rem ;
-    padding-right: 100px;
+  ion-title{
+    font-size: 1.2rem ;
+    padding-right: 90px;
+  }
+
+  ion-card-title {
+    font-size: 1.1rem;
+    padding-top: 15px;
+  }
+  .toolbar{
+    padding-top: 0px;
   }
 }

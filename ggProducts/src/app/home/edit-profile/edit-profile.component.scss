@@ -1,1 +1,49 @@
+.header-title {
+  text-align: center;
+  padding-right: 40px;
+}
 
+ion-card-header {
+  text-align: center;
+  font-size: 1.1rem;
+}
+
+.avatar{
+  padding-top: 15px;
+}
+
+.edit{
+  padding-left: 55px;
+}
+
+.username{
+  font-size: 1rem;
+}
+
+ion-card-content{
+  padding-top: 0px;
+}
+
+
+
+@media (max-width: 670px) {
+
+  .ios {
+    .header-title {
+    padding-right: 90px;
+    }
+  }
+  .done{
+    padding-left: 100px;
+  }
+}
+
+@media (max-width: 755px){
+  .header-title{
+    padding-right: 60px;
+  }
+
+  .done{
+    padding-left: 100px;
+  }
+}

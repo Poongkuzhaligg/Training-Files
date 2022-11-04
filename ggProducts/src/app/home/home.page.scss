@@ -25,7 +25,10 @@
   text-decoration: none;
 }
 
-
+ion-thumbnail {
+  width: 4.9rem;
+  height: 4.5rem;
+}
 
 ion-title{
 padding-right: 50px;
@@ -68,13 +71,55 @@ ion-icon {
   padding: 10px;
 }
 
-@media (max-width: 670px) {
+ion-button{
+  // border: 1.5px solid white;
+  background-color: white;
+  width: 2.3rem;
+  height: 2.3rem;
+  border-radius: 80px;
 
-  .ggTitle{
-    font-size: 1.1rem ;
-    padding-right: 100px;
+}
+
+@media (max-width: 375px) {
+
+  .ios {
+    .ggTitle{
+      font-size: 1rem ;
+      padding-right: 100px;
+    }
+    ion-thumbnail {
+      width: 4.5rem;
+      height: 4.3rem;
+    }
   }
   ion-card-title {
-    font-size: 0.9rem;
+    font-size: 1rem;
+  }
+
+  ion-button{
+    // border: 1.5px solid white;
+    background-color: white;
+    width: 1.6rem;
+    height: 1.6rem;
+  }
+
+  ion-card-subtitle{
+    padding-top: 10px;
+  }
+
+}
+
+@media (max-width: 755px) {
+  .ggTitle{
+    font-size: 1.1rem ;
+    padding-right: 20px;
+  }
+
+  ion-card-header{
+    padding: 20px 10px 20px 0;
+  }
+
+  ion-card-title {
+    font-size: 1.1rem;
   }
 }

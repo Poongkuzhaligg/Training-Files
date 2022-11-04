@@ -1,11 +1,8 @@
-import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { User } from '../user';
 import { Storage } from '@capacitor/storage';
 import { Router } from '@angular/router';
 import { AlertController } from '@ionic/angular';
-
-
 
 @Injectable({
   providedIn: 'root'
@@ -17,8 +14,14 @@ export class AccountService {
   constructor(
     private router: Router,
     private alertController: AlertController) {
-    this.getObject();
-   }
+    this.getUser();
+    console.log('capCurrentUSer', this.loggedUser());
+  }
+
+  async loggedUser(){
+    const userResult = await Storage.get({key: 'currentUsers'});
+    return JSON.parse(userResult.value);
+  }
 
   login(email: string, password: string){
     const eId = this.users.find( user => user.email === email);
@@ -36,7 +39,8 @@ export class AccountService {
       return;
     }
     this.router.navigate(['../home']);
-    this.currentUser = pw;
+    this.currentUser = eId;
+    this.setCurrentUser();
 
   }
 
@@ -61,20 +65,26 @@ export class AccountService {
       this.users = [userDetails, ...this.users];
     }
     this.router.navigate(['../login']);
-    await this.setObject();
+    await this.setUser();
     console.log(this.users);
   }
 
-  async setObject(): Promise<void> {
+  async setUser(): Promise<void> {
     await Storage.set({
       key: 'users',
       value: JSON.stringify(this.users)
     });
   }
 
-  async getObject() {
+  async getUser() {
     const ret = await Storage.get({ key: 'users' });
     const user = JSON.parse(ret.value);
+    if(user.length === 0){
+      return;
+    }
+    else{
+      this.users = [this.users, ...user];
+    }
   }
 
   async presentAlert(message: string) {
@@ -85,6 +95,23 @@ export class AccountService {
       buttons: ['OK'],
     });
     await alert.present();
+  }
+
+  async setCurrentUser(): Promise<void> {
+    await Storage.set({
+      key: 'currentUsers',
+      value: JSON.stringify(this.currentUser)
+    });
+  }
+
+  async getCurrentUser() {
+    const ret = await Storage.get({ key: 'currentUsers' });
+    const user = JSON.parse(ret.value);
+  }
+
+  async logout(){
+    await Storage.remove({ key: 'currentUsers' });
+    this.router.navigate(['../account']);
   }
 
 

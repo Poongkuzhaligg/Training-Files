@@ -4,6 +4,7 @@ import { Product } from './product';
 import { ProductsService } from 'src/app/services/products.service';
 import { ModalController } from '@ionic/angular';
 import { ProductComponent } from './product/product.component';
+import { AccountService } from '../services/account.service';
 
 @Component({
   selector: 'app-home',
@@ -17,38 +18,34 @@ export class HomePage implements OnInit {
   isModalOpen = false;
   isFavourite = false;
   viewProduct: Product;
+  currentUser: User;
 
   constructor(private productServ: ProductsService,
-    private modalCtrl: ModalController
+    private modalCtrl: ModalController,
+    private accountServ: AccountService
     ) {}
 
-    async openModal(openProduct: Product) {
+  async openModal(openProduct: Product) {
+    const modal = await this.modalCtrl.create({
+      component: ProductComponent,
+      componentProps: {
+        openProduct
+      }
+    });
+    modal.present();
+  }
 
-      const modal = await this.modalCtrl.create({
-        component: ProductComponent,
-        componentProps: {
-          openProduct
-        }
-      });
-      modal.present();
-    }
-  // setClose(isOpen: boolean) {
-  //   this.isModalOpen = isOpen;
-  // }
-
-  // setOpen(isOpen: boolean, product: Product) {
-  //   this.viewProduct = product;
-  //   if(this.viewProduct) {
-  //     this.isModalOpen = isOpen;
-  //   }
-  // }
-
-  ngOnInit() {
+  async ngOnInit() {
     this.products = this.productServ.getAllProducts();
+    this.currentUser = await this.accountServ.loggedUser();
   }
 
   addFav(favProd: Product){
     favProd.isFavourite = !favProd.isFavourite;
+  }
+
+  logout(){
+    this.accountServ.logout();
   }
 
 }

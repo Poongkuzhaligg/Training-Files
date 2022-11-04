@@ -1,18 +1,27 @@
-import { Injectable } from '@angular/core';
+import { Injectable, OnInit } from '@angular/core';
 import { Product } from '../home/product';
 import productData from 'src/assets/items/product.json';
+import { HttpClient } from '@angular/common/http';
 
 
 @Injectable({
   providedIn: 'root'
 })
-export class ProductsService {
+export class ProductsService  {
   products: Product[] = productData;
 
-  constructor() { }
+  constructor(private http: HttpClient) {}
+
+
 
   getAllProducts() {
-    return [...this.products];
+    // this.http.get<Product[]>('http://192.168.0.176:3000/products')
+    // .subscribe(response => {
+    //   console.log(response);
+    // });
+    return this.products;
   }
 
-}
+  }
+
+

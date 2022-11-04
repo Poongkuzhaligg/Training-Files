@@ -1,0 +1,20 @@
+
+*{
+  --ion-font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif
+
+}
+// -- Validation failed
+// -- Validation failed
+.ios{
+
+  font-weight: 500;
+
+  ion-item.ion-invalid.ion-touched{
+    border-bottom: 2px solid var(--ion-color-danger) !important;
+  }
+
+  //-- Validation passed
+  ion-item.ion-valid.ion-touched{
+  border-bottom: 2px solid var(--ion-color-success) !important;
+  }
+}
