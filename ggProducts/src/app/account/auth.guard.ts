@@ -12,7 +12,7 @@ export class AuthGuard implements CanActivate {
   canActivate(
     route: ActivatedRouteSnapshot,
     state: RouterStateSnapshot) {
-      const currentUser = this.accountServ.loggedUser;
+    const currentUser = this.accountServ.loggedUser;
     if(currentUser){
       return true;
     }

@@ -1,0 +1,43 @@
+ion-title{
+  text-align: center;
+  padding-right: 0;
+}
+
+ion-card-title{
+  text-align:center;
+  padding: 8px;
+
+}
+
+ion-img {
+  margin:auto;
+  width: 20rem;
+  height: 20rem;
+}
+
+@media (max-width: 380px){
+  .ios{
+    ion-title{
+      font-size: 1.1rem;
+      text-align: center;
+      padding-right: 30px;
+    }
+
+    ion-img{
+      width: 16rem;
+      height: 16rem;
+    }
+    ion-card-title{
+      font-size: 1.2rem;
+      padding: 10px;
+    }
+  }
+}
+
+@media (max-width: 755px){
+  ion-title{
+    font-size: 1.1rem;
+    text-align: center;
+    padding-left: 30px;
+  }
+}

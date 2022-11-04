@@ -22,7 +22,7 @@ export class EditProfileComponent implements OnInit {
   async ngOnInit() {
     this.currentUser = await this.accountServ.loggedUser();
     this.editForm = this.formBuilder.group({
-      username: ['', Validators.required],
+      username: [this.currentUser?.username, Validators.required],
       oldPassword: ['', [Validators.required, Validators.minLength(6)]],
       newPassword: ['', [Validators.required, Validators.minLength(6)]],
       confirmPassword: ['', [Validators.required, Validators.minLength(6)]]

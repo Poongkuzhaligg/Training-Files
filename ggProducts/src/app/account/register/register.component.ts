@@ -13,7 +13,6 @@ import { AlertController, ToastController } from '@ionic/angular';
 export class RegisterComponent implements OnInit {
   regForm: FormGroup;
   userDetails: User = {
-    id:0,
     firstname: '',
     lastname: '',
     username: '',
@@ -46,7 +45,6 @@ export class RegisterComponent implements OnInit {
     this.accountServ.regUser(this.userDetails);
     this.presentToast();
     this.regForm.reset();
-    this.userDetails.id++;
 
   }
 
