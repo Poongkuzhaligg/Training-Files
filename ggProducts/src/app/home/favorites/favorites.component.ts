@@ -11,7 +11,7 @@ import { ProductComponent } from '../product/product.component';
 })
 export class FavoritesComponent implements OnInit {
   favProducts: Product[];
-
+  nofav = true;
   constructor(private productServ: ProductsService,
     private modalCtrl: ModalController) { }
 
@@ -27,6 +27,7 @@ export class FavoritesComponent implements OnInit {
   }
 
   ngOnInit() {
+
     this.favProducts = this.productServ.getAllProducts().filter((obj)=> obj.isFavourite === true);
   }
 

@@ -36,7 +36,6 @@
                     type="username"
                     class="form-control"
                     formControlName="username"
-
                     ></ion-input>
                   </ion-item>
 
@@ -63,12 +62,13 @@
                     class="form-control"
                     formControlName="confirmPassword"></ion-input>
                   </ion-item>
+                  <ion-text *ngIf="editForm.hasError('notSame')">Passwords do not match</ion-text>
 
                 </ion-list>
               </ion-card-content>
               <ion-card-content >
                 <ion-card-title >
-                  <ion-button type="submit" color="dark" class="done">DONE</ion-button>
+                  <ion-button type="submit" [disabled]="editForm.invalid" color="dark" class="done">DONE</ion-button>
                 </ion-card-title>
               </ion-card-content>
             </form>

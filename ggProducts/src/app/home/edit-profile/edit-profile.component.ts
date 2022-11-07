@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { AbstractControl, FormBuilder, FormGroup, ValidationErrors, ValidatorFn, Validators } from '@angular/forms';
 import { AlertController } from '@ionic/angular';
 import { AccountService } from 'src/app/services/account.service';
 import { User } from 'src/app/user';
@@ -22,11 +22,17 @@ export class EditProfileComponent implements OnInit {
   async ngOnInit() {
     this.currentUser = await this.accountServ.loggedUser();
     this.editForm = this.formBuilder.group({
-      username: [this.currentUser?.username, Validators.required],
+      username: ['', Validators.required],
       oldPassword: ['', [Validators.required, Validators.minLength(6)]],
       newPassword: ['', [Validators.required, Validators.minLength(6)]],
       confirmPassword: ['', [Validators.required, Validators.minLength(6)]]
-    });
+    },{ validator: this.checkPasswords });
+  }
+
+  checkPasswords(group: FormGroup){
+    const pass = group.controls.newPassword.value;
+    const confirmPass = group.controls.confirmPassword.value;
+    return pass === confirmPass ? null : { notSame: true };
   }
 
   onSubmit(){
@@ -34,7 +40,6 @@ export class EditProfileComponent implements OnInit {
       this.presentAlert();
       return;
     }
-
     const username = this.editForm.value.email;
     const password = this.editForm.value.confirmPassword;
     this.accountServ.editForm(username, password);

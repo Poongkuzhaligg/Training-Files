@@ -15,7 +15,6 @@ export class AccountService {
     private router: Router,
     private alertController: AlertController) {
     this.getUser();
-    console.log('capCurrentUSer', this.loggedUser());
   }
 
   async loggedUser(){
@@ -45,9 +44,7 @@ export class AccountService {
   }
 
   async editForm(username: string, password: string){
-      const ret = await Storage.get({ key: 'users' });
-      const user = JSON.parse(ret.value);
-      const cUser = user.find( (obj)=> obj.username === this.currentUser.username );
+      const cUser = this.currentUser;
       console.log(username, password);
       //update current user with new values.
   }

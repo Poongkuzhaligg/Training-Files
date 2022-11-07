@@ -87,6 +87,16 @@ ion-button{
 
 }
 
+ion-searchbar .sc-ion-searchbar-ios-h{
+  border-radius: 0px;
+}
+
+.heart{
+  width: 1.5rem;
+  height: 1.5rem;
+  margin: auto;
+}
+
 @media (max-width: 375px) {
 
   .ios {
@@ -101,6 +111,11 @@ ion-button{
   }
   ion-card-title {
     font-size: 1rem;
+  }
+
+  .heart{
+    width: 1.2rem;
+    height: 1.2rem;
   }
 
   ion-button{
@@ -134,6 +149,15 @@ ion-button{
     font-size: 1.1rem;
   }
   ion-searchbar{
-    padding:  12px ;
+    padding:  20px ;
   }
+
+  .ios{
+    ion-searchbar{
+      padding:  26px;
+      padding-bottom: 0px;
+    }
+
+  }
+
 }
