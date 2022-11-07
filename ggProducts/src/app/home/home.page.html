@@ -6,7 +6,8 @@
     </ion-toolbar>
   </ion-header>
 
-  <ion-item style="padding: 20px 0 20px ;" >
+
+  <ion-item style="padding: 20px 0 20px ;"  *ngIf="currentUser">
     <ion-avatar slot="start">
       <img alt="Silhouette of a person's head" src="https://ionicframework.com/docs/img/demos/avatar.svg" />
     </ion-avatar>
@@ -29,7 +30,7 @@
         <ion-menu-button></ion-menu-button>
       </ion-buttons>
       <ion-title class="ggTitle">GG PRODUCT CODES</ion-title>
-      <ion-buttons slot="end" style="padding-right: 30px;">
+      <ion-buttons slot="end" style="padding-right: 7px;">
         <ion-button routerLink="./favorite" color="light">
           <ion-icon class="heart" name="heart" color="danger"></ion-icon>
         </ion-button>
@@ -38,8 +39,14 @@
   </ion-header>
 
 
-  <ion-content  color="tertiary">
-    <ion-searchbar slot="fixed" color="light" [(ngModel)]="searchTerm" show-cancel-button="never" placeholder="Search Products"></ion-searchbar>
+
+  <ion-searchbar slot="fixed" color="light" [(ngModel)]="searchTerm" show-cancel-button="never" placeholder="Search Products" (ngModelChange)="onFilterValueChange()"></ion-searchbar>
+  <ion-content [hidden]="searchProduct===false" color="tertiary">
+    <ion-card-header>
+      Uh oh No products Found!!
+    </ion-card-header>
+  </ion-content>
+  <ion-content *ngIf="this.products" color="tertiary">
     <ion-grid>
       <ion-row>
         <ion-col>
@@ -64,5 +71,7 @@
       </ion-row>
     </ion-grid>
 </ion-content>
+
+
 
 

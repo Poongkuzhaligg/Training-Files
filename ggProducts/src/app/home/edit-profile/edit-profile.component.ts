@@ -26,17 +26,17 @@ export class EditProfileComponent implements OnInit {
       oldPassword: ['', [Validators.required, Validators.minLength(6)]],
       newPassword: ['', [Validators.required, Validators.minLength(6)]],
       confirmPassword: ['', [Validators.required, Validators.minLength(6)]]
-    },{ validator: this.checkPasswords });
+    }, { validator: this.checkPasswords });
   }
 
-  checkPasswords(group: FormGroup){
+  checkPasswords(group: FormGroup) {
     const pass = group.controls.newPassword.value;
     const confirmPass = group.controls.confirmPassword.value;
     return pass === confirmPass ? null : { notSame: true };
   }
 
-  onSubmit(){
-    if(this.editForm.invalid) {
+  onSubmit() {
+    if (this.editForm.invalid) {
       this.presentAlert();
       return;
     }

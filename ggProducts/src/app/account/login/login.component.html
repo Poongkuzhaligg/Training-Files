@@ -29,6 +29,8 @@
                   [clearOnEdit]="true">
                 </ion-input>
                 </ion-item>
+                <ion-text *ngIf="loginForm.controls.email.touched && loginForm.controls.email.invalid">Email is required</ion-text><br>
+                <ion-text *ngIf="loginForm.controls.email.invalid && loginForm.controls.email.errors.pattern">Enter a valid Email ID</ion-text>
 
                 <ion-item>
                   <ion-label for="password" position="floating">Password</ion-label>
@@ -37,6 +39,8 @@
                   class="form-control"
                   formControlName="password"></ion-input>
                 </ion-item>
+                <ion-text *ngIf="loginForm.controls.password.touched && loginForm.controls.password.invalid">password is required</ion-text><br>
+                <ion-text *ngIf="loginForm.controls.password.invalid && loginForm.controls.password.errors.minlength">Password must have 6 characters</ion-text>
               </ion-list>
             </ion-card-content>
             <ion-card-content>

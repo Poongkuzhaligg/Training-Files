@@ -22,25 +22,24 @@ export class AccountService {
     return JSON.parse(userResult.value);
   }
 
-  login(email: string, password: string){
-    const eId = this.users.find( user => user.email === email);
-    const pw = this.users.find( user => user.password === password);
-    if(eId === undefined  ){
+  login(email: string, passwordIn: string){
+    const emailId = this.users.find( user => user.email === email);
+    const password = this.users.find( user => user.password === passwordIn);
+    if(emailId === undefined  ){
       this.presentAlert('Email does not exist, Kindly register!');
       return;
     }
-    else if(pw === undefined){
+    else if(password === undefined){
       this.presentAlert('Password does not match, Try again!');
       return;
     }
-    else if(eId === undefined && pw === undefined){
+    else if(emailId === undefined && password === undefined){
       this.presentAlert('Not registered!');
       return;
     }
     this.router.navigate(['../home']);
-    this.currentUser = eId;
+    this.currentUser = emailId;
     this.setCurrentUser();
-
   }
 
   async editForm(username: string, password: string){
@@ -49,7 +48,7 @@ export class AccountService {
       //update current user with new values.
   }
 
-  async regUser(userDetails: User) {
+  async registerUser(userDetails: User) {
     if(this.users.length === 0){
       this.users.push(userDetails);
     }
@@ -61,7 +60,9 @@ export class AccountService {
       }
       this.users = [userDetails, ...this.users];
     }
-    this.router.navigate(['../login']);
+    this.currentUser = userDetails;
+    this.setCurrentUser();
+    this.router.navigate(['../home']);
     await this.setUser();
     console.log(this.users);
   }

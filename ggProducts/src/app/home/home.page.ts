@@ -15,6 +15,8 @@ export class HomePage implements OnInit {
   searchTerm: string;
   products: Product[];
   users: User[];
+  temporaryProducts = [];
+  searchProduct = false;
   isModalOpen = false;
   isFavourite = false;
   viewProduct: Product;
@@ -38,6 +40,16 @@ export class HomePage implements OnInit {
   async ngOnInit() {
     this.products = this.productServ.getAllProducts();
     this.currentUser = await this.accountServ.loggedUser();
+  }
+
+  onFilterValueChange(){
+    if(this.products.filter(data => data.name.includes(this.searchTerm))){
+      this.searchProduct = true;
+    }
+    if(this.searchTerm.length === 0){
+      this.searchProduct = false;
+    }
+
   }
 
   addFav(favProd: Product){
