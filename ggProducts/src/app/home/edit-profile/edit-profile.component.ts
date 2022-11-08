@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { AbstractControl, FormBuilder, FormGroup, ValidationErrors, ValidatorFn, Validators } from '@angular/forms';
-import { AlertController } from '@ionic/angular';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { AlertController, ToastController } from '@ionic/angular';
 import { AccountService } from 'src/app/services/account.service';
 import { User } from 'src/app/user';
 
@@ -16,7 +16,8 @@ export class EditProfileComponent implements OnInit {
   constructor(
     private formBuilder: FormBuilder,
     private accountServ: AccountService,
-    private alertController: AlertController
+    private alertController: AlertController,
+    private toastController: ToastController
   ) { }
 
   async ngOnInit() {
@@ -43,6 +44,7 @@ export class EditProfileComponent implements OnInit {
     const username = this.editForm.value.username;
     const password = this.editForm.value.confirmPassword;
     this.accountServ.editForm(username, password);
+    this.presentToast();
     this.editForm.reset();
   }
 
@@ -54,6 +56,16 @@ export class EditProfileComponent implements OnInit {
       buttons: ['OK'],
     });
     await alert.present();
+  }
+
+  async presentToast() {
+    const toast = await this.toastController.create({
+      message: 'Profile updated successfully!',
+      duration: 1500,
+      position: 'top',
+      color: 'light'
+    });
+    await toast.present();
   }
 
 }

@@ -56,6 +56,8 @@ export class AccountService {
       allUsers.push(editUser);
       this.users = allUsers;
       await this.setUser();
+      await Storage.remove({ key: 'currentUsers' });
+      this.setCurrentUser(editUser);
   }
 
   async registerUser(userDetails: User) {
