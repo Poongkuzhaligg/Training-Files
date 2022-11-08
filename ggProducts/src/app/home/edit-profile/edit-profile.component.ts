@@ -40,7 +40,7 @@ export class EditProfileComponent implements OnInit {
       this.presentAlert();
       return;
     }
-    const username = this.editForm.value.email;
+    const username = this.editForm.value.username;
     const password = this.editForm.value.confirmPassword;
     this.accountServ.editForm(username, password);
     this.editForm.reset();

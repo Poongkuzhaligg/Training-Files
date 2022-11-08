@@ -39,7 +39,7 @@
                   class="form-control"
                   formControlName="password"></ion-input>
                 </ion-item>
-                <ion-text *ngIf="loginForm.controls.password.touched && loginForm.controls.password.invalid">password is required</ion-text><br>
+                <ion-text *ngIf="loginForm.controls.password.touched && loginForm.controls.password.invalid">Password is required</ion-text><br>
                 <ion-text *ngIf="loginForm.controls.password.invalid && loginForm.controls.password.errors.minlength">Password must have 6 characters</ion-text>
               </ion-list>
             </ion-card-content>

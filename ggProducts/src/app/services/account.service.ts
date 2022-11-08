@@ -9,7 +9,6 @@ import { AlertController } from '@ionic/angular';
 })
 export class AccountService {
   users: User[] = [];
-  currentUser: User;
 
   constructor(
     private router: Router,
@@ -38,14 +37,25 @@ export class AccountService {
       return;
     }
     this.router.navigate(['../home']);
-    this.currentUser = emailId;
-    this.setCurrentUser();
+    this.setCurrentUser(emailId);
   }
 
   async editForm(username: string, password: string){
-      const cUser = this.currentUser;
-      console.log(username, password);
-      //update current user with new values.
+      const cUser = await this.loggedUser();
+      let allUsers: User[] = [];
+      const ret = await Storage.get({ key: 'users' });
+      const user = JSON.parse(ret.value);
+      allUsers = [allUsers, ...user];
+      await Storage.remove({ key: 'users' });
+      const editUser = allUsers.find( u => u.email === cUser.email);
+      editUser.username = username;
+      editUser.password = password;
+      console.log(editUser);
+      const index = allUsers.indexOf(editUser);
+      allUsers.splice(index, 1);
+      allUsers.push(editUser);
+      this.users = allUsers;
+      await this.setUser();
   }
 
   async registerUser(userDetails: User) {
@@ -60,8 +70,7 @@ export class AccountService {
       }
       this.users = [userDetails, ...this.users];
     }
-    this.currentUser = userDetails;
-    this.setCurrentUser();
+    this.setCurrentUser(userDetails);
     this.router.navigate(['../home']);
     await this.setUser();
     console.log(this.users);
@@ -95,10 +104,10 @@ export class AccountService {
     await alert.present();
   }
 
-  async setCurrentUser(): Promise<void> {
+  async setCurrentUser(loggedUser): Promise<void> {
     await Storage.set({
       key: 'currentUsers',
-      value: JSON.stringify(this.currentUser)
+      value: JSON.stringify(loggedUser)
     });
   }
 

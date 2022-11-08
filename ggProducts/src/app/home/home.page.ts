@@ -43,13 +43,12 @@ export class HomePage implements OnInit {
   }
 
   onFilterValueChange(){
-    if(this.products.filter(data => data.name.includes(this.searchTerm))){
-      this.searchProduct = true;
-    }
-    if(this.searchTerm.length === 0){
-      this.searchProduct = false;
-    }
 
+    if(this.products.filter(data => this.filterProductData(data)).length === 0){
+      this.searchProduct = true;
+      return;
+    }
+    this.searchProduct = false;
   }
 
   addFav(favProd: Product){
@@ -58,6 +57,12 @@ export class HomePage implements OnInit {
 
   logout(){
     this.accountServ.logout();
+  }
+
+  filterProductData(product: Product) {
+    return product.name.toLowerCase().includes(this.searchTerm.toLowerCase()) ||
+    product.category.toLowerCase().includes(this.searchTerm.toLowerCase())
+    || product.code.includes(this.searchTerm);
   }
 
 }

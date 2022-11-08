@@ -38,6 +38,8 @@
                     formControlName="username"
                     ></ion-input>
                   </ion-item>
+                  <ion-text *ngIf="editForm.controls.username.touched && editForm.controls.username.invalid">Username is required</ion-text>
+
 
                   <ion-item>
                     <ion-label for="oldPassword" position="floating">Old Password</ion-label>
@@ -46,6 +48,9 @@
                     class="form-control"
                     formControlName="oldPassword"></ion-input>
                   </ion-item>
+                  <ion-text *ngIf="editForm.controls.oldPassword.touched && editForm.controls.oldPassword.invalid">Password is required</ion-text><br>
+                  <ion-text *ngIf="editForm.controls.oldPassword.invalid && editForm.controls.oldPassword.errors.minlength">Password must have 6 characters</ion-text>
+
 
                   <ion-item>
                     <ion-label for="newPassword" position="floating">New Password</ion-label>
@@ -54,6 +59,8 @@
                     class="form-control"
                     formControlName="newPassword"></ion-input>
                   </ion-item>
+                  <ion-text *ngIf="editForm.controls.newPassword.touched && editForm.controls.newPassword.invalid">Password is required</ion-text><br>
+                  <ion-text *ngIf="editForm.controls.newPassword.invalid && editForm.controls.newPassword.errors.minlength">Password must have 6 characters</ion-text>
 
                   <ion-item>
                     <ion-label for="confirmPassword" position="floating">Confirm Password</ion-label>
@@ -62,7 +69,9 @@
                     class="form-control"
                     formControlName="confirmPassword"></ion-input>
                   </ion-item>
-                  <ion-text *ngIf="editForm.hasError('notSame')">Passwords do not match</ion-text>
+                  <ion-text *ngIf="editForm.hasError('notSame')">Passwords do not match</ion-text><br>
+                  <ion-text *ngIf="editForm.controls.confirmPassword.touched && editForm.controls.confirmPassword.invalid">Password is required</ion-text><br>
+                  <ion-text *ngIf="editForm.controls.confirmPassword.invalid && editForm.controls.confirmPassword.errors.minlength">Password must have 6 characters</ion-text>
 
                 </ion-list>
               </ion-card-content>
