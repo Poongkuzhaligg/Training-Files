@@ -12,7 +12,6 @@ export class ProductComponent implements OnInit {
   constructor(private modalCtrl: ModalController) { }
 
   ngOnInit() {
-    console.log(this.openProduct);
   }
   close() {
     this.modalCtrl.dismiss();

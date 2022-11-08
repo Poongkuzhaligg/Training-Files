@@ -50,7 +50,6 @@ export class AccountService {
       const editUser = allUsers.find( u => u.email === cUser.email);
       editUser.username = username;
       editUser.password = password;
-      console.log(editUser);
       const index = allUsers.indexOf(editUser);
       allUsers.splice(index, 1);
       allUsers.push(editUser);
@@ -75,7 +74,6 @@ export class AccountService {
     this.setCurrentUser(userDetails);
     this.router.navigate(['../home']);
     await this.setUser();
-    console.log(this.users);
   }
 
   async setUser(): Promise<void> {
