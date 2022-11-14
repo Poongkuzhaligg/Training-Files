@@ -1,10 +1,15 @@
 import { Component, OnInit } from '@angular/core';
-import { User } from '../user';
-import { Product } from './product';
+import { User } from '../model/user';
+import { Product } from '../model/product';
 import { ProductsService } from 'src/app/services/products.service';
-import { ModalController } from '@ionic/angular';
+import { LoadingController, ModalController } from '@ionic/angular';
 import { ProductComponent } from './product/product.component';
 import { AccountService } from '../services/account.service';
+import { FavoritesService } from '../services/favorites.service';
+import { HttpClient } from '@angular/common/http';
+import { environment } from 'src/environments/environment';
+// import { BackendAccountService } from '../services/backendAccount.service';
+
 
 @Component({
   selector: 'app-home',
@@ -24,8 +29,10 @@ export class HomePage implements OnInit {
 
   constructor(private productServ: ProductsService,
     private modalCtrl: ModalController,
-    private accountServ: AccountService
-    ) {}
+    private accountServ: AccountService,
+    private http: HttpClient,
+    private loadingCtrl: LoadingController
+  ) { }
 
   async openModal(openProduct: Product) {
     const modal = await this.modalCtrl.create({
@@ -38,31 +45,58 @@ export class HomePage implements OnInit {
   }
 
   async ngOnInit() {
-    this.products = this.productServ.getAllProducts();
+    this.showLoading();
     this.currentUser = await this.accountServ.loggedUser();
+    await this.getProducts();
   }
 
-  onFilterValueChange(){
+  async getProducts() {
+    const deviceStatus: boolean = navigator.onLine;
+    if (deviceStatus === true) {
+      this.productServ.getAllProducts().subscribe((res: any[]) => {
+        this.products = res;
+        this.productServ.setStorageProduct(this.products);
+      });
+    } else {
+      this.products = await this.productServ.getStorageProduct();
+    }
+  }
 
-    if(this.products.filter(data => this.filterProductData(data)).length === 0){
+
+  onFilterValueChange() {
+
+    if (this.products.filter(data => this.filterProductData(data)).length === 0) {
       this.searchProduct = true;
       return;
     }
     this.searchProduct = false;
   }
 
-  addFav(favProd: Product){
+  addFav(event: Event, favProd: Product) {
+    event.stopPropagation();
     favProd.isFavourite = !favProd.isFavourite;
-  }
-
-  logout(){
-    this.accountServ.logout();
+    this.productServ.setStorageProduct(this.products);
   }
 
   filterProductData(product: Product) {
-    return product.name.toLowerCase().includes(this.searchTerm.toLowerCase()) ||
-    product.category.toLowerCase().includes(this.searchTerm.toLowerCase())
-    || product.code.includes(this.searchTerm);
+    return product.name.toLowerCase().includes(this.searchTerm.toLowerCase())
+      || product.category.toLowerCase().includes(this.searchTerm.toLowerCase())
+      || product.code.includes(this.searchTerm);
   }
+
+  async showLoading() {
+    const loading = await this.loadingCtrl.create({
+      message: 'Loading...',
+      duration: 500,
+      spinner: 'circles',
+    });
+
+    loading.present();
+  }
+
+  logout() {
+    this.accountServ.logout();
+  }
+
 
 }

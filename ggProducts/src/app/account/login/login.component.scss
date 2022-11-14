@@ -29,7 +29,7 @@ ion-button {
 }
 
 ion-footer{
-  height: 4rem;
+  height: 50px;
 }
 
 ion-text {
@@ -43,6 +43,13 @@ ion-text {
 
 @media (max-width: 670px) {
 
+  .ios{
+    ion-footer{
+      height: 45px;
+    }
+  }
+
+
   ion-title{
     font-size: 1.2rem ;
     padding-right: 90px;
@@ -55,4 +62,6 @@ ion-text {
   .toolbar{
     padding-top: 0px;
   }
+
+
 }

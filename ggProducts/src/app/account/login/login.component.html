@@ -26,30 +26,33 @@
                   email="true"
                   class="form-control"
                   formControlName="email"
-                  [clearOnEdit]="true">
+                  [clearOnEdit]="false">
                 </ion-input>
                 </ion-item>
-                <ion-text *ngIf="loginForm.controls.email.touched && loginForm.controls.email.invalid">Email is required</ion-text><br>
-                <ion-text *ngIf="loginForm.controls.email.invalid && loginForm.controls.email.errors.pattern">Enter a valid Email ID</ion-text>
+                <ion-text *ngIf="loginForm.controls.email.touched && loginForm.controls.email.errors?.['required']">Email is required</ion-text>
+                <ion-text *ngIf="loginForm.controls.email.touched && loginForm.controls.email.errors?.['pattern']">Enter a valid Email ID</ion-text>
 
                 <ion-item>
                   <ion-label for="password" position="floating">Password</ion-label>
                   <ion-input
                   type="password"
                   class="form-control"
-                  formControlName="password"></ion-input>
+                  formControlName="password"
+                  [clearOnEdit]="false"></ion-input>
                 </ion-item>
-                <ion-text *ngIf="loginForm.controls.password.touched && loginForm.controls.password.invalid">Password is required</ion-text><br>
-                <ion-text *ngIf="loginForm.controls.password.invalid && loginForm.controls.password.errors.minlength">Password must have 6 characters</ion-text>
+                <ion-text *ngIf="loginForm.controls.password.touched && loginForm.controls.password.errors?.['required']">Password is required</ion-text>
+                <ion-text *ngIf="loginForm.controls.password.touched && loginForm.controls.password.errors?.['minlength']">Password must have 6 characters</ion-text>
               </ion-list>
             </ion-card-content>
             <ion-card-content>
               <ion-card-title>
                 <ion-button color="medium" type="submit">LOGIN</ion-button>
-                <ion-button color="medium" routerLink="../register">REGISTER</ion-button>
               </ion-card-title>
             </ion-card-content>
-          </form>
+            <hr>
+              <ion-card-title style="font-size:small;">Don’t have an account?<ion-text style="cursor:pointer;" color="secondary" routerLink="../register"> Register</ion-text></ion-card-title>
+            <hr>
+            </form>
         </ion-card>
       </ion-col>
     </ion-row>

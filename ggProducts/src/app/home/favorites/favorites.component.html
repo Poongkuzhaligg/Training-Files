@@ -14,10 +14,10 @@
   <ion-grid>
     <ion-row>
       <ion-col>
-        <ion-card>
+        <ion-card *ngIf="favProducts?.length !== 0">
           <ion-item *ngFor="let product of favProducts" color="light" (click)="openModal(product)" style="cursor:pointer ;">
             <ion-thumbnail style="width: 4.9rem ; height: 4.5rem;" slot="start">
-                <ion-img [src]="product.imgSrc" ></ion-img>
+                <ion-img [src]="product.imgsrc" ></ion-img>
             </ion-thumbnail>
             <ion-card-header>
               <ion-card-title>{{ product.name }}</ion-card-title>

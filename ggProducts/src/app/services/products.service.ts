@@ -1,27 +1,39 @@
-import { Injectable, OnInit } from '@angular/core';
-import { Product } from '../home/product';
+import { Injectable } from '@angular/core';
+import { Product } from '../model/product';
 import productData from 'src/assets/items/product.json';
 import { HttpClient } from '@angular/common/http';
+import { Storage } from '@capacitor/storage';
+import { environment } from 'src/environments/environment';
 
 
 @Injectable({
   providedIn: 'root'
 })
-export class ProductsService  {
+export class ProductsService {
   products: Product[] = productData;
 
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient) { }
 
-
+  // getBackendProducts(){
+  //   return this.http.get(environment.apiUrl + 'products');
+  // }
 
   getAllProducts() {
-    // this.http.get<Product[]>('http://192.168.0.176:3000/products')
-    // .subscribe(response => {
-    //   console.log(response);
-    // });
-    return this.products;
+    return this.http.get(environment.apiUrl + 'products', { withCredentials: true });
   }
 
+  async setStorageProduct(product) {
+    await Storage.set({
+      key: 'product',
+      value: JSON.stringify(product)
+    });
   }
+
+  async getStorageProduct() {
+    const ret = await Storage.get({ key: 'product' });
+    return JSON.parse(ret.value);
+  }
+
+}
 
 

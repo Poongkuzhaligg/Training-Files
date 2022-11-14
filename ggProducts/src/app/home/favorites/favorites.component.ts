@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ModalController } from '@ionic/angular';
 import { ProductsService } from 'src/app/services/products.service';
-import { Product } from '../product';
+import { Product } from '../../model/product';
 import { ProductComponent } from '../product/product.component';
 
 @Component({
@@ -10,7 +10,7 @@ import { ProductComponent } from '../product/product.component';
   styleUrls: ['./favorites.component.scss'],
 })
 export class FavoritesComponent implements OnInit {
-  favProducts: Product[];
+  favProducts: Product[] = [];
   nofav = true;
   constructor(private productServ: ProductsService,
     private modalCtrl: ModalController) { }
@@ -26,9 +26,20 @@ export class FavoritesComponent implements OnInit {
     modal.present();
   }
 
-  ngOnInit() {
+  async ngOnInit() {
+    await this.getFavProducts();
+  }
 
-    this.favProducts = this.productServ.getAllProducts().filter((obj)=> obj.isFavourite === true);
+  async getFavProducts() {
+    // const deviceStatus: boolean = navigator.onLine;
+    // if (deviceStatus === true) {
+    //   await this.productServ.getAllProducts().subscribe((res: Product[]) => {
+    //     this.favProducts = res.filter((obj) => obj.isFavourite === true);
+    //   });
+    // } else {
+    const favorites = await this.productServ.getStorageProduct();
+    this.favProducts = favorites.filter(res => res.isFavourite === true);
+    // }
   }
 
 }

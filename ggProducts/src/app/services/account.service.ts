@@ -1,98 +1,66 @@
 import { Injectable } from '@angular/core';
-import { User } from '../user';
+import { User } from '../model/user';
 import { Storage } from '@capacitor/storage';
 import { Router } from '@angular/router';
-import { AlertController } from '@ionic/angular';
+import { AlertController, ToastController } from '@ionic/angular';
+import { HttpClient } from '@angular/common/http';
+import { environment } from 'src/environments/environment';
+import { AuthResponse } from '../model/account-model';
+import { STORAGE_KEY } from '../config/storage-key';
+import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AccountService {
   users: User[] = [];
+  status: AuthResponse;
+
+  private readonly currentUserKey = STORAGE_KEY.currentUser;
 
   constructor(
     private router: Router,
-    private alertController: AlertController) {
-    this.getUser();
+    private alertController: AlertController,
+    private toastController: ToastController,
+    private http: HttpClient,) {
+    // this.getUser();
   }
 
-  async loggedUser(){
-    const userResult = await Storage.get({key: 'currentUsers'});
+  async loggedUser() {
+    const userResult = await Storage.get({ key: this.currentUserKey });
     return JSON.parse(userResult.value);
   }
 
-  login(email: string, passwordIn: string){
-    const emailId = this.users.find( user => user.email === email);
-    const password = this.users.find( user => user.password === passwordIn);
-    if(emailId === undefined  ){
-      this.presentAlert('Email does not exist, Kindly register!');
-      return;
-    }
-    else if(password === undefined){
-      this.presentAlert('Password does not match, Try again!');
-      return;
-    }
-    else if(emailId === undefined && password === undefined){
-      this.presentAlert('Not registered!');
-      return;
-    }
-    this.router.navigate(['../home']);
-    this.setCurrentUser(emailId);
+
+  login(email: string, password: string): Observable<any> {
+    return this.http.post(environment.apiUrl + `login`, { email, password }, { withCredentials: true });
   }
 
-  async editForm(username: string, password: string){
-      const cUser = await this.loggedUser();
-      let allUsers: User[] = [];
-      const ret = await Storage.get({ key: 'users' });
-      const user = JSON.parse(ret.value);
-      allUsers = [allUsers, ...user];
-      await Storage.remove({ key: 'users' });
-      const editUser = allUsers.find( u => u.email === cUser.email);
-      editUser.username = username;
-      editUser.password = password;
-      const index = allUsers.indexOf(editUser);
-      allUsers.splice(index, 1);
-      allUsers.push(editUser);
-      this.users = allUsers;
-      await this.setUser();
-      await Storage.remove({ key: 'currentUsers' });
-      this.setCurrentUser(editUser);
+  registerUser(userDetails: User): Observable<any> {
+    return this.http.post(environment.apiUrl + 'users/register', { userDetails }, { withCredentials: true });
   }
 
-  async registerUser(userDetails: User) {
-    if(this.users.length === 0){
-      this.users.push(userDetails);
-    }
-    else {
-      const foundUser = this.users.find((obj) => obj.email === userDetails.email);
-      if(foundUser){
-        this.presentAlert('"'+ userDetails.email + '" is already taken');
-        return;
-      }
-      this.users = [userDetails, ...this.users];
-    }
-    this.setCurrentUser(userDetails);
-    this.router.navigate(['../home']);
-    await this.setUser();
+  async editForm(username: string, password: string) {
+
   }
 
-  async setUser(): Promise<void> {
+  async setCurrentUser(loggedUser): Promise<void> {
     await Storage.set({
-      key: 'users',
-      value: JSON.stringify(this.users)
+      key: this.currentUserKey,
+      value: JSON.stringify(loggedUser)
     });
   }
 
-  async getUser() {
-    const ret = await Storage.get({ key: 'users' });
-    const user = JSON.parse(ret.value);
-    if(user.length === 0){
-      return;
-    }
-    else{
-      this.users = [this.users, ...user];
-    }
-  }
+  // async getUser() {
+  //   const deviceStatus: boolean = navigator.onLine;
+  //   if (deviceStatus === true) {
+  //     this.http.get(environment.apiUrl + 'users').subscribe((result: User) => {
+  //       this.users = this.users.concat(result);
+  //       console.log(this.users);
+  //     });
+  //   }
+  // }
+
 
   async presentAlert(message: string) {
     const alert = await this.alertController.create({
@@ -104,22 +72,20 @@ export class AccountService {
     await alert.present();
   }
 
-  async setCurrentUser(loggedUser): Promise<void> {
-    await Storage.set({
-      key: 'currentUsers',
-      value: JSON.stringify(loggedUser)
+  async presentToast(messageIn: string, colorIn: string) {
+    const toast = await this.toastController.create({
+      message: messageIn,
+      duration: 2000,
+      position: 'top',
+      color: colorIn
     });
+    await toast.present();
   }
 
-  async getCurrentUser() {
-    const ret = await Storage.get({ key: 'currentUsers' });
-    const user = JSON.parse(ret.value);
-  }
 
-  async logout(){
-    await Storage.remove({ key: 'currentUsers' });
+  async logout() {
+    await Storage.remove({ key: this.currentUserKey });
     this.router.navigate(['../account']);
   }
-
 
 }

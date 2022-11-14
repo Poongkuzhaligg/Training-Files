@@ -26,9 +26,9 @@
                   type="firstname"
                   class="form-control"
                   formControlName="firstname"
-                  [clearOnEdit]="true"></ion-input>
+                  [clearOnEdit]="false"></ion-input>
                 </ion-item>
-                <ion-text *ngIf="regForm.controls.firstname.touched && regForm.controls.firstname.invalid">First name is required</ion-text>
+                <ion-text *ngIf="regForm.controls.firstname.touched && regForm.controls.firstname.errors?.['required']">First name is required</ion-text>
 
 
                 <ion-item>
@@ -37,9 +37,9 @@
                   type="lastname"
                   class="form-control"
                   formControlName="lastname"
-                  [clearOnEdit]="true"></ion-input>
+                  [clearOnEdit]="false"></ion-input>
                 </ion-item>
-                <ion-text *ngIf="regForm.controls.lastname.touched && regForm.controls.lastname.invalid">Last name is required</ion-text>
+                <ion-text *ngIf="regForm.controls.lastname.touched && regForm.controls.lastname.errors?.['required']">Last name is required</ion-text>
 
 
                 <ion-item>
@@ -48,9 +48,9 @@
                   type="username"
                   class="form-control"
                   formControlName="username"
-                  [clearOnEdit]="true"></ion-input>
+                  [clearOnEdit]="false"></ion-input>
                 </ion-item>
-                <ion-text *ngIf="regForm.controls.username.touched && regForm.controls.username.invalid">Username is required</ion-text>
+                <ion-text *ngIf="regForm.controls.username.touched && regForm.controls.username.errors?.['required']">Username is required</ion-text>
 
 
                 <ion-item>
@@ -60,20 +60,21 @@
                   email="true"
                   class="form-control"
                   formControlName="email"
-                  [clearOnEdit]="true"></ion-input>
+                  [clearOnEdit]="false"></ion-input>
                 </ion-item>
-                <ion-text *ngIf="regForm.controls.email.touched && regForm.controls.email.invalid">Email is required</ion-text><br>
-                <ion-text *ngIf="regForm.controls.email.invalid && regForm.controls.email.errors.pattern">Enter a valid Email ID</ion-text>
+                <ion-text *ngIf="regForm.controls.email.touched && regForm.controls.email.errors?.['required']">Email is required</ion-text>
+                <ion-text *ngIf="regForm.controls.email.touched && regForm.controls.email.errors?.['pattern']">Enter a valid Email ID</ion-text>
 
                 <ion-item>
                   <ion-label for="password" position="floating">Password</ion-label>
                   <ion-input
                   type="password"
                   class="form-control"
-                  formControlName="password"></ion-input>
+                  formControlName="password"
+                  [clearOnEdit]="false"></ion-input>
                 </ion-item>
-                <ion-text *ngIf="regForm.controls.email.touched && regForm.controls.password.invalid">Password is required</ion-text>
-                <ion-text *ngIf="regForm.controls.password.invalid && regForm.controls.password.errors.minlength">Password must have 6 characters</ion-text>
+                <ion-text *ngIf="regForm.controls.email.touched && regForm.controls.password.errors?.['required']">Password is required</ion-text>
+                <ion-text *ngIf="regForm.controls.password.touched && regForm.controls.password.errors?.['minlength']">Password must have 6 characters</ion-text>
               </ion-list>
             </ion-card-content>
             <ion-card-content>

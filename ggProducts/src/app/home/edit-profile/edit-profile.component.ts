@@ -2,7 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { AlertController, ToastController } from '@ionic/angular';
 import { AccountService } from 'src/app/services/account.service';
-import { User } from 'src/app/user';
+// import { BackendAccountService } from 'src/app/services/backendAccount.service';
+import { User } from 'src/app/model/user';
 
 @Component({
   selector: 'app-edit-profile',
@@ -23,7 +24,7 @@ export class EditProfileComponent implements OnInit {
   async ngOnInit() {
     this.currentUser = await this.accountServ.loggedUser();
     this.editForm = this.formBuilder.group({
-      username: ['', Validators.required],
+      username: [this.currentUser?.username, Validators.required],
       oldPassword: ['', [Validators.required, Validators.minLength(6)]],
       newPassword: ['', [Validators.required, Validators.minLength(6)]],
       confirmPassword: ['', [Validators.required, Validators.minLength(6)]]
@@ -31,6 +32,7 @@ export class EditProfileComponent implements OnInit {
   }
 
   checkPasswords(group: FormGroup) {
+    // console.log(group.controls?.confirmPassword?.errors);
     const pass = group.controls.newPassword.value;
     const confirmPass = group.controls.confirmPassword.value;
     return pass === confirmPass ? null : { notSame: true };

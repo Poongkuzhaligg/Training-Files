@@ -21,6 +21,16 @@
 
   ion-card { border-radius : 0px; }
 
+  ion-searchbar{
+    --border-radius: 0;
+  }
+
+  @media (max-width: 667px){
+    ion-searchbar{
+      --padding-start: 25px;
+      --padding-end: 25px;
+    }
+  }
 }
 
 
