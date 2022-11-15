@@ -52,14 +52,14 @@ export class HomePage implements OnInit {
 
   async getProducts() {
     const deviceStatus: boolean = navigator.onLine;
-    if (deviceStatus === true) {
-      this.productServ.getAllProducts().subscribe((res: any[]) => {
-        this.products = res;
-        this.productServ.setStorageProduct(this.products);
-      });
-    } else {
-      this.products = await this.productServ.getStorageProduct();
-    }
+    // if (deviceStatus === true) {
+    //   this.productServ.getAllProducts().subscribe((res: any[]) => {
+    //     this.products = res;
+    //     this.productServ.setStorageProduct(this.products);
+    //   });
+    // } else {
+    this.products = await this.productServ.getStorageProduct();
+    // }
   }
 
 

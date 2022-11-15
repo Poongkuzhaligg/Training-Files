@@ -14,10 +14,6 @@ export class ProductsService {
 
   constructor(private http: HttpClient) { }
 
-  // getBackendProducts(){
-  //   return this.http.get(environment.apiUrl + 'products');
-  // }
-
   getAllProducts() {
     return this.http.get(environment.apiUrl + 'products', { withCredentials: true });
   }
