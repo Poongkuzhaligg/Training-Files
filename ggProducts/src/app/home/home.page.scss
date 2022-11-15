@@ -31,11 +31,13 @@ ion-thumbnail {
 }
 
 ion-title{
-padding-right: 50px;
+  padding-right: 50px;
+  text-align: center;
 }
 
-ion-title{
-  text-align: center;
+.menu {
+  padding-left: 0px;
+  text-align: start;
 }
 
 ion-card-title {
