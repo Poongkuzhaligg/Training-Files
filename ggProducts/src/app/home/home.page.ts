@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { User } from '../model/user';
 import { Product } from '../model/product';
 import { ProductsService } from 'src/app/services/products.service';
-import { LoadingController, ModalController } from '@ionic/angular';
+import { LoadingController, MenuController, ModalController } from '@ionic/angular';
 import { ProductComponent } from './product/product.component';
 import { AccountService } from '../services/account.service';
 import { FavoritesService } from '../services/favorites.service';
@@ -31,6 +31,7 @@ export class HomePage implements OnInit {
     private modalCtrl: ModalController,
     private accountServ: AccountService,
     private http: HttpClient,
+    private menuCtrl: MenuController,
     private loadingCtrl: LoadingController
   ) { }
 
@@ -92,6 +93,10 @@ export class HomePage implements OnInit {
     });
 
     loading.present();
+  }
+
+  close() {
+    this.menuCtrl.close();
   }
 
   logout() {
