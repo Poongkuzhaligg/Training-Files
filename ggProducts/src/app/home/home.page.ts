@@ -5,10 +5,9 @@ import { ProductsService } from 'src/app/services/products.service';
 import { LoadingController, MenuController, ModalController } from '@ionic/angular';
 import { ProductComponent } from './product/product.component';
 import { AccountService } from '../services/account.service';
-import { FavoritesService } from '../services/favorites.service';
 import { HttpClient } from '@angular/common/http';
+import { Storage } from '@capacitor/storage';
 import { environment } from 'src/environments/environment';
-// import { BackendAccountService } from '../services/backendAccount.service';
 
 
 @Component({
@@ -25,7 +24,7 @@ export class HomePage implements OnInit {
   isModalOpen = false;
   isFavourite = false;
   viewProduct: Product;
-  currentUser: User;
+  currentUsername: string;
 
   constructor(private productServ: ProductsService,
     private modalCtrl: ModalController,
@@ -46,21 +45,23 @@ export class HomePage implements OnInit {
   }
 
   async ngOnInit() {
+    this.menuCtrl.close();
     this.showLoading();
-    this.currentUser = await this.accountServ.loggedUser();
+    this.accountServ.currrentUsername.subscribe(data => this.currentUsername = data);
     await this.getProducts();
   }
 
   async getProducts() {
     const deviceStatus: boolean = navigator.onLine;
-    // if (deviceStatus === true) {
-    //   this.productServ.getAllProducts().subscribe((res: any[]) => {
-    //     this.products = res;
-    //     this.productServ.setStorageProduct(this.products);
-    //   });
-    // } else {
-    this.products = await this.productServ.getStorageProduct();
-    // }
+    if (deviceStatus === true) {
+      this.productServ.getAllProducts().subscribe((res: any[]) => {
+        this.products = res;
+        // console.log(res);
+        this.productServ.setStorageProduct(this.products);
+      });
+    } else {
+      this.products = await this.productServ.getStorageProduct();
+    }
   }
 
 
@@ -77,6 +78,9 @@ export class HomePage implements OnInit {
     event.stopPropagation();
     favProd.isFavourite = !favProd.isFavourite;
     this.productServ.setStorageProduct(this.products);
+    console.log(favProd.code);
+    this.http.post(environment.apiUrl + 'favourites/products/set-unset', {}).subscribe(res => console.log(res));
+
   }
 
   filterProductData(product: Product) {

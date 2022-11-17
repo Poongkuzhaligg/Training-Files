@@ -14,6 +14,8 @@ import { AuthResponse } from 'src/app/model/account-model';
 })
 export class RegisterComponent implements OnInit {
   regForm: FormGroup;
+  passwordType = 'password';
+  passwordIcon = 'eye-off-outline';
   userDetails: User = {
     userid: 0,
     firstname: '',
@@ -40,6 +42,12 @@ export class RegisterComponent implements OnInit {
     });
   }
 
+  hideShowPassword() {
+    this.passwordType = this.passwordType === 'text' ? 'password' : 'text';
+    this.passwordIcon = this.passwordIcon === 'eye-off-outline' ? 'eye-outline' : 'eye-off-outline';
+  }
+
+
   onSubmit() {
     if (this.regForm.invalid) {
       this.presentAlert('Try again!');
@@ -51,13 +59,13 @@ export class RegisterComponent implements OnInit {
       this.accountServ.registerUser(this.userDetails).subscribe((res) => {
         console.log(res);
         console.log('Status' + res.status);
-        if (res.Status === 'Success') {
+        if (res.status === 'Success') {
           this.accountServ.setCurrentUser(this.userDetails);
           this.router.navigate(['../home']);
           this.presentToast('Registration Successful!', 'success');
           return;
         }
-        if (res.Status === 'Failed') {
+        if (res.status === 'Failed') {
           this.presentAlert('Email already exists! Try again');
           return;
         }

@@ -37,6 +37,7 @@
                     class="form-control"
                     formControlName="username"
                     [clearOnEdit]="false"
+                    ngModel={{currentUser?.username}}
                     ></ion-input>
                   </ion-item>
                   <ion-text *ngIf="editForm.controls.username.touched && editForm.controls.username.errors?.['required']">Username is required</ion-text>
@@ -45,10 +46,11 @@
                   <ion-item>
                     <ion-label for="oldPassword" position="floating">Old Password</ion-label>
                     <ion-input
-                    type="password"
+                    [type]="passwordoldType"
                     class="form-control"
                     formControlName="oldPassword"
                     [clearOnEdit]="false"></ion-input>
+                    <ion-icon class="passwordIcon" slot="end" item-end [name]="passwordOldIcon" class="passwordIcon" (click)='hideShowOldPassword()'></ion-icon>
                   </ion-item>
                   <ion-text *ngIf="editForm.controls.oldPassword.touched && editForm.controls.oldPassword.errors?.['required']">Password is required</ion-text>
                   <ion-text *ngIf="editForm.controls.oldPassword.touched && editForm.controls.oldPassword.errors?.['minlength']">Password must have 6 characters</ion-text>
@@ -57,10 +59,11 @@
                   <ion-item>
                     <ion-label for="newPassword" position="floating">New Password</ion-label>
                     <ion-input
-                    type="password"
+                    [type]="passwordnewType"
                     class="form-control"
                     formControlName="newPassword"
                     [clearOnEdit]="false"></ion-input>
+                    <ion-icon class="passwordIcon" slot="end" item-end [name]="passwordNewIcon" class="passwordIcon" (click)='hideShowNewPassword()'></ion-icon>
                   </ion-item>
                   <ion-text *ngIf="editForm.controls.newPassword.touched && editForm.controls.newPassword.errors?.['required']">Password is required</ion-text>
                   <ion-text *ngIf="editForm.controls.newPassword.touched && editForm.controls.newPassword.errors?.['minlength']">Password must have 6 characters</ion-text>
@@ -68,10 +71,11 @@
                   <ion-item>
                     <ion-label for="confirmPassword" position="floating">Confirm Password</ion-label>
                     <ion-input
-                    type="password"
+                    [type]="passwordType"
                     class="form-control"
                     formControlName="confirmPassword"
                     [clearOnEdit]="false"></ion-input>
+                    <ion-icon class="passwordIcon" slot="end" item-end [name]="passwordIcon" class="passwordIcon" (click)='hideShowPassword()'></ion-icon>
                   </ion-item>
                   <ion-text *ngIf="editForm.controls.confirmPassword.touched && editForm.controls.confirmPassword.errors?.['required']">Password is required</ion-text>
                   <ion-text *ngIf="editForm.controls.confirmPassword.touched && editForm.controls.confirmPassword.errors?.['minlength']">Password must have 6 characters</ion-text>

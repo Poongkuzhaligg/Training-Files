@@ -18,6 +18,10 @@ export class ProductsService {
     return this.http.get(environment.apiUrl + 'products', { withCredentials: true });
   }
 
+  setFavProducts() {
+    return this.http.get(environment.apiUrl + 'favourites/products', {});
+  }
+
   async setStorageProduct(product) {
     await Storage.set({
       key: 'product',
