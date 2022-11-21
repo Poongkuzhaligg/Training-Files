@@ -1,19 +1,18 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { AlertController, MenuController, ToastController } from '@ionic/angular';
-import { AccountService } from 'src/app/services/account.service';
-// import { BackendAccountService } from 'src/app/services/backendAccount.service';
-import { User } from 'src/app/model/user';
-import { AuthResponse } from 'src/app/model/account-model';
 import { Router } from '@angular/router';
+import { AlertController, MenuController, ToastController } from '@ionic/angular';
+import { AuthResponse } from 'src/app/model/account-model';
+import { User } from 'src/app/model/user';
+import { AccountService } from 'src/app/services/account.service';
 
 @Component({
-  selector: 'app-edit-profile',
-  templateUrl: './edit-profile.component.html',
-  styleUrls: ['./edit-profile.component.scss'],
+  selector: 'app-change-password',
+  templateUrl: './change-password.component.html',
+  styleUrls: ['./change-password.component.scss'],
 })
-export class EditProfileComponent implements OnInit {
-  editForm: FormGroup;
+export class ChangePasswordComponent implements OnInit {
+  changeForm: FormGroup;
   currentUser: User;
   passwordoldType = 'password';
   passwordnewType = 'password';
@@ -34,8 +33,7 @@ export class EditProfileComponent implements OnInit {
   async ngOnInit() {
     this.menuCtrl.close();
     this.currentUser = await this.accountServ.loggedUser();
-    this.editForm = this.formBuilder.group({
-      username: ['', Validators.required],
+    this.changeForm = this.formBuilder.group({
       oldPassword: ['', [Validators.required, Validators.minLength(6)]],
       newPassword: ['', [Validators.required, Validators.minLength(6)]],
       confirmPassword: ['', [Validators.required, Validators.minLength(6)]]
@@ -65,21 +63,20 @@ export class EditProfileComponent implements OnInit {
   }
 
   onSubmit() {
-    if (this.editForm.invalid) {
+    if (this.changeForm.invalid) {
       this.presentAlert();
       return;
     }
-    const username = this.editForm.value.username;
-    const password = this.editForm.value.confirmPassword;
+    const password = this.changeForm.value.confirmPassword;
     const deviceStatus: boolean = navigator.onLine;
 
     if (deviceStatus === true) {
-      (this.accountServ.editForm(username, password)).subscribe((res: AuthResponse) => {
+      (this.accountServ.changePassword(password)).subscribe((res: AuthResponse) => {
         console.log(res);
         if (res.status === 'Success') {
           this.accountServ.setCurrentUser(res.data);
           this.router.navigate(['../home']);
-          this.presentToast('Profile updated successfully!', 'light');
+          this.presentToast('Password changed successfully!', 'light');
         }
         else {
           this.presentToast('Sorry, Try again!', 'danger');
@@ -88,7 +85,7 @@ export class EditProfileComponent implements OnInit {
     } else {
       this.presentToast('You\'re offline! Check your Internet connection.', 'danger');
     }
-    this.editForm.reset();
+    this.changeForm.reset();
   }
 
   async presentAlert() {

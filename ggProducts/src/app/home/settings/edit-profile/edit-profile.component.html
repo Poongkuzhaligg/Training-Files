@@ -1,0 +1,79 @@
+<ion-header>
+  <ion-toolbar color="dark">
+    <ion-buttons slot="start">
+      <ion-icon routerLink='../settings' class="back-btn" name="arrow-back-outline"></ion-icon>
+    </ion-buttons>
+    <ion-title class="header-title">PROFILE</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+
+<ion-content color="tertiary">
+  <ion-grid>
+    <ion-row>
+      <ion-col sizeMd="6" offsetMd="3">
+        <ion-card>
+          <ion-header>
+            <ion-card-header color="secondary">Welcome to your Profile</ion-card-header>
+          </ion-header>
+          <ion-item class="avatar">
+            <ion-avatar slot="start">
+              <img alt="Silhouette of a person's head" src="https://ionicframework.com/docs/img/demos/avatar.svg" />
+            </ion-avatar>
+            <ion-card-subtitle class="username" color="dark">{{currentUser?.firstname}} {{currentUser?.lastname}}</ion-card-subtitle>
+          </ion-item>
+          <ion-item lines="none">
+            <ion-label class="edit"><ion-card-subtitle>Edit your profile here!</ion-card-subtitle></ion-label>
+          </ion-item>
+          <form *ngIf="editForm" (ngSubmit)="onSubmit()" [formGroup]="editForm">
+            <ion-card-content>
+              <ion-list>
+                <ion-item>
+                  <ion-label for="firstname" position="floating">Firstname</ion-label>
+                  <ion-input
+                  type="firstname"
+                  class="form-control"
+                  formControlName="firstname"
+                  [clearOnEdit]="false"
+                  ngModel={{currentUser?.firstname}}
+                  ></ion-input>
+                </ion-item>
+                <ion-text *ngIf="editForm.controls.firstname.touched && editForm.controls.firstname.errors?.['required']">Firstname is required</ion-text>
+
+
+                <ion-item>
+                  <ion-label for="lastname" position="floating">Lastname</ion-label>
+                  <ion-input
+                  type="lastname"
+                  class="form-control"
+                  formControlName="lastname"
+                  ngModel={{currentUser?.lastname}}
+                  [clearOnEdit]="false"></ion-input>
+                </ion-item>
+                <ion-text *ngIf="editForm.controls.lastname.touched && editForm.controls.lastname.errors?.['required']">Lastname is required</ion-text>
+
+
+                <ion-item>
+                  <ion-label for="email" position="floating">email</ion-label>
+                  <ion-input
+                  type="email"
+                  class="form-control"
+                  formControlName="email"
+                  ngModel={{currentUser?.email}}
+                  [clearOnEdit]="false"></ion-input>
+                </ion-item>
+                <ion-text *ngIf="editForm.controls.email.touched && editForm.controls.email.errors?.['required']">Email is required</ion-text>
+                <ion-text *ngIf="editForm.controls.email.touched && editForm.controls.email.errors?.['minlength']">Email must have 6 characters</ion-text>
+              </ion-list>
+            </ion-card-content>
+            <ion-card-content class="done-btn" >
+              <ion-card-title >
+                <ion-button expand="full" type="submit" [disabled]="editForm.invalid" color="secondary">DONE</ion-button>
+              </ion-card-title>
+            </ion-card-content>
+          </form>
+        </ion-card>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-content>

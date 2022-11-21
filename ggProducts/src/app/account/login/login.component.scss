@@ -6,7 +6,6 @@ ion-img {
   margin: auto;
   margin-top: 20px;
   margin-bottom: 20px;
-
 }
 
 ion-card-title{
@@ -21,7 +20,12 @@ ion-title{
   font-size: 1.5rem;
   font-weight: 900;
   text-align: center;
-  padding-right: 70px;
+}
+
+.back-btn{
+  cursor: pointer;
+  width: 1.5rem;
+  height: 1.5rem;
 }
 
 ion-button {
@@ -40,6 +44,7 @@ ion-text {
 
 .passwordIcon{
   margin-top: 40px;
+  color: #999ba4;
   width: 1.3rem;
   height: 1.3rem;
 }
@@ -57,7 +62,6 @@ ion-text {
 
   ion-title{
     font-size: 1.2rem ;
-    padding-right: 90px;
   }
 
   ion-card-title {

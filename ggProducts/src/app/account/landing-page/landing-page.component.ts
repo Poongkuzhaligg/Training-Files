@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { ModalController } from '@ionic/angular';
+import { HelpModalComponent } from '../help-modal/help-modal.component';
 
 @Component({
   selector: 'app-landing-page',
@@ -7,8 +9,15 @@ import { Component, OnInit } from '@angular/core';
 })
 export class LandingPageComponent implements OnInit {
 
-  constructor() { }
+  constructor(private modalCtrl: ModalController) { }
 
-  ngOnInit() {}
+  ngOnInit() { }
+
+  async openHelp() {
+    const modal = await this.modalCtrl.create({
+      component: HelpModalComponent,
+    });
+    modal.present();
+  }
 
 }

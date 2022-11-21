@@ -1,0 +1,22 @@
+<ion-header>
+<ion-toolbar color="dark">
+  <ion-title class="header-title">SETTINGS</ion-title>
+</ion-toolbar>
+</ion-header>
+<ion-content>
+  <ion-item routerLink="./edit-profile">
+    <ion-text class="menu-title" ><ion-icon class="menu-icons" name="person"></ion-icon>PROFILE</ion-text>
+  </ion-item>
+  <ion-item routerLink="./change-password">
+    <ion-text class="menu-title" ><ion-icon class="menu-icons" name="person"></ion-icon>CHANGE PASSWORD</ion-text>
+  </ion-item>
+  <ion-item routerLink="./help">
+    <ion-text  class="menu-title"><ion-icon class="menu-icons" name="help-circle"></ion-icon>HELP</ion-text>
+  </ion-item>
+  <ion-item>
+    <a style="text-decoration:none; color: black; " class="menu-title" href="https://greatergoods.com/legal/privacy-policy"><ion-icon class="menu-icons" name="shield-half"></ion-icon>PRIVACY POLICY</a>
+  </ion-item>
+  <ion-item (click)="logout()">
+    <ion-text class="menu-title" ><ion-icon class="menu-icons" name="log-out-outline"></ion-icon>LOGOUT</ion-text>
+  </ion-item>
+</ion-content>

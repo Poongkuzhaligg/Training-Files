@@ -1,31 +1,40 @@
 <ion-header>
   <ion-toolbar color="dark">
-    <ion-buttons slot="start">
-      <ion-icon [routerLink]="['/home']" routerLinkActive="router-link-active"  style="width: 1.8rem; height: 1.8rem; cursor: pointer;" name="arrow-back-outline"></ion-icon>
-    </ion-buttons>
     <ion-title class="header-title">FAVORITE PRODUCTS </ion-title>
   </ion-toolbar>
 </ion-header>
 
-<ion-content  color="medium">
+<ion-content *ngIf="favProducts.value === null || favProducts.value.length === 0">
+  <ion-card-title class="nofav" color="medium">No favourite products to show!!</ion-card-title>
+</ion-content>
 
-  <ion-card-title class="nofav" *ngIf="favProducts.length === 0" color="light">No favourite products to show!!</ion-card-title>
-
-  <ion-grid>
-    <ion-row>
-      <ion-col>
-        <ion-card *ngIf="favProducts?.length !== 0">
-          <ion-item *ngFor="let product of favProducts" color="light" (click)="openModal(product)" style="cursor:pointer ;">
-            <ion-thumbnail style="width: 4.9rem ; height: 4.5rem;" slot="start">
-                <ion-img [src]="product.imgsrc" ></ion-img>
-            </ion-thumbnail>
-            <ion-card-header>
-              <ion-card-title>{{ product.name }}</ion-card-title>
-              <ion-card-subtitle>SKU: {{ product.code }}</ion-card-subtitle>
-            </ion-card-header>
-          </ion-item>
-        </ion-card>
-      </ion-col>
-    </ion-row>
-  </ion-grid>
+<ion-content *ngIf="favProducts.value !== null && favProducts.value.length > 0">
+  <ion-item *ngFor="let product of favProducts.value" (click)="openModal(product)" lines="none" style="cursor:pointer ;">
+    <ion-thumbnail style="width: 4.9rem ; height: 4.5rem;" slot="start">
+        <ion-img [src]="product.imgsrc" ></ion-img>
+    </ion-thumbnail>
+    <ion-grid>
+      <ion-row>
+        <ion-col>
+          <ion-card-title color="dark" >{{ product.name }}</ion-card-title>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col>
+          <ion-card-subtitle>SKU: {{ product.code }}</ion-card-subtitle>
+        </ion-col>
+        <ion-col>
+          <ion-card-content >
+            <ion-buttons
+            slot="end"
+            (click)="addFav($event, product)"
+            class="favButton">
+            <ion-icon class="heart" name="heart-outline" *ngIf="!product.isFavourite" color="danger"></ion-icon>
+            <ion-icon class="heart" name="heart" *ngIf="product.isFavourite" color="danger"></ion-icon>
+          </ion-buttons>
+        </ion-card-content>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </ion-item>
 </ion-content>

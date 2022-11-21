@@ -1,7 +1,7 @@
 <ion-header>
-  <ion-toolbar color="tertiary">
+  <ion-toolbar color="dark">
     <ion-buttons slot="start">
-        <ion-back-button></ion-back-button>
+      <ion-icon routerLink='../landingPage' class="back-btn" name="arrow-back-outline"></ion-icon>
     </ion-buttons>
     <ion-title>GG PRODUCT CODES</ion-title>
   </ion-toolbar>
@@ -14,7 +14,7 @@
         <ion-card>
           <ion-card-header >
             <ion-img  src="https://cdn.shopify.com/s/files/1/1088/6518/files/GG_Logo_fe76c075-d81c-42cc-96d2-e46f6af721d8_138x@2x.png?v=1631891100" style="width:150px ;"></ion-img>
-            <ion-card-title>Greater Goods Product Codes</ion-card-title>
+            <ion-card-title>GG Product Codes</ion-card-title>
           </ion-card-header>
 
           <form (ngSubmit)="onSubmit()" [formGroup]="regForm">
@@ -28,7 +28,7 @@
                   formControlName="firstname"
                   [clearOnEdit]="false"></ion-input>
                 </ion-item>
-                <ion-text *ngIf="regForm.controls.firstname.touched && regForm.controls.firstname.errors?.['required']">First name is required</ion-text>
+                <ion-text *ngIf="regForm.controls.firstname.touched &&regForm.controls.firstname.errors?.['required']">First name is required</ion-text>
 
 
                 <ion-item>
@@ -80,7 +80,7 @@
             </ion-card-content>
             <ion-card-content>
               <ion-card-title>
-                <ion-button type="submit" color="medium">Register</ion-button>
+                <ion-button type="submit" color="dark">Register</ion-button>
               </ion-card-title>
             </ion-card-content>
           </form>
@@ -91,11 +91,11 @@
 </ion-content>
 
 <ion-footer>
-  <ion-toolbar color="tertiary">
-    <ion-card-title class="footer-title" color="dark"  class="toolbar">
-      <ion-text color="dark">VERSION 1.0</ion-text>|
-      <ion-text><a style="text-decoration:none; color: #434d69; cursor:pointer ;" href="https://greatergoods.com/legal/privacy-policy">PRIVACY POLICY</a></ion-text>|
-      <ion-text color="dark" [routerLink]="['/home/help']" style="cursor:pointer ;">HELP</ion-text>
+  <ion-toolbar color="dark">
+    <ion-card-title class="footer-title" color="light"  class="toolbar">
+      <ion-text >VERSION 1.0</ion-text>|
+      <ion-text><a style="text-decoration:none; color: #ffffff; cursor:pointer ;" href="https://greatergoods.com/legal/privacy-policy">PRIVACY POLICY</a></ion-text>|
+      <ion-text (click)="openHelp()" style="cursor:pointer ;">HELP</ion-text>
     </ion-card-title>
   </ion-toolbar>
 </ion-footer>

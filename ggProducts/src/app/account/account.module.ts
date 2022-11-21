@@ -8,20 +8,22 @@ import { RegisterComponent } from './register/register.component';
 import { IonicModule } from '@ionic/angular';
 import { HttpClientModule } from '@angular/common/http';
 import { LandingPageComponent } from './landing-page/landing-page.component';
+import { HelpModalComponent } from './help-modal/help-modal.component';
 
 @NgModule({
-    imports: [
-        CommonModule,
-        FormsModule,
-        ReactiveFormsModule,
-        AccountRoutingModule,
-        IonicModule,
-        HttpClientModule
-    ],
-    declarations: [
-        LandingPageComponent,
-        LoginComponent,
-        RegisterComponent,
-    ]
+  imports: [
+    CommonModule,
+    FormsModule,
+    ReactiveFormsModule,
+    AccountRoutingModule,
+    IonicModule,
+    HttpClientModule
+  ],
+  declarations: [
+    LandingPageComponent,
+    LoginComponent,
+    RegisterComponent,
+    HelpModalComponent
+  ]
 })
 export class AccountModule { }

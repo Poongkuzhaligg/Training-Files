@@ -1,8 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ModalController } from '@ionic/angular';
+import { BehaviorSubject } from 'rxjs';
 import { ProductsService } from 'src/app/services/products.service';
 import { Product } from '../../model/product';
-import { ProductComponent } from '../product/product.component';
+import { ProductModalComponent } from '../product-modal/product-modal.component';
 
 @Component({
   selector: 'app-favorites',
@@ -10,15 +11,24 @@ import { ProductComponent } from '../product/product.component';
   styleUrls: ['./favorites.component.scss'],
 })
 export class FavoritesComponent implements OnInit {
-  favProducts: Product[] = [];
+  products: Product[];
+  favProducts: BehaviorSubject<Product[]> = new BehaviorSubject(null);
   nofav = true;
-  constructor(private productServ: ProductsService,
-    private modalCtrl: ModalController) { }
+
+  constructor(
+    private productServ: ProductsService,
+    private modalCtrl: ModalController,
+  ) { }
+
+  ngOnInit() {
+    // alert('working');
+    this.getFavProducts();
+  }
 
   async openModal(openProduct: Product) {
 
     const modal = await this.modalCtrl.create({
-      component: ProductComponent,
+      component: ProductModalComponent,
       componentProps: {
         openProduct
       }
@@ -26,20 +36,35 @@ export class FavoritesComponent implements OnInit {
     modal.present();
   }
 
-  async ngOnInit() {
-    await this.getFavProducts();
-  }
-
   async getFavProducts() {
-    // const deviceStatus: boolean = navigator.onLine;
-    // if (deviceStatus === true) {
-    //   await this.productServ.getAllProducts().subscribe((res: Product[]) => {
-    //     this.favProducts = res.filter((obj) => obj.isFavourite === true);
-    //   });
-    // } else {
-    const favorites = await this.productServ.getStorageProduct();
-    this.favProducts = favorites.filter(res => res.isFavourite === true);
-    // }
+    // alert('working1');
+    const deviceStatus: boolean = navigator.onLine;
+    if (deviceStatus === true) {
+      this.productServ.getAllProducts().subscribe(
+        (res: Product[]) => {
+          this.products = res;
+        },
+        async err => {
+          this.products = await this.productServ.getStorageProduct();
+          console.log('this is error', err);
+        });
+      await this.productServ.getFavProducts().subscribe((res: Product[]) => {
+        this.favProducts.next(res);
+      });
+    } else {
+      this.products = await this.productServ.getStorageProduct();
+      this.favProducts.next(this.products.filter(res => res.isFavourite === true));
+    }
+
   }
 
+  addFav(event: Event, favProd: Product) {
+    event.stopPropagation();
+    favProd.isFavourite = !favProd.isFavourite;
+    setTimeout(() => {
+      this.getFavProducts();
+    }, 100);
+    this.productServ.setStorageProduct(this.products);
+    this.productServ.setFavProducts(favProd.productid).subscribe(res => console.log(res));
+  }
 }

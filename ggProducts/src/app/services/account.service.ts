@@ -14,34 +14,37 @@ import { BehaviorSubject, Observable } from 'rxjs';
 export class AccountService {
   users: User[] = [];
   currentUser: User;
-  currrentUsername: BehaviorSubject<string> = new BehaviorSubject(null);
+  currrentProfile: BehaviorSubject<User> = new BehaviorSubject(null);
 
   private readonly currentUserKey = STORAGE_KEY.currentUser;
 
   constructor(
     private router: Router,
     private http: HttpClient,) {
-    // this.getUser();
   }
 
   async loggedUser() {
     const userResult = await Storage.get({ key: this.currentUserKey });
     this.currentUser = JSON.parse(userResult.value);
-    this.currrentUsername.next(this.currentUser.username);
+    this.currrentProfile.next(this.currentUser);
     return this.currentUser;
   }
 
 
   login(email: string, password: string): Observable<any> {
-    return this.http.post(environment.apiUrl + `login`, { email, password }, { withCredentials: true });
+    return this.http.post(environment.apiUrl + `user/login`, { email, password }, { withCredentials: true });
   }
 
   registerUser(userDetails: User): Observable<any> {
     return this.http.post(environment.apiUrl + 'users/register', { userDetails }, { withCredentials: true });
   }
 
-  editForm(username: string, password: string) {
-    return this.http.put(environment.apiUrl + 'users/editProfile', { username, password });
+  editForm(firstname: string, lastname: string, email: string) {
+    return this.http.put(environment.apiUrl + 'users/editProfile', { firstname, lastname, email });
+  }
+
+  changePassword(password: string) {
+    return this.http.put(environment.apiUrl + 'users/changePassword', { password });
   }
 
   async setCurrentUser(loggedUser): Promise<void> {
@@ -49,21 +52,11 @@ export class AccountService {
       key: this.currentUserKey,
       value: JSON.stringify(loggedUser)
     });
-    this.currrentUsername.next(loggedUser.username);
+    this.currrentProfile.next(loggedUser);
   }
 
-  // async getUser() {
-  //   const deviceStatus: boolean = navigator.onLine;
-  //   if (deviceStatus === true) {
-  //     this.http.get(environment.apiUrl + 'users').subscribe((result: User) => {
-  //       this.users = this.users.concat(result);
-  //       console.log(this.users);
-  //     });
-  //   }
-  // }
-
   async logout() {
-    this.http.post(environment.apiUrl + 'login/logout', { withCredentials: true }).subscribe(res => { console.log(res); });
+    this.http.post(environment.apiUrl + 'user/logout', { withCredentials: true }).subscribe(res => { console.log(res); });
     await Storage.remove({ key: this.currentUserKey });
     this.router.navigate(['../account']);
   }

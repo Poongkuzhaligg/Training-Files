@@ -4,8 +4,9 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { User } from 'src/app/model/user';
 import { AccountService } from 'src/app/services/account.service';
 
-import { AlertController, LoadingController, ToastController } from '@ionic/angular';
+import { AlertController, LoadingController, ModalController, ToastController } from '@ionic/angular';
 import { AuthResponse } from 'src/app/model/account-model';
+import { HelpModalComponent } from '../help-modal/help-modal.component';
 
 @Component({
   selector: 'app-register',
@@ -30,6 +31,7 @@ export class RegisterComponent implements OnInit {
     private alertController: AlertController,
     private router: Router,
     private toastController: ToastController,
+    private modalCtrl: ModalController
   ) { }
 
   ngOnInit() {
@@ -74,6 +76,13 @@ export class RegisterComponent implements OnInit {
       this.presentToast('You\'re offline! Check your Internet connection.', 'danger');
     }
     this.regForm.reset();
+  }
+
+  async openHelp() {
+    const modal = await this.modalCtrl.create({
+      component: HelpModalComponent,
+    });
+    modal.present();
   }
 
   async presentAlert(alertMessage) {

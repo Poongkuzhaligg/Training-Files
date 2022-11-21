@@ -6,11 +6,12 @@ import { HomePage } from './home.page';
 
 import { HomePageRoutingModule } from './home-routing.module';
 import { HttpClientModule } from '@angular/common/http';
-import { HelpComponent } from './help/help.component';
 import { FavoritesComponent } from './favorites/favorites.component';
-import { EditProfileComponent } from './edit-profile/edit-profile.component';
 import { ProductComponent } from './product/product.component';
 import { ProductFilterPipe } from '../pipes/product-filter.pipe';
+import { SettingsComponent } from './settings/settings.component';
+import { ProductModalComponent } from './product-modal/product-modal.component';
+import { SettingsModule } from './settings/settings.module';
 
 
 @NgModule({
@@ -21,13 +22,13 @@ import { ProductFilterPipe } from '../pipes/product-filter.pipe';
     IonicModule,
     HomePageRoutingModule,
     HttpClientModule,
+    SettingsModule,
   ],
   declarations: [
     HomePage,
-    HelpComponent,
     FavoritesComponent,
-    EditProfileComponent,
     ProductComponent,
+    ProductModalComponent,
     ProductFilterPipe
   ]
 })

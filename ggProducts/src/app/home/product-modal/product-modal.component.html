@@ -1,0 +1,14 @@
+<ion-content>
+  <ion-header>
+    <ion-toolbar color="medium">
+      <ion-title>{{openProduct.name}}</ion-title>
+      <ion-buttons slot="end">
+        <ion-button (click)="close()"><ion-icon name="close-outline"></ion-icon></ion-button>
+      </ion-buttons>
+    </ion-toolbar>
+  </ion-header>
+  <ion-content class="ion-padding" color="light">
+    <ion-img [src]="openProduct.imgsrc"></ion-img>
+    <ion-card-title color="dark">SKU: {{openProduct.code}}</ion-card-title>
+  </ion-content>
+</ion-content>

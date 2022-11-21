@@ -10,6 +10,12 @@ ion-img {
 
 }
 
+.back-btn{
+  cursor: pointer;
+  width: 1.5rem;
+  height: 1.5rem;
+}
+
 ion-card-title{
   text-align: center;
 }
@@ -29,6 +35,7 @@ ion-title{
 
 .passwordIcon{
   margin-top: 40px;
+  color: #999ba4;
   width: 1.3rem;
   height: 1.3rem;
 }

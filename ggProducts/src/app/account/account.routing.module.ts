@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
+import { HelpModalComponent } from './help-modal/help-modal.component';
 import { LandingPageComponent } from './landing-page/landing-page.component';
 
 import { LoginComponent } from './login/login.component';
@@ -12,6 +13,7 @@ const routes: Routes = [
     pathMatch: 'full'
   },
   { path: 'landingPage', component: LandingPageComponent },
+  { path: 'contact', component: HelpModalComponent },
   { path: 'login', component: LoginComponent },
   { path: 'register', component: RegisterComponent }
 
