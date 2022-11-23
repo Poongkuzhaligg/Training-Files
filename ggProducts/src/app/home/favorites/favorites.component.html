@@ -1,40 +1,8 @@
-<ion-header>
-  <ion-toolbar color="dark">
-    <ion-title class="header-title">FAVORITE PRODUCTS </ion-title>
-  </ion-toolbar>
-</ion-header>
 
-<ion-content *ngIf="favProducts.value === null || favProducts.value.length === 0">
+<ion-content *ngIf="favProducts?.length === 0">
   <ion-card-title class="nofav" color="medium">No favourite products to show!!</ion-card-title>
 </ion-content>
 
-<ion-content *ngIf="favProducts.value !== null && favProducts.value.length > 0">
-  <ion-item *ngFor="let product of favProducts.value" (click)="openModal(product)" lines="none" style="cursor:pointer ;">
-    <ion-thumbnail style="width: 4.9rem ; height: 4.5rem;" slot="start">
-        <ion-img [src]="product.imgsrc" ></ion-img>
-    </ion-thumbnail>
-    <ion-grid>
-      <ion-row>
-        <ion-col>
-          <ion-card-title color="dark" >{{ product.name }}</ion-card-title>
-        </ion-col>
-      </ion-row>
-      <ion-row>
-        <ion-col>
-          <ion-card-subtitle>SKU: {{ product.code }}</ion-card-subtitle>
-        </ion-col>
-        <ion-col>
-          <ion-card-content >
-            <ion-buttons
-            slot="end"
-            (click)="addFav($event, product)"
-            class="favButton">
-            <ion-icon class="heart" name="heart-outline" *ngIf="!product.isFavourite" color="danger"></ion-icon>
-            <ion-icon class="heart" name="heart" *ngIf="product.isFavourite" color="danger"></ion-icon>
-          </ion-buttons>
-        </ion-card-content>
-        </ion-col>
-      </ion-row>
-    </ion-grid>
-  </ion-item>
+<ion-content *ngIf="favProducts.length > 0">
+  <app-view-product *ngFor="let product of favProducts" [product]="product" ></app-view-product>
 </ion-content>

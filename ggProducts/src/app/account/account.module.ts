@@ -8,7 +8,6 @@ import { RegisterComponent } from './register/register.component';
 import { IonicModule } from '@ionic/angular';
 import { HttpClientModule } from '@angular/common/http';
 import { LandingPageComponent } from './landing-page/landing-page.component';
-import { HelpModalComponent } from './help-modal/help-modal.component';
 
 @NgModule({
   imports: [
@@ -23,7 +22,6 @@ import { HelpModalComponent } from './help-modal/help-modal.component';
     LandingPageComponent,
     LoginComponent,
     RegisterComponent,
-    HelpModalComponent
   ]
 })
 export class AccountModule { }

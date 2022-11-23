@@ -8,7 +8,6 @@
 
 .header-title {
   text-align: center;
-  padding-right: 40px;
   font-weight: 600;
 }
 
@@ -56,20 +55,17 @@ ion-card-content{
 
 @media (max-width: 670px) {
 
-  .ios {
-    .header-title {
-    padding-right: 90px;
-    }
+  .header-title{
+    font-size: 1rem;
   }
+
   ion-card-title {
     font-size: 0.9rem;
   }
 }
 
 @media (max-width: 755px){
-  .header-title{
-    padding-right: 60px;
-  }
+
   .nofav{
     font-size: 1.2rem;
   }

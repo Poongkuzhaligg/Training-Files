@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ModalController } from '@ionic/angular';
-import { HelpModalComponent } from '../help-modal/help-modal.component';
+import { SharedService } from 'src/app/services/shared.service';
+import { HelpModalComponent } from 'src/app/shared/help-modal/help-modal.component';
 
 @Component({
   selector: 'app-landing-page',
@@ -9,15 +10,11 @@ import { HelpModalComponent } from '../help-modal/help-modal.component';
 })
 export class LandingPageComponent implements OnInit {
 
-  constructor(private modalCtrl: ModalController) { }
+  constructor(private modalCtrl: ModalController, private sharedServ: SharedService) { }
 
   ngOnInit() { }
 
-  async openHelp() {
-    const modal = await this.modalCtrl.create({
-      component: HelpModalComponent,
-    });
-    modal.present();
+  openHelp() {
+    this.sharedServ.openModal(HelpModalComponent);
   }
-
 }

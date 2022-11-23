@@ -7,11 +7,12 @@ import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
 import { AccountModule } from './account/account.module';
 import { HttpClientModule } from '@angular/common/http';
+import { SharedModule } from './shared/shared.module';
 
 @NgModule({
   declarations:
     [
-      AppComponent
+      AppComponent,
     ],
   imports:
     [
@@ -21,8 +22,8 @@ import { HttpClientModule } from '@angular/common/http';
       AppRoutingModule,
       HttpClientModule,
       AccountModule,
+      SharedModule
     ],
-
   providers: [{ provide: RouteReuseStrategy, useClass: IonicRouteStrategy }],
   bootstrap: [AppComponent],
 })

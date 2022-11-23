@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { AlertController, MenuController, ToastController } from '@ionic/angular';
+import { AlertController, MenuController, ModalController, ToastController } from '@ionic/angular';
 import { AccountService } from 'src/app/services/account.service';
 // import { BackendAccountService } from 'src/app/services/backendAccount.service';
 import { User } from 'src/app/model/user';
@@ -28,15 +28,15 @@ export class EditProfileComponent implements OnInit {
     private alertController: AlertController,
     private toastController: ToastController,
     private router: Router,
-    private menuCtrl: MenuController
+    private modalCtrl: ModalController
   ) { }
 
   async ngOnInit() {
-    this.menuCtrl.close();
     this.accountServ.currrentProfile.subscribe(data => this.currentUser = data);
     this.editForm = this.formBuilder.group({
       firstname: ['', Validators.required],
       lastname: ['', [Validators.required]],
+      username: ['', [Validators.required]],
       email: ['', [Validators.required, Validators.email, Validators.pattern('^[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$')]],
     });
   }
@@ -48,16 +48,19 @@ export class EditProfileComponent implements OnInit {
     }
     const firstname = this.editForm.value.firstname;
     const lastname = this.editForm.value.lastname;
+    const username = this.editForm.value.username;
     const emailId = this.editForm.value.email;
     const deviceStatus: boolean = navigator.onLine;
 
     if (deviceStatus === true) {
-      (this.accountServ.editForm(firstname, lastname, emailId)).subscribe((res: AuthResponse) => {
+      (this.accountServ.editForm(firstname, lastname, username, emailId)).subscribe((res: AuthResponse) => {
         console.log(res.data);
         if (res.status === 'Success') {
+          console.log(res.data);
           this.accountServ.setCurrentUser(res.data);
-          this.ngOnInit();
+          // this.ngOnInit();
           this.presentToast('Profile updated successfully!', 'light');
+          this.router.navigate(['home/settings']);
         }
         else {
           this.presentToast('Sorry, Try again!', 'danger');
@@ -87,6 +90,10 @@ export class EditProfileComponent implements OnInit {
       color: toastColor
     });
     await toast.present();
+  }
+
+  close() {
+    this.modalCtrl.dismiss();
   }
 
 }

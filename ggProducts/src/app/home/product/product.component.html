@@ -1,9 +1,3 @@
-  <ion-header>
-    <ion-toolbar color="dark">
-      <ion-title class="ggTitle">GG PRODUCT CODES</ion-title>
-    </ion-toolbar>
-  </ion-header>
-
   <ion-searchbar slot="fixed"
                 color="light"
                 [(ngModel)]="searchTerm"
@@ -12,43 +6,27 @@
                 placeholder="Search Products"
                 (ngModelChange)="onFilterValueChange()"
                 ></ion-searchbar>
-  <ion-content [hidden]="searchProduct===false" color="medium">
+
+  <ion-item lines="none" color="tertiary">
+    <ion-buttons  mode="ios" color="light">
+      <ion-icon [mode] name="options-outline"></ion-icon>
+    </ion-buttons>
+    <ion-chip (click)="selectCategory('Kitchen and home')">
+      <ion-label>KITCHEN & HOME</ion-label>
+    </ion-chip>
+    <ion-chip (click)="selectCategory('Fitness')">
+      <ion-label>FITNESS </ion-label>
+    </ion-chip>
+    <ion-chip (click)="selectCategory('health and wellness')">
+      <ion-label>HEALTH & WELLNESS</ion-label>
+    </ion-chip>
+
+  </ion-item>
+  <ion-content [hidden]="searchProduct===false" color="tertiary">
     <ion-card-header class="notfound">
       Uh oh! <br>Product not Found!
     </ion-card-header>
   </ion-content>
   <ion-content *ngIf="this.products" color="tertiary">
-    <ion-item *ngFor="let product of products.value | productFilter: searchTerm"
-                color="light" (click)="openModal(product)"
-                color="light"
-                class="pdCards"
-                lines="none">
-        <ion-thumbnail slot="start">
-            <ion-img [src]="product.imgsrc" ></ion-img>
-        </ion-thumbnail>
-        <ion-grid>
-          <ion-row>
-            <ion-col>
-              <ion-card-title color="dark" >{{ product.name }}</ion-card-title>
-            </ion-col>
-          </ion-row>
-          <ion-row>
-            <ion-col>
-              <ion-card-subtitle>SKU: {{ product.code }}</ion-card-subtitle>
-            </ion-col>
-            <ion-col class="skuHeart">
-              <ion-card-content >
-                <ion-buttons
-                slot="end"
-                (click)="addFav($event, product)"
-                class="favButton">
-                <ion-icon name="heart-outline" *ngIf="!product.isFavourite" color="danger"></ion-icon>
-                <ion-icon  name="heart" *ngIf="product.isFavourite" color="danger"></ion-icon>
-              </ion-buttons>
-            </ion-card-content>
-            </ion-col>
-          </ion-row>
-        </ion-grid>
-    </ion-item>
-
+    <app-view-product *ngFor="let product of products | productFilter: searchTerm" [product]="product" ></app-view-product>
   </ion-content>

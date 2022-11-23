@@ -5,10 +5,12 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { HttpClientModule } from '@angular/common/http';
 import { HelpComponent } from './help/help.component';
-import { SettingsComponent } from './settings.component';
 import { EditProfileComponent } from './edit-profile/edit-profile.component';
 import { SettingsRoutingModule } from './settings-routing.module';
 import { ChangePasswordComponent } from './change-password/change-password.component';
+import { SettingsComponent } from './settings.component';
+import { HelpContentComponent } from '../../shared/help-content/help-content.component';
+import { SharedModule } from 'src/app/shared/shared.module';
 
 
 @NgModule({
@@ -18,13 +20,14 @@ import { ChangePasswordComponent } from './change-password/change-password.compo
     ReactiveFormsModule,
     IonicModule,
     HttpClientModule,
-    SettingsRoutingModule
+    SettingsRoutingModule,
+    SharedModule
   ],
   declarations: [
     HelpComponent,
     SettingsComponent,
     EditProfileComponent,
-    ChangePasswordComponent
+    ChangePasswordComponent,
   ]
 })
 export class SettingsModule { }

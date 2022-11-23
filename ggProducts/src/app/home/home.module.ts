@@ -9,9 +9,9 @@ import { HttpClientModule } from '@angular/common/http';
 import { FavoritesComponent } from './favorites/favorites.component';
 import { ProductComponent } from './product/product.component';
 import { ProductFilterPipe } from '../pipes/product-filter.pipe';
-import { SettingsComponent } from './settings/settings.component';
 import { ProductModalComponent } from './product-modal/product-modal.component';
 import { SettingsModule } from './settings/settings.module';
+import { SharedModule } from '../shared/shared.module';
 
 
 @NgModule({
@@ -23,13 +23,15 @@ import { SettingsModule } from './settings/settings.module';
     HomePageRoutingModule,
     HttpClientModule,
     SettingsModule,
+    SharedModule
   ],
   declarations: [
     HomePage,
     FavoritesComponent,
     ProductComponent,
     ProductModalComponent,
-    ProductFilterPipe
-  ]
+    ProductFilterPipe,
+  ],
+
 })
 export class HomePageModule { }

@@ -1,7 +1,7 @@
 <ion-header>
   <ion-toolbar color="dark">
     <ion-buttons slot="start">
-      <ion-icon routerLink='../settings' class="back-btn" name="arrow-back-outline"></ion-icon>
+      <ion-icon (click)="close()" class="back-btn" name="arrow-back-outline"></ion-icon>
     </ion-buttons>
     <ion-title class="header-title">PROFILE</ion-title>
   </ion-toolbar>
@@ -52,6 +52,16 @@
                 </ion-item>
                 <ion-text *ngIf="editForm.controls.lastname.touched && editForm.controls.lastname.errors?.['required']">Lastname is required</ion-text>
 
+                <ion-item>
+                  <ion-label for="username" position="floating">Username</ion-label>
+                  <ion-input
+                  type="username"
+                  class="form-control"
+                  formControlName="username"
+                  ngModel={{currentUser?.username}}
+                  [clearOnEdit]="false"></ion-input>
+                </ion-item>
+                <ion-text *ngIf="editForm.controls.username.touched && editForm.controls.username.errors?.['required']">Username is required</ion-text>
 
                 <ion-item>
                   <ion-label for="email" position="floating">email</ion-label>

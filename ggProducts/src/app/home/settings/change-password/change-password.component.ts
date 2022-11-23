@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { AlertController, MenuController, ToastController } from '@ionic/angular';
+import { AlertController, MenuController, ModalController, ToastController } from '@ionic/angular';
 import { AuthResponse } from 'src/app/model/account-model';
 import { User } from 'src/app/model/user';
 import { AccountService } from 'src/app/services/account.service';
@@ -27,11 +27,10 @@ export class ChangePasswordComponent implements OnInit {
     private alertController: AlertController,
     private toastController: ToastController,
     private router: Router,
-    private menuCtrl: MenuController
+    private modalCtrl: ModalController
   ) { }
 
   async ngOnInit() {
-    this.menuCtrl.close();
     this.currentUser = await this.accountServ.loggedUser();
     this.changeForm = this.formBuilder.group({
       oldPassword: ['', [Validators.required, Validators.minLength(6)]],
@@ -75,8 +74,8 @@ export class ChangePasswordComponent implements OnInit {
         console.log(res);
         if (res.status === 'Success') {
           this.accountServ.setCurrentUser(res.data);
-          this.router.navigate(['../home']);
           this.presentToast('Password changed successfully!', 'light');
+          this.router.navigate(['home/settings']);
         }
         else {
           this.presentToast('Sorry, Try again!', 'danger');
@@ -106,6 +105,10 @@ export class ChangePasswordComponent implements OnInit {
       color: toastColor
     });
     await toast.present();
+  }
+
+  close() {
+    this.modalCtrl.dismiss();
   }
 
 }

@@ -22,9 +22,16 @@ const routes: Routes = [
         path: 'favorite',
         component: FavoritesComponent
       },
+      {
+        path: '**', redirectTo: '/home/products',
+        pathMatch: 'full'
+      }
     ]
   },
-  { path: '**', component: HomePage }
+  {
+    path: '**', redirectTo: '/home/products',
+    pathMatch: 'full'
+  }
 ];
 
 @NgModule({

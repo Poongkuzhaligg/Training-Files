@@ -2,7 +2,6 @@
 .header-title{
   font-size: 1.5rem;
   text-align: center;
-  padding-right: 60px;
   font-weight: 600;
 }
 
@@ -29,13 +28,16 @@ ion-card-content{
   font-size: 1rem;
 }
 
+ion-content{
+  display: flex;
+  justify-content: center;
+}
+
 
 @media (max-width: 670px) {
 
   .header-title{
     font-size: medium;
-    font-size: 1.2rem;
-    padding-right:75px;
   }
   ion-img {
     width: 9rem;

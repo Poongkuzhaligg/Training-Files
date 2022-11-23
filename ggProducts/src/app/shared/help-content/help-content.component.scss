@@ -1,0 +1,31 @@
+ion-img {
+  width: 12rem;
+  height: 12rem;
+  margin: auto;
+  margin-top: 2rem;
+}
+
+.title{
+  padding: 40px;
+  text-align: center;
+}
+
+ion-card-content{
+  text-align: center;
+  font-size: 1rem;
+}
+
+@media (max-width: 670px) {
+
+  ion-img {
+    width: 9rem;
+    height: 9rem;
+    margin: auto;
+    margin-top: 2rem;
+  }
+
+  .title{
+    font-size: 1.1rem;
+  }
+
+}

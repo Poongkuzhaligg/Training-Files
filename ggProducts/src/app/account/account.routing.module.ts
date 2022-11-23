@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { HelpModalComponent } from './help-modal/help-modal.component';
+import { HelpModalComponent } from '../shared/help-modal/help-modal.component';
 import { LandingPageComponent } from './landing-page/landing-page.component';
 
 import { LoginComponent } from './login/login.component';

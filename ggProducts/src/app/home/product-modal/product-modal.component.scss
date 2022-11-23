@@ -12,16 +12,16 @@ ion-card-title{
 
 ion-img {
   margin:auto;
-  width: 20rem;
-  height: 20rem;
+
 }
 
-@media (max-width: 380px){
+@media (max-width: 667px){
   .ios{
     ion-title{
       font-size: 1.1rem;
       text-align: center;
       padding-right: 30px;
+      padding-left: 0;
     }
 
     ion-img{

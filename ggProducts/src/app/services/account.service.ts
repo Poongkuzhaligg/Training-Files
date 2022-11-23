@@ -20,7 +20,7 @@ export class AccountService {
 
   constructor(
     private router: Router,
-    private http: HttpClient,) {
+    private http: HttpClient) {
   }
 
   async loggedUser() {
@@ -35,12 +35,14 @@ export class AccountService {
     return this.http.post(environment.apiUrl + `user/login`, { email, password }, { withCredentials: true });
   }
 
-  registerUser(userDetails: User): Observable<any> {
-    return this.http.post(environment.apiUrl + 'users/register', { userDetails }, { withCredentials: true });
+  registerUser(firstname, lastname, username, email, password): Observable<any> {
+    return this.http.post(environment.apiUrl + 'users/register',
+      { firstname, lastname, username, email, password },
+      { withCredentials: true });
   }
 
-  editForm(firstname: string, lastname: string, email: string) {
-    return this.http.put(environment.apiUrl + 'users/editProfile', { firstname, lastname, email });
+  editForm(firstname: string, lastname: string, username: string, email: string) {
+    return this.http.put(environment.apiUrl + 'users/editProfile', { firstname, lastname, username, email });
   }
 
   changePassword(password: string) {
@@ -58,7 +60,7 @@ export class AccountService {
   async logout() {
     this.http.post(environment.apiUrl + 'user/logout', { withCredentials: true }).subscribe(res => { console.log(res); });
     await Storage.remove({ key: this.currentUserKey });
-    this.router.navigate(['../account']);
+    this.router.navigate(['/account']);
   }
 
 }

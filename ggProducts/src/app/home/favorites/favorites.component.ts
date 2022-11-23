@@ -12,59 +12,31 @@ import { ProductModalComponent } from '../product-modal/product-modal.component'
 })
 export class FavoritesComponent implements OnInit {
   products: Product[];
-  favProducts: BehaviorSubject<Product[]> = new BehaviorSubject(null);
+  favProducts: Product[] = [];
   nofav = true;
 
   constructor(
     private productServ: ProductsService,
-    private modalCtrl: ModalController,
-  ) { }
+  ) {
 
+  }
   ngOnInit() {
-    // alert('working');
     this.getFavProducts();
   }
 
-  async openModal(openProduct: Product) {
 
-    const modal = await this.modalCtrl.create({
-      component: ProductModalComponent,
-      componentProps: {
-        openProduct
-      }
-    });
-    modal.present();
+  ionViewWillEnter() {
+    // alert('working');
   }
 
   async getFavProducts() {
-    // alert('working1');
-    const deviceStatus: boolean = navigator.onLine;
-    if (deviceStatus === true) {
-      this.productServ.getAllProducts().subscribe(
-        (res: Product[]) => {
-          this.products = res;
-        },
-        async err => {
-          this.products = await this.productServ.getStorageProduct();
-          console.log('this is error', err);
-        });
-      await this.productServ.getFavProducts().subscribe((res: Product[]) => {
-        this.favProducts.next(res);
-      });
-    } else {
-      this.products = await this.productServ.getStorageProduct();
-      this.favProducts.next(this.products.filter(res => res.isFavourite === true));
-    }
-
+    this.productServ.favproducts.subscribe((res: Product[]) => {
+      if (!!res) {
+        this.favProducts = res;
+      } else {
+        this.favProducts = [];
+      }
+    });
   }
 
-  addFav(event: Event, favProd: Product) {
-    event.stopPropagation();
-    favProd.isFavourite = !favProd.isFavourite;
-    setTimeout(() => {
-      this.getFavProducts();
-    }, 100);
-    this.productServ.setStorageProduct(this.products);
-    this.productServ.setFavProducts(favProd.productid).subscribe(res => console.log(res));
-  }
 }

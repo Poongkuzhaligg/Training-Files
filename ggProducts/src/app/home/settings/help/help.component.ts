@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { MenuController } from '@ionic/angular';
+import { MenuController, ModalController } from '@ionic/angular';
 
 @Component({
   selector: 'app-help',
@@ -8,10 +8,13 @@ import { MenuController } from '@ionic/angular';
 })
 export class HelpComponent implements OnInit {
 
-  constructor(private menuCtrl: MenuController) { }
+  constructor(private modalCtrl: ModalController) { }
 
   ngOnInit() {
-    this.menuCtrl.close();
+  }
+
+  close() {
+    this.modalCtrl.dismiss();
 
   }
 

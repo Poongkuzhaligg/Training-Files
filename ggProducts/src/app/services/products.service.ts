@@ -4,44 +4,33 @@ import productData from 'src/assets/items/product.json';
 import { HttpClient } from '@angular/common/http';
 import { Storage } from '@capacitor/storage';
 import { environment } from 'src/environments/environment';
+import { BehaviorSubject } from 'rxjs';
 
 
 @Injectable({
   providedIn: 'root'
 })
 export class ProductsService {
-  products: Product[];
+  products: BehaviorSubject<Product[]> = new BehaviorSubject(null);
+  favproducts: BehaviorSubject<Product[]> = new BehaviorSubject(null);
 
   constructor(private http: HttpClient) {
     this.getAllProducts();
-    // this.loadProducts();
-    // console.log('serv', this.products);
+    this.getFavProducts();
   }
 
-  // loadProducts() {
-  //   this.http.get(environment.apiUrl + 'product', { withCredentials: true })
-  //     .subscribe(
-  //       (res: Product[]) => {
-  //         this.products = res;
-  //         console.log('loading products', res, this.products);
-  //       },
-  //       async err => {
-  //         this.products = await this.getStorageProduct();
-  //       }
-  //     );
-  // }
-
   getAllProducts() {
-    return this.http.get(environment.apiUrl + 'product', { withCredentials: true });
-    // .subscribe(
-    //   (res: Product[]) => {
-    //     this.products = res;
-    //     console.log(res);
-    //   },
-    //   async err => {
-    //     this.products = await this.getStorageProduct();
-    //   }
-    // );
+    this.http.get(environment.apiUrl + 'product', { withCredentials: true })
+      .subscribe(
+        (res: Product[]) => {
+          this.products.next(res);
+          this.setStorageProduct(res);
+          // console.log(res);
+        },
+        async err => {
+          this.products = await this.getStorageProduct();
+        }
+      );
   }
 
   setFavProducts(productId) {
@@ -49,24 +38,37 @@ export class ProductsService {
   }
 
   getFavProducts() {
-    return this.http.post(environment.apiUrl + 'product/favourite/userId', { withCredentials: true });
+    return this.http.post(environment.apiUrl + 'product/favourite/userId', { withCredentials: true })
+      .subscribe(
+        (res: Product[]) => {
+          this.favproducts.next(res);
+          this.setFavProductStorage(res);
+          // console.log('favorites from api', res);
+        },
+        async err => {
+          this.favproducts = await this.getFavProductStorage();
+        }
+      );
   }
 
+  addFavorite(favProd: Product) {
+    this.setFavProducts(favProd.productid).subscribe(res => {
+      const products = this.favproducts.value;
 
-  // getDBproducts() {
-  //   this.getAllProducts().subscribe(
-  //     (res: Product[]) => {
-  //       this.products = res;
-  //       console.log(this.products, 'hey');
-  //     },
-  //     async err => {
-  //       this.products = await this.getStorageProduct();
-  //       throw (err);
-  //     });
-  // }
-
-  // getDBFavorites(){
-  // }
+      if (favProd.isFavourite === true) {
+        products.push(favProd);
+      }
+      else {
+        const index = products.indexOf(favProd);
+        if (index >= 0) {
+          products.splice(index, 1);
+        }
+      }
+      this.favproducts.next(products);
+      this.setStorageProduct(this.products.value);
+      this.setFavProductStorage(this.favproducts.value);
+    });
+  }
 
   async setStorageProduct(product) {
     await Storage.set({
@@ -75,9 +77,20 @@ export class ProductsService {
     });
   }
 
-
   async getStorageProduct() {
     const ret = await Storage.get({ key: 'product' });
+    return JSON.parse(ret.value);
+  }
+
+  async setFavProductStorage(fProduct) {
+    await Storage.set({
+      key: 'favProduct',
+      value: JSON.stringify(fProduct)
+    });
+  }
+
+  async getFavProductStorage() {
+    const ret = await Storage.get({ key: 'favProduct' });
     return JSON.parse(ret.value);
   }
 

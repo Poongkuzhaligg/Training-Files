@@ -2,10 +2,11 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { AccountService } from 'src/app/services/account.service';
-import { AlertController, ModalController, ToastController } from '@ionic/angular';
+import { AlertController, ToastController } from '@ionic/angular';
 import { AuthResponse } from 'src/app/model/account-model';
 import { Router } from '@angular/router';
-import { HelpModalComponent } from '../help-modal/help-modal.component';
+import { SharedService } from 'src/app/services/shared.service';
+import { HelpModalComponent } from 'src/app/shared/help-modal/help-modal.component';
 
 @Component({
   selector: 'app-login',
@@ -23,13 +24,13 @@ export class LoginComponent implements OnInit {
     private alertController: AlertController,
     private router: Router,
     private toastController: ToastController,
-    private modalCtrl: ModalController
+    private sharedServ: SharedService
   ) { }
 
   ngOnInit() {
     this.loginForm = this.formBuilder.group({
-      email: ['test14@123.com', [Validators.required, Validators.email, Validators.pattern('^[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$')]],
-      password: ['000000', [Validators.required, Validators.minLength(6)]]
+      email: ['lisa@gmail.com', [Validators.required, Validators.email, Validators.pattern('^[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$')]],
+      password: ['lisa123', [Validators.required, Validators.minLength(6)]]
     });
 
   }
@@ -56,7 +57,7 @@ export class LoginComponent implements OnInit {
 
         if (res.status === 'Success') {
           this.accountServ.setCurrentUser(res.data);
-          this.router.navigate(['../home']);
+          this.router.navigate(['/home']);
           return;
         }
         if (res.message === 'Invalid Email') {
@@ -81,10 +82,7 @@ export class LoginComponent implements OnInit {
   }
 
   async openHelp() {
-    const modal = await this.modalCtrl.create({
-      component: HelpModalComponent,
-    });
-    modal.present();
+    this.sharedServ.openModal(HelpModalComponent);
   }
 
   async presentAlert(alertMessage) {
