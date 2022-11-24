@@ -18,10 +18,11 @@ ion-chip{
   cursor: pointer;
 }
 
-ion-chip:active{
+.hintChip{
   background-color: black;
   color: white;
 }
+
 
 ion-icon {
   width: 1.3rem;

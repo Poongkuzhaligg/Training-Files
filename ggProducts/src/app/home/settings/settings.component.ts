@@ -2,10 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { User } from 'src/app/model/user';
 import { AccountService } from 'src/app/services/account.service';
 import { SharedService } from 'src/app/services/shared.service';
-import { HelpModalComponent } from 'src/app/shared/help-modal/help-modal.component';
 import { ChangePasswordComponent } from './change-password/change-password.component';
 import { EditProfileComponent } from './edit-profile/edit-profile.component';
-import { HelpComponent } from './help/help.component';
+import { HelpComponent } from '../../shared/help/help.component';
 
 @Component({
   selector: 'app-settings',

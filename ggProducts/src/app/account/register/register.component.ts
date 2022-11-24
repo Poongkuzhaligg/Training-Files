@@ -6,7 +6,9 @@ import { AccountService } from 'src/app/services/account.service';
 
 import { AlertController, ToastController } from '@ionic/angular';
 import { SharedService } from 'src/app/services/shared.service';
-import { HelpModalComponent } from 'src/app/shared/help-modal/help-modal.component';
+import { catchError, map } from 'rxjs/operators';
+import { AuthResponse } from 'src/app/model/account-model';
+import { HelpComponent } from 'src/app/shared/help/help.component';
 
 @Component({
   selector: 'app-register',
@@ -18,10 +20,8 @@ export class RegisterComponent implements OnInit {
   passwordType = 'password';
   passwordIcon = 'eye-off-outline';
   userDetails: User = {
-    userid: 0,
     firstname: '',
     lastname: '',
-    username: '',
     email: '',
     password: ''
   };
@@ -38,7 +38,6 @@ export class RegisterComponent implements OnInit {
     this.regForm = this.formBuilder.group({
       firstname: ['', Validators.required],
       lastname: ['', Validators.required],
-      username: ['', Validators.required],
       email: ['', [Validators.required, Validators.email, Validators.pattern('^[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$')]],
       password: ['', [Validators.required, Validators.minLength(6)]]
     });
@@ -59,21 +58,27 @@ export class RegisterComponent implements OnInit {
     const deviceStatus: boolean = navigator.onLine;
     if (deviceStatus === true) {
       this.accountServ.registerUser(this.userDetails.firstname, this.userDetails.lastname,
-        this.userDetails.username, this.userDetails.email, this.userDetails.password)
-        .subscribe((res) => {
-          console.log(res);
-          console.log('Status' + res.status);
-          if (res.status === 'Success') {
-            this.accountServ.setCurrentUser(this.userDetails);
-            this.router.navigate(['/home']);
-            this.presentToast('Registration Successful!', 'success');
-            return;
+        this.userDetails.email, this.userDetails.password).
+        pipe(
+          map((res: AuthResponse) => {
+            console.log(res);
+            if (res.status === 'Success') {
+              this.accountServ.setCurrentUser(res.data);
+              this.presentToast('Registration Successful!', 'success');
+              this.router.navigate(['../home']);
+              return;
+            }
+          }),
+          catchError((err) => {
+            if (err.status === 504) {
+              this.presentToast('An error has occured, Please Try again, ', 'danger');
+              console.error('504', err.status);
+              throw (err);
+            }
+            this.presentToast('Email already exists! Try again', 'danger');
+            throw (err);
           }
-          if (res.status === 'Failed') {
-            this.presentAlert('Email already exists! Try again');
-            return;
-          }
-        });
+          )).subscribe();
     } else {
       this.presentToast('You\'re offline! Check your Internet connection.', 'danger');
     }
@@ -81,7 +86,7 @@ export class RegisterComponent implements OnInit {
   }
 
   async openHelp() {
-    this.sharedServ.openModal(HelpModalComponent);
+    this.sharedServ.openModal(HelpComponent);
   }
 
   async presentAlert(alertMessage) {

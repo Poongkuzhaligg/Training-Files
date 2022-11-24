@@ -6,7 +6,8 @@ import { AlertController, ToastController } from '@ionic/angular';
 import { AuthResponse } from 'src/app/model/account-model';
 import { Router } from '@angular/router';
 import { SharedService } from 'src/app/services/shared.service';
-import { HelpModalComponent } from 'src/app/shared/help-modal/help-modal.component';
+import { catchError, map } from 'rxjs/operators';
+import { HelpComponent } from 'src/app/shared/help/help.component';
 
 @Component({
   selector: 'app-login',
@@ -29,8 +30,8 @@ export class LoginComponent implements OnInit {
 
   ngOnInit() {
     this.loginForm = this.formBuilder.group({
-      email: ['lisa@gmail.com', [Validators.required, Validators.email, Validators.pattern('^[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$')]],
-      password: ['lisa123', [Validators.required, Validators.minLength(6)]]
+      email: ['jim@kim.com', [Validators.required, Validators.email, Validators.pattern('^[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$')]],
+      password: ['jimkim', [Validators.required, Validators.minLength(6)]]
     });
 
   }
@@ -52,28 +53,26 @@ export class LoginComponent implements OnInit {
     const deviceStatus: boolean = navigator.onLine;
 
     if (deviceStatus === true) {
-      this.accountServ.login(email, password).subscribe((res: AuthResponse) => {
-        // console.log('Status' + res.status);
-
-        if (res.status === 'Success') {
-          this.accountServ.setCurrentUser(res.data);
-          this.router.navigate(['/home']);
-          return;
-        }
-        if (res.message === 'Invalid Email') {
-          this.presentAlert('Email does not exist! Try again');
-          return;
-        }
-        else if (res.message === 'Invalid Password') {
-          this.presentAlert('Password Incorrect! Try again');
-          return;
-        }
-        else if (res.message === 'Both Email and Password are Invalid') {
-          this.presentAlert('Sorry Invalid details, Try Registering');
-          return;
-        }
-      });
-
+      this.accountServ.login(email, password).
+        pipe(
+          map((res: AuthResponse) => {
+            console.log(res);
+            if (res.status === 'Success') {
+              this.accountServ.setCurrentUser(res.data);
+              this.router.navigate(['/home']);
+              return;
+            }
+          }),
+          catchError((err) => {
+            if (err.status === 504) {
+              this.presentToast('An error has occured, Please Try again, ', 'danger');
+              console.error('504', err.status);
+              throw (err);
+            }
+            this.presentToast('Sorry Invalid details, Try Registering', 'danger');
+            throw (err);
+          }
+          )).subscribe();
     } else {
       this.presentToast('You\'re offline! Check your Internet connection.', 'danger');
     }
@@ -82,7 +81,7 @@ export class LoginComponent implements OnInit {
   }
 
   async openHelp() {
-    this.sharedServ.openModal(HelpModalComponent);
+    this.sharedServ.openModal(HelpComponent);
   }
 
   async presentAlert(alertMessage) {
@@ -99,6 +98,7 @@ export class LoginComponent implements OnInit {
     const toast = await this.toastController.create({
       message: messageIn,
       duration: 2000,
+      cssClass: 'toast',
       position: 'top',
       color: colorIn
     });

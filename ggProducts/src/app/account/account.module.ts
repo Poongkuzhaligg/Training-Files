@@ -16,7 +16,7 @@ import { LandingPageComponent } from './landing-page/landing-page.component';
     ReactiveFormsModule,
     AccountRoutingModule,
     IonicModule,
-    HttpClientModule
+    HttpClientModule,
   ],
   declarations: [
     LandingPageComponent,

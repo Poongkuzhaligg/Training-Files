@@ -35,14 +35,14 @@ export class AccountService {
     return this.http.post(environment.apiUrl + `user/login`, { email, password }, { withCredentials: true });
   }
 
-  registerUser(firstname, lastname, username, email, password): Observable<any> {
+  registerUser(firstname, lastname, email, password): Observable<any> {
     return this.http.post(environment.apiUrl + 'users/register',
-      { firstname, lastname, username, email, password },
+      { firstname, lastname, email, password },
       { withCredentials: true });
   }
 
-  editForm(firstname: string, lastname: string, username: string, email: string) {
-    return this.http.put(environment.apiUrl + 'users/editProfile', { firstname, lastname, username, email });
+  editForm(firstname: string, lastname: string, email: string) {
+    return this.http.put(environment.apiUrl + 'users/editProfile', { firstname, lastname, email });
   }
 
   changePassword(password: string) {

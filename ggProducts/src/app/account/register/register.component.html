@@ -7,7 +7,7 @@
   </ion-toolbar>
 </ion-header>
 
-<ion-content color="light">
+<ion-content color="tertiary">
   <ion-grid>
     <ion-row>
       <ion-col sizeMd="6" offsetMd="3">
@@ -40,18 +40,6 @@
                   [clearOnEdit]="false"></ion-input>
                 </ion-item>
                 <ion-text *ngIf="regForm.controls.lastname.touched && regForm.controls.lastname.errors?.['required']">Last name is required</ion-text>
-
-
-                <ion-item>
-                  <ion-label for="username" position="floating">Username</ion-label>
-                  <ion-input
-                  type="username"
-                  class="form-control"
-                  formControlName="username"
-                  [clearOnEdit]="false"></ion-input>
-                </ion-item>
-                <ion-text *ngIf="regForm.controls.username.touched && regForm.controls.username.errors?.['required']">Username is required</ion-text>
-
 
                 <ion-item>
                   <ion-label for="email" position="floating">Email ID</ion-label>

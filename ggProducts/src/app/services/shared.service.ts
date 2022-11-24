@@ -1,6 +1,5 @@
 import { Injectable } from '@angular/core';
 import { ModalController } from '@ionic/angular';
-import { HelpComponent } from '../home/settings/help/help.component';
 @Injectable({
   providedIn: 'root'
 })

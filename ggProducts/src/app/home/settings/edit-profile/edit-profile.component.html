@@ -13,9 +13,6 @@
     <ion-row>
       <ion-col sizeMd="6" offsetMd="3">
         <ion-card>
-          <ion-header>
-            <ion-card-header color="secondary">Welcome to your Profile</ion-card-header>
-          </ion-header>
           <ion-item class="avatar">
             <ion-avatar slot="start">
               <img alt="Silhouette of a person's head" src="https://ionicframework.com/docs/img/demos/avatar.svg" />
@@ -51,17 +48,6 @@
                   [clearOnEdit]="false"></ion-input>
                 </ion-item>
                 <ion-text *ngIf="editForm.controls.lastname.touched && editForm.controls.lastname.errors?.['required']">Lastname is required</ion-text>
-
-                <ion-item>
-                  <ion-label for="username" position="floating">Username</ion-label>
-                  <ion-input
-                  type="username"
-                  class="form-control"
-                  formControlName="username"
-                  ngModel={{currentUser?.username}}
-                  [clearOnEdit]="false"></ion-input>
-                </ion-item>
-                <ion-text *ngIf="editForm.controls.username.touched && editForm.controls.username.errors?.['required']">Username is required</ion-text>
 
                 <ion-item>
                   <ion-label for="email" position="floating">email</ion-label>

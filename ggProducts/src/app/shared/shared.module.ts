@@ -5,9 +5,8 @@ import { CommonModule } from '@angular/common';
 
 import { IonicModule } from '@ionic/angular';
 import { HttpClientModule } from '@angular/common/http';
-import { HelpModalComponent } from './help-modal/help-modal.component';
 import { ViewProductComponent } from './view-product/view-product.component';
-import { HelpContentComponent } from './help-content/help-content.component';
+import { HelpComponent } from './help/help.component';
 
 
 @NgModule({
@@ -19,14 +18,12 @@ import { HelpContentComponent } from './help-content/help-content.component';
     HttpClientModule
   ],
   declarations: [
-    HelpModalComponent,
     ViewProductComponent,
-    HelpContentComponent
+    HelpComponent
   ],
   exports: [
-    HelpModalComponent,
     ViewProductComponent,
-    HelpContentComponent
+    HelpComponent
   ]
 })
 export class SharedModule { }

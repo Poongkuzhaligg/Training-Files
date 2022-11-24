@@ -20,6 +20,8 @@ ion-title{
   font-size: 1.5rem;
   font-weight: 900;
   text-align: center;
+  padding-left: 0;
+
 }
 
 .back-btn{
@@ -48,16 +50,26 @@ ion-text {
   height: 1.3rem;
 }
 
+.toast{
+  .toast-wrapper {
+    transform: translateY(70px) !important;
+}
+}
+
 @media (max-width: 670px) {
 
   .ios{
     ion-footer{
       height: 45px;
     }
+    ion-title{
+      padding-right: 0px;
+    }
   }
 
   ion-title{
     font-size: 1.2rem ;
+    padding-right: 20px;
   }
 
   ion-card-title {

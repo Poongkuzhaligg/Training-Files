@@ -8,20 +8,17 @@
                 ></ion-searchbar>
 
   <ion-item lines="none" color="tertiary">
-    <ion-buttons  mode="ios" color="light">
-      <ion-icon [mode] name="options-outline"></ion-icon>
-    </ion-buttons>
-    <ion-chip (click)="selectCategory('Kitchen and home')">
+    <ion-chip (click)="selectCategory('Kitchen and home')" [ngClass]="{ 'hintChip': categoryKitchen === true }" >
       <ion-label>KITCHEN & HOME</ion-label>
     </ion-chip>
-    <ion-chip (click)="selectCategory('Fitness')">
+    <ion-chip (click)="selectCategory('Fitness')"  [ngClass]="{ 'hintChip': categoryFitness === true }" >
       <ion-label>FITNESS </ion-label>
     </ion-chip>
-    <ion-chip (click)="selectCategory('health and wellness')">
+    <ion-chip (click)="selectCategory('health and wellness')"  [ngClass]="{ 'hintChip': categoryHealth === true }" >
       <ion-label>HEALTH & WELLNESS</ion-label>
     </ion-chip>
-
   </ion-item>
+
   <ion-content [hidden]="searchProduct===false" color="tertiary">
     <ion-card-header class="notfound">
       Uh oh! <br>Product not Found!
