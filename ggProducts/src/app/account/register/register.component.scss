@@ -10,10 +10,23 @@ ion-img {
 
 }
 
+ion-item{
+  margin: 5px;
+}
+
+ion-item::part(native){
+  padding-left: 0px;
+}
+
 .back-btn{
   cursor: pointer;
   width: 1.5rem;
   height: 1.5rem;
+}
+
+.validation-text{
+  color: #c32a2a;
+  margin: 5px;
 }
 
 ion-card-title{
@@ -37,14 +50,13 @@ ion-title{
   color: #999ba4;
   width: 1.3rem;
   height: 1.3rem;
+  margin-left: 10px;
 }
 
 ion-text {
   font-size: 0.8rem;
   padding-right: 10px;
 }
-
-
 
 @media (max-width: 670px) {
 

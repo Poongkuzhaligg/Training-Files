@@ -50,11 +50,19 @@ ion-text {
   height: 1.3rem;
 }
 
-.toast{
-  .toast-wrapper {
-    transform: translateY(70px) !important;
+ion-item{
+  margin: 5px;
 }
+
+ion-item::part(native){
+  padding-left: 0px;
 }
+
+.validation-text{
+  color: #c32a2a;
+  margin: 5px;
+}
+
 
 @media (max-width: 670px) {
 

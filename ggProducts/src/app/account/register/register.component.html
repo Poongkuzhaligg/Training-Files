@@ -28,7 +28,7 @@
                   formControlName="firstname"
                   [clearOnEdit]="false"></ion-input>
                 </ion-item>
-                <ion-text *ngIf="regForm.controls.firstname.touched &&regForm.controls.firstname.errors?.['required']">First name is required</ion-text>
+                <ion-text class="validation-text" *ngIf="regForm.controls.firstname.touched &&regForm.controls.firstname.errors?.['required']">First name is required</ion-text>
 
 
                 <ion-item>
@@ -39,7 +39,7 @@
                   formControlName="lastname"
                   [clearOnEdit]="false"></ion-input>
                 </ion-item>
-                <ion-text *ngIf="regForm.controls.lastname.touched && regForm.controls.lastname.errors?.['required']">Last name is required</ion-text>
+                <ion-text class="validation-text" *ngIf="regForm.controls.lastname.touched && regForm.controls.lastname.errors?.['required']">Last name is required</ion-text>
 
                 <ion-item>
                   <ion-label for="email" position="floating">Email ID</ion-label>
@@ -50,8 +50,8 @@
                   formControlName="email"
                   [clearOnEdit]="false"></ion-input>
                 </ion-item>
-                <ion-text *ngIf="regForm.controls.email.touched && regForm.controls.email.errors?.['required']">Email is required</ion-text>
-                <ion-text *ngIf="regForm.controls.email.touched && regForm.controls.email.errors?.['pattern']">Enter a valid Email ID</ion-text>
+                <ion-text class="validation-text" *ngIf="regForm.controls.email.touched && regForm.controls.email.errors?.['required']">Email is required</ion-text>
+                <ion-text class="validation-text" *ngIf="regForm.controls.email.touched && regForm.controls.email.errors?.['pattern']">Enter a valid Email ID</ion-text>
 
                 <ion-item>
                   <ion-label for="password" position="floating">Password</ion-label>
@@ -62,8 +62,8 @@
                   [clearOnEdit]="false"></ion-input>
                   <ion-icon class="passwordIcon" slot="end" item-end [name]="passwordIcon" class="passwordIcon" (click)='hideShowPassword()'></ion-icon>
                 </ion-item>
-                <ion-text *ngIf="regForm.controls.email.touched && regForm.controls.password.errors?.['required']">Password is required</ion-text>
-                <ion-text *ngIf="regForm.controls.password.touched && regForm.controls.password.errors?.['minlength']">Password must have 6 characters</ion-text>
+                <ion-text class="validation-text" *ngIf="regForm.controls.email.touched && regForm.controls.password.errors?.['required']">Password is required</ion-text>
+                <ion-text class="validation-text" *ngIf="regForm.controls.password.touched && regForm.controls.password.errors?.['minlength']">Password must have 6 characters</ion-text>
               </ion-list>
             </ion-card-content>
             <ion-card-content>

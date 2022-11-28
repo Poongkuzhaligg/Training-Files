@@ -1,10 +1,10 @@
 
 <ion-content color="light">
   <ion-text lines="none">
-    <div class="img-box">
-      <ion-img [src]="openProduct.imgsrc"></ion-img>
-    </div>
-    <ion-textarea color="tertiary" class="gray-box"></ion-textarea>
+    <ion-icon (click)="close()" color="dark" class="back-btn" name="arrow-back-outline"></ion-icon>
+    <ion-img [src]="openProduct.imgsrc"></ion-img>
+    <ion-textarea color="tertiary" class="gray-box">
+    </ion-textarea>
   </ion-text>
 
   <ion-grid>
@@ -25,11 +25,11 @@
   </ion-row>
   </ion-grid>
 </ion-content>
-<ion-footer>
-  <ion-toolbar color="secondary">
+<!-- <ion-footer>
+  <ion-toolbar color="dark">
     <ion-title>PRODUCT</ion-title>
     <ion-buttons slot="end">
       <ion-button (click)="close()"><ion-icon name="close-outline"></ion-icon></ion-button>
     </ion-buttons>
   </ion-toolbar>
-</ion-footer>
+</ion-footer> -->

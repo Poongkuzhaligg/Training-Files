@@ -4,6 +4,7 @@ ion-title{
   text-align: center;
   padding-right: 0;
   font-weight: 600;
+  padding-top: 0;
 }
 
 ion-grid{
@@ -44,32 +45,31 @@ ion-card-header{
 ion-text{
   display: inline-flex;
   padding-left: 0;
+  margin-bottom: 40px;
   direction: rtl;
   width: 100%;
 }
 
-.img-box{
-  width: 20rem;
-  height: 20rem;
-  background-color:transparent;
-}
-
 ion-img {
-  margin-right: 40px;
-  margin-top: 70px;
-}
-
-ion-icon{
-  width: 2rem;
-  height: 2rem;
+  width: 35%;
+  margin-top: 80px;
+  transform: translateX(-180px);
+  background-color:transparent;
 }
 
 .gray-box{
   margin-top: 0px;
-  height: 12rem;
+  width: 50%;
+  height: 40%;
   background-color: #ededed;
   z-index: -2;
   position: fixed;
+}
+
+ion-icon{
+  margin: 10px;
+  font-size: 2rem;
+  transform: translateX(-357px);
 }
 
 @media (max-width: 667px){
@@ -82,8 +82,9 @@ ion-icon{
     }
 
     ion-img{
-      width: 18rem;
-      height: 14rem;
+      width: 50%;
+      margin-top: 100px;
+      transform: translateX(-115px);
       background-color: transparent;
     }
 
@@ -98,34 +99,44 @@ ion-icon{
       font-size: 0.9rem;
       padding-top: 7px;
     }
-    .img-box{
-      margin-right: 0px;
+    ion-icon{
+      margin: 15px;
+      font-size: 1.7rem;
+      transform: translateX(-319px);
     }
-  }
-
-  ion-img{
-    width: 19rem;
-    height: 15rem;
+    ion-img{
+      width: 50%;
+      margin-top: 130px;
+      transform: translateX(-47px);
+    }
   }
 
 }
 
 @media (max-width: 915px){
-  .img-box{
-    margin-right: 20px;
+  ion-img{
+    width: 60%;
+    margin-top: 140px;
+    transform: translateX(-15px);
   }
 
-  ion-img{
-    margin-right: 55px;
+  ion-icon{
+    margin: 20px;
+    font-size: 1.8rem;
+    transform: translateX(-352px);
   }
+
 }
 
 @media( max-width: 740px){
-  .img-box{
-    width: 18rem;
-    height: 18rem;
-    margin-right: 0px;
-    margin-left: 5px;
-    margin-bottom: 40px;
+  ion-icon{
+    margin: 20px;
+    font-size: 1.7rem;
+    transform: translateX(-297px);
+  }
+  ion-img{
+    margin-top: 150px;
+    transform: translateX(-25px);
+
   }
 }

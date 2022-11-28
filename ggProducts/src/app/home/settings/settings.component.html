@@ -1,25 +1,42 @@
-
+<ion-list class="profile" >
+  <ion-avatar slot="start" (click)="openModal('editProfileComponent')">
+    <img alt="Silhouette of a person's head" src="https://ionicframework.com/docs/img/demos/avatar.svg" />
+  </ion-avatar>
+  <ion-textarea>
+    <ion-card-subtitle>Hello</ion-card-subtitle>
+    <ion-card-content>
+        <ion-text class="profile-name">{{currentProfile.firstname}} {{currentProfile.lastname}}</ion-text>
+        <ion-icon class="profile-edit" name="pencil" (click)="openModal('editProfileComponent')"></ion-icon>
+    </ion-card-content>
+  </ion-textarea>
+</ion-list>
 <ion-content>
-  <ion-list class="profile" >
-    <ion-avatar slot="start" (click)="openModal('editProfileComponent')">
-      <img alt="Silhouette of a person's head" src="https://ionicframework.com/docs/img/demos/avatar.svg" />
-    </ion-avatar>
-    <ion-text>{{currentProfile.firstname}} {{currentProfile.lastname}}</ion-text>
-  </ion-list>
-
-  <ion-item (click)="openModal('editProfileComponent')" lines="none">
-    <ion-text class="menu-title" ><ion-icon class="menu-icons" name="person"></ion-icon>PROFILE</ion-text>
-  </ion-item>
   <ion-item (click)="openModal('changePasswordComponent')" lines="none">
-    <ion-text class="menu-title" ><ion-icon class="menu-icons" name="create-outline"></ion-icon>CHANGE PASSWORD</ion-text>
+    <ion-text class="menu-title" >
+      <ion-icon class="menu-icons" name="create-outline"></ion-icon>
+      CHANGE PASSWORD
+    </ion-text>
+    <ion-icon slot="end" name="chevron-forward-outline"></ion-icon>
   </ion-item>
   <ion-item (click)="openModal('helpComponent')" lines="none">
-    <ion-text  class="menu-title"><ion-icon class="menu-icons" name="help-circle"></ion-icon>HELP</ion-text>
+    <ion-text  class="menu-title">
+      <ion-icon class="menu-icons" name="help-circle"></ion-icon>
+      HELP
+    </ion-text>
+    <ion-icon slot="end" name="chevron-forward-outline"></ion-icon>
   </ion-item>
   <ion-item lines="none">
-    <ion-text (click)="openSite()"><ion-icon class="menu-icons" name="shield-half"></ion-icon>PRIVACY POLICY</ion-text>
+    <ion-text (click)="openSite()">
+      <ion-icon class="menu-icons" name="shield-half"></ion-icon>
+      PRIVACY POLICY
+    </ion-text>
+    <ion-icon slot="end" name="chevron-forward-outline"></ion-icon>
   </ion-item>
   <ion-item (click)="logout()" lines="none">
-    <ion-text class="menu-title" ><ion-icon class="menu-icons" name="log-out-outline"></ion-icon>LOGOUT</ion-text>
+    <ion-text class="menu-title">
+      <ion-icon class="menu-icons" name="log-out-outline"></ion-icon>
+      LOGOUT
+    </ion-text>
+    <ion-icon slot="end" name="chevron-forward-outline"></ion-icon>
   </ion-item>
 </ion-content>
