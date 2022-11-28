@@ -11,15 +11,24 @@ import { ProductModalComponent } from '../../home/product-modal/product-modal.co
 })
 export class ViewProductComponent implements OnInit {
   @Input() product: Product;
+  products: Product[] = [];
+
   constructor(private productServ: ProductsService,
     private modalCtrl: ModalController) { }
 
-  ngOnInit() { }
+  ngOnInit() {
+    this.getProducts();
+  }
+
+  getProducts() {
+    this.productServ.products.subscribe(res => this.products = res);
+  }
 
   addFav(event: Event, favProd: Product) {
     event.stopPropagation();
     favProd.isFavourite = !favProd.isFavourite;
     this.productServ.addFavorite(favProd);
+    this.productServ.setStorageProduct(this.product);
   }
 
   async openModal(openProduct: Product) {

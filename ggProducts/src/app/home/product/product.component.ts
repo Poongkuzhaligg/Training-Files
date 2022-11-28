@@ -68,40 +68,29 @@ export class ProductComponent implements OnInit {
   }
 
   categorizeProducts() {
-    // console.log(this.categoryKitchen, this.categoryFitness, this.categoryHealth);
     if (this.categoryHealth === true && this.categoryFitness === true && this.categoryKitchen === false) {
       this.categoryProducts = this.products.filter(p => (p.category === 'health and wellness') || (p.category === 'Fitness'));
-      // console.log(this.categoryProducts.length);
       this.products = this.categoryProducts;
     }
     else if (this.categoryHealth === true && this.categoryFitness === false && this.categoryKitchen === false) {
       this.categoryProducts = this.products.filter(p => p.category === ('health and wellness'));
       this.products = this.categoryProducts;
-      // console.log(this.categoryProducts.length);
-
     }
     else if (this.categoryHealth === false && this.categoryFitness === true && this.categoryKitchen === true) {
       this.categoryProducts = this.products.filter(p => p.category === ('Fitness') || (p.category === 'Kitchen and home'));
       this.products = this.categoryProducts;
-      // console.log(this.categoryProducts.length);
-
     }
     else if (this.categoryHealth === false && this.categoryFitness === false && this.categoryKitchen === true) {
       this.categoryProducts = this.products.filter(p => p.category === ('Kitchen and home'));
       this.products = this.categoryProducts;
-      // console.log(this.categoryProducts.length);
-
     }
     else if (this.categoryHealth === false && this.categoryFitness === true && this.categoryKitchen === false) {
       this.categoryProducts = this.products.filter(p => p.category === ('Fitness'));
       this.products = this.categoryProducts;
-      // console.log(this.categoryProducts.length);
-
     }
     else if (this.categoryHealth === true && this.categoryFitness === false && this.categoryKitchen === true) {
       this.categoryProducts = this.products.filter(p => p.category === ('Kitchen and home') || (p.category === 'health and wellness'));
       this.products = this.categoryProducts;
-      // console.log(this.categoryProducts.length);
     }
     else {
       this.getProducts();

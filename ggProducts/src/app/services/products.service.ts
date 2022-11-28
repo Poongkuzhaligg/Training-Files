@@ -28,10 +28,10 @@ export class ProductsService {
         (res: Product[]) => {
           this.products.next(res);
           this.setStorageProduct(res);
-          console.log('Products from api', res.length);
+          console.log(res);
         },
         async err => {
-          if (err.status === 504) {
+          if (err.status === 504 || err.status === 500) {
             this.presentToast('An error has occured, Please Try again, ', 'danger');
             this.accountServ.logout();
           }
@@ -50,10 +50,9 @@ export class ProductsService {
         (res: Product[]) => {
           this.favproducts.next(res);
           this.setFavProductStorage(res);
-          console.log('favorites from api', res.length);
         },
         async err => {
-          if (err.status === 504) {
+          if (err.status === 504 || err.status === 500) {
             this.presentToast('An error has occured, Please Try again, ', 'danger');
             this.accountServ.logout();
           }
@@ -78,7 +77,7 @@ export class ProductsService {
       this.setStorageProduct(this.products.value);
       this.setFavProductStorage(this.favproducts.value);
     }, err => {
-      if (err.status === 504) {
+      if (err.status === 504 || err.status === 500) {
         this.presentToast('An error has occured, Please Try again, ', 'danger');
         this.accountServ.logout();
       }
@@ -86,6 +85,7 @@ export class ProductsService {
       this.products
         .subscribe(res => {
           this.favproducts.next(res.filter(p => p.isFavourite === true));
+          this.setFavProductStorage(this.favproducts.value);
         });
       this.favProductsId.push(favProd.productid);
       if (deviceStatus === true) {

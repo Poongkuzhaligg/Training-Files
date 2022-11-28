@@ -41,15 +41,17 @@ ion-card-content{
   .ios{
     .header-title{
       padding-right: 0px;
+      font-size: 1.2rem;
+      font-weight: 600;
+      text-align: center;
     }
   }
 
   .header-title{
     font-size: 1.2rem;
     font-weight: 600;
-
     text-align: center;
-    padding-right: 50px;
+    padding-right: 40px;
   }
   ion-img {
     width: 9rem;
