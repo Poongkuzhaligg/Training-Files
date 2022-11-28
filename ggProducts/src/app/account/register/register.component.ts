@@ -9,6 +9,7 @@ import { SharedService } from 'src/app/services/shared.service';
 import { catchError, map } from 'rxjs/operators';
 import { AuthResponse } from 'src/app/model/account-model';
 import { HelpComponent } from 'src/app/shared/help/help.component';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-register',
@@ -17,6 +18,7 @@ import { HelpComponent } from 'src/app/shared/help/help.component';
 })
 export class RegisterComponent implements OnInit {
   regForm: FormGroup;
+  version = environment.version;
   passwordType = 'password';
   passwordIcon = 'eye-off-outline';
   userDetails: User = {
@@ -61,7 +63,7 @@ export class RegisterComponent implements OnInit {
         this.userDetails.email, this.userDetails.password).
         pipe(
           map((res: AuthResponse) => {
-            console.log(res);
+            // console.log(res);
             if (res.status === 'Success') {
               this.accountServ.setCurrentUser(res.data);
               this.presentToast('Registration Successful!', 'success');
@@ -72,7 +74,7 @@ export class RegisterComponent implements OnInit {
           catchError((err) => {
             if (err.status === 504) {
               this.presentToast('An error has occured, Please Try again, ', 'danger');
-              console.error('504', err.status);
+              // console.error('504', err.status);
               throw (err);
             }
             this.presentToast('Email already exists! Try again', 'danger');
@@ -88,6 +90,10 @@ export class RegisterComponent implements OnInit {
   async openHelp() {
     this.sharedServ.openModal(HelpComponent);
   }
+
+  async openSite() {
+    await this.sharedServ.openPrivacyPolicy();
+  };
 
   async presentAlert(alertMessage) {
     const alert = await this.alertController.create({

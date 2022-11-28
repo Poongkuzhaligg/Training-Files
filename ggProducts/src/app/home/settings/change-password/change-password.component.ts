@@ -71,7 +71,7 @@ export class ChangePasswordComponent implements OnInit {
 
     if (deviceStatus === true) {
       (this.accountServ.changePassword(password)).subscribe((res: AuthResponse) => {
-        console.log(res);
+        // console.log(res);
         if (res.status === 'Success') {
           this.accountServ.setCurrentUser(res.data);
           this.presentToast('Password changed successfully!', 'light');

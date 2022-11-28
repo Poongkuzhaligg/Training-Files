@@ -1,5 +1,7 @@
 import { Injectable } from '@angular/core';
 import { ModalController } from '@ionic/angular';
+import { Browser } from '@capacitor/browser';
+
 @Injectable({
   providedIn: 'root'
 })
@@ -12,6 +14,10 @@ export class SharedService {
       component: componentName,
     });
     modal.present();
+  }
+
+  async openPrivacyPolicy() {
+    await Browser.open({ url: 'https://greatergoods.com/legal/privacy-policy' });
   }
 
 }

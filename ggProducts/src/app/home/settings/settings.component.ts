@@ -44,6 +44,10 @@ export class SettingsComponent implements OnInit {
     this.sharedServ.openModal(ChangePasswordComponent);
   }
 
+  async openSite() {
+    await this.sharedServ.openPrivacyPolicy();
+  };
+
   logout() {
     this.accountServ.logout();
   }

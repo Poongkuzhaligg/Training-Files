@@ -5,16 +5,19 @@ import { HttpClient } from '@angular/common/http';
 import { Storage } from '@capacitor/storage';
 import { environment } from 'src/environments/environment';
 import { BehaviorSubject } from 'rxjs';
+import { ToastController } from '@ionic/angular';
+import { AccountService } from './account.service';
 
 
 @Injectable({
   providedIn: 'root'
 })
 export class ProductsService {
+  favProductsId = [];
   products: BehaviorSubject<Product[]> = new BehaviorSubject(null);
   favproducts: BehaviorSubject<Product[]> = new BehaviorSubject(null);
 
-  constructor(private http: HttpClient) {
+  constructor(private http: HttpClient, private toastController: ToastController, private accountServ: AccountService) {
     this.getAllProducts();
     this.getFavProducts();
   }
@@ -25,10 +28,14 @@ export class ProductsService {
         (res: Product[]) => {
           this.products.next(res);
           this.setStorageProduct(res);
-          // console.log(res);
+          console.log('Products from api', res.length);
         },
         async err => {
-          this.products = await this.getStorageProduct();
+          if (err.status === 504) {
+            this.presentToast('An error has occured, Please Try again, ', 'danger');
+            this.accountServ.logout();
+          }
+          this.products.next(await this.getStorageProduct());
         }
       );
   }
@@ -43,10 +50,14 @@ export class ProductsService {
         (res: Product[]) => {
           this.favproducts.next(res);
           this.setFavProductStorage(res);
-          // console.log('favorites from api', res);
+          console.log('favorites from api', res.length);
         },
         async err => {
-          this.favproducts = await this.getFavProductStorage();
+          if (err.status === 504) {
+            this.presentToast('An error has occured, Please Try again, ', 'danger');
+            this.accountServ.logout();
+          }
+          this.favproducts.next(await this.getFavProductStorage());
         }
       );
   }
@@ -54,7 +65,6 @@ export class ProductsService {
   addFavorite(favProd: Product) {
     this.setFavProducts(favProd.productid).subscribe(res => {
       const products = this.favproducts.value;
-
       if (favProd.isFavourite === true) {
         products.push(favProd);
       }
@@ -67,6 +77,22 @@ export class ProductsService {
       this.favproducts.next(products);
       this.setStorageProduct(this.products.value);
       this.setFavProductStorage(this.favproducts.value);
+    }, err => {
+      if (err.status === 504) {
+        this.presentToast('An error has occured, Please Try again, ', 'danger');
+        this.accountServ.logout();
+      }
+      const deviceStatus: boolean = navigator.onLine;
+      this.products
+        .subscribe(res => {
+          this.favproducts.next(res.filter(p => p.isFavourite === true));
+        });
+      this.favProductsId.push(favProd.productid);
+      if (deviceStatus === true) {
+        if (this.favProductsId.length > 0) {
+          this.favProductsId.forEach(res => this.setFavProducts(res));
+        }
+      }
     });
   }
 
@@ -92,6 +118,17 @@ export class ProductsService {
   async getFavProductStorage() {
     const ret = await Storage.get({ key: 'favProduct' });
     return JSON.parse(ret.value);
+  }
+
+  async presentToast(messageIn: string, colorIn: string) {
+    const toast = await this.toastController.create({
+      message: messageIn,
+      duration: 2000,
+      cssClass: 'toast',
+      position: 'top',
+      color: colorIn
+    });
+    await toast.present();
   }
 
 }

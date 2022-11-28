@@ -58,7 +58,7 @@ export class AccountService {
   }
 
   async logout() {
-    this.http.post(environment.apiUrl + 'user/logout', { withCredentials: true }).subscribe(res => { console.log(res); });
+    this.http.post(environment.apiUrl + 'user/logout', { withCredentials: true }).subscribe();
     await Storage.remove({ key: this.currentUserKey });
     this.router.navigate(['/account']);
   }

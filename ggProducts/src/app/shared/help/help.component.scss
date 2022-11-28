@@ -1,3 +1,5 @@
+*{ font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;}
+
 
 .header-title{
   font-size: 1.5rem;
@@ -36,9 +38,16 @@ ion-card-content{
 }
 
 @media (max-width: 670px) {
+  .ios{
+    .header-title{
+      padding-right: 0px;
+    }
+  }
 
   .header-title{
-    font-size: 1.1rem;
+    font-size: 1.2rem;
+    font-weight: 600;
+
     text-align: center;
     padding-right: 50px;
   }

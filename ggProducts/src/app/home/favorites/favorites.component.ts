@@ -17,16 +17,10 @@ export class FavoritesComponent implements OnInit {
 
   constructor(
     private productServ: ProductsService,
-  ) {
+  ) { }
 
-  }
   ngOnInit() {
     this.getFavProducts();
-  }
-
-
-  ionViewWillEnter() {
-    // alert('working');
   }
 
   async getFavProducts() {
@@ -38,5 +32,4 @@ export class FavoritesComponent implements OnInit {
       }
     });
   }
-
 }

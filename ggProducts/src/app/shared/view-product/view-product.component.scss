@@ -11,11 +11,15 @@ ion-row {
   padding-bottom: 0px;
 }
 
+ion-img{
+  background-color: transparent;
+}
+
 ion-card-title {
   font-size: 1.2rem;
   padding-top: 20px;
-  font-weight: 500;
   width: 100%;
+  color: #474747;
 }
 
 ion-card-subtitle{

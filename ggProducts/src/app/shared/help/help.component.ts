@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { MenuController, ModalController } from '@ionic/angular';
+import { ModalController } from '@ionic/angular';
 
 @Component({
   selector: 'app-help',
@@ -15,7 +15,5 @@ export class HelpComponent implements OnInit {
 
   close() {
     this.modalCtrl.dismiss();
-
   }
-
 }

@@ -8,6 +8,7 @@ import { Router } from '@angular/router';
 import { SharedService } from 'src/app/services/shared.service';
 import { catchError, map } from 'rxjs/operators';
 import { HelpComponent } from 'src/app/shared/help/help.component';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-login',
@@ -18,6 +19,8 @@ export class LoginComponent implements OnInit {
   loginForm: FormGroup;
   passwordType = 'password';
   passwordIcon = 'eye-off-outline';
+  version = environment.version;
+
 
   constructor(
     private formBuilder: FormBuilder,
@@ -30,8 +33,8 @@ export class LoginComponent implements OnInit {
 
   ngOnInit() {
     this.loginForm = this.formBuilder.group({
-      email: ['jim@kim.com', [Validators.required, Validators.email, Validators.pattern('^[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$')]],
-      password: ['jimkim', [Validators.required, Validators.minLength(6)]]
+      email: ['peri@winkle.com', [Validators.required, Validators.email, Validators.pattern('^[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$')]],
+      password: ['periperi', [Validators.required, Validators.minLength(6)]]
     });
 
   }
@@ -56,7 +59,7 @@ export class LoginComponent implements OnInit {
       this.accountServ.login(email, password).
         pipe(
           map((res: AuthResponse) => {
-            console.log(res);
+            // console.log(res);
             if (res.status === 'Success') {
               this.accountServ.setCurrentUser(res.data);
               this.router.navigate(['/home']);
@@ -66,7 +69,7 @@ export class LoginComponent implements OnInit {
           catchError((err) => {
             if (err.status === 504) {
               this.presentToast('An error has occured, Please Try again, ', 'danger');
-              console.error('504', err.status);
+              // console.error('504', err.status);
               throw (err);
             }
             this.presentToast('Sorry Invalid details, Try Registering', 'danger');
@@ -84,6 +87,10 @@ export class LoginComponent implements OnInit {
     this.sharedServ.openModal(HelpComponent);
   }
 
+  async openSite() {
+    await this.sharedServ.openPrivacyPolicy();
+  };
+
   async presentAlert(alertMessage) {
     const alert = await this.alertController.create({
       header: 'ALERT',
@@ -98,13 +105,11 @@ export class LoginComponent implements OnInit {
     const toast = await this.toastController.create({
       message: messageIn,
       duration: 2000,
-      cssClass: 'toast',
       position: 'top',
       color: colorIn
     });
     await toast.present();
   }
-
 
 }
 

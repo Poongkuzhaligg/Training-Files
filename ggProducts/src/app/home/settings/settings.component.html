@@ -17,7 +17,7 @@
     <ion-text  class="menu-title"><ion-icon class="menu-icons" name="help-circle"></ion-icon>HELP</ion-text>
   </ion-item>
   <ion-item lines="none">
-    <a style="text-decoration:none; color: black; " class="menu-title" href="https://greatergoods.com/legal/privacy-policy"><ion-icon class="menu-icons" name="shield-half"></ion-icon>PRIVACY POLICY</a>
+    <ion-text (click)="openSite()"><ion-icon class="menu-icons" name="shield-half"></ion-icon>PRIVACY POLICY</ion-text>
   </ion-item>
   <ion-item (click)="logout()" lines="none">
     <ion-text class="menu-title" ><ion-icon class="menu-icons" name="log-out-outline"></ion-icon>LOGOUT</ion-text>

@@ -24,21 +24,15 @@ export class ProductComponent implements OnInit {
   constructor(private productServ: ProductsService,
     private accountServ: AccountService,
     private loadingCtrl: LoadingController
-  ) {
-  }
+  ) { }
+
   ngOnInit() {
     this.accountServ.currrentProfile.subscribe(data => this.currentProfile = data);
     this.getProducts();
   }
 
-
   getProducts() {
     this.productServ.products.subscribe(res => this.products = res);
-  }
-
-  filterProductData(product: Product) {
-    return product.name.toLowerCase().includes(this.searchTerm.toLowerCase())
-      || product.code.includes(this.searchTerm);
   }
 
   onFilterValueChange() {
@@ -48,6 +42,12 @@ export class ProductComponent implements OnInit {
     }
     this.searchProduct = false;
   }
+
+  filterProductData(product: Product) {
+    return product.name.toLowerCase().includes(this.searchTerm.toLowerCase())
+      || product.code.includes(this.searchTerm);
+  }
+
 
   selectCategory(category) {
     if (category === 'health and wellness') {
@@ -62,43 +62,46 @@ export class ProductComponent implements OnInit {
     this.getProducts();
     this.categoryProducts = this.products;
     this.categorizeProducts();
+    if (this.searchTerm !== undefined) {
+      this.onFilterValueChange();
+    }
   }
 
   categorizeProducts() {
-    console.log(this.categoryKitchen, this.categoryFitness, this.categoryHealth);
+    // console.log(this.categoryKitchen, this.categoryFitness, this.categoryHealth);
     if (this.categoryHealth === true && this.categoryFitness === true && this.categoryKitchen === false) {
       this.categoryProducts = this.products.filter(p => (p.category === 'health and wellness') || (p.category === 'Fitness'));
-      console.log(this.categoryProducts.length);
+      // console.log(this.categoryProducts.length);
       this.products = this.categoryProducts;
     }
     else if (this.categoryHealth === true && this.categoryFitness === false && this.categoryKitchen === false) {
       this.categoryProducts = this.products.filter(p => p.category === ('health and wellness'));
       this.products = this.categoryProducts;
-      console.log(this.categoryProducts.length);
+      // console.log(this.categoryProducts.length);
 
     }
     else if (this.categoryHealth === false && this.categoryFitness === true && this.categoryKitchen === true) {
       this.categoryProducts = this.products.filter(p => p.category === ('Fitness') || (p.category === 'Kitchen and home'));
       this.products = this.categoryProducts;
-      console.log(this.categoryProducts.length);
+      // console.log(this.categoryProducts.length);
 
     }
     else if (this.categoryHealth === false && this.categoryFitness === false && this.categoryKitchen === true) {
       this.categoryProducts = this.products.filter(p => p.category === ('Kitchen and home'));
       this.products = this.categoryProducts;
-      console.log(this.categoryProducts.length);
+      // console.log(this.categoryProducts.length);
 
     }
     else if (this.categoryHealth === false && this.categoryFitness === true && this.categoryKitchen === false) {
       this.categoryProducts = this.products.filter(p => p.category === ('Fitness'));
       this.products = this.categoryProducts;
-      console.log(this.categoryProducts.length);
+      // console.log(this.categoryProducts.length);
 
     }
     else if (this.categoryHealth === true && this.categoryFitness === false && this.categoryKitchen === true) {
       this.categoryProducts = this.products.filter(p => p.category === ('Kitchen and home') || (p.category === 'health and wellness'));
       this.products = this.categoryProducts;
-      console.log(this.categoryProducts.length);
+      // console.log(this.categoryProducts.length);
     }
     else {
       this.getProducts();

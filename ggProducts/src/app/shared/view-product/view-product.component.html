@@ -6,7 +6,7 @@
   <ion-grid>
     <ion-row>
         <ion-col>
-          <ion-card-title color="dark" >{{ product.name }}</ion-card-title>
+          <ion-card-title color="dark">{{ product.name }}</ion-card-title>
         </ion-col>
       </ion-row>
       <ion-row>
@@ -19,8 +19,8 @@
           slot="end"
           (click)="addFav($event, product)"
           class="favButton">
-          <ion-icon name="heart-outline" *ngIf="!product.isFavourite" color="danger"></ion-icon>
-          <ion-icon  name="heart" *ngIf="product.isFavourite" color="danger"></ion-icon>
+            <ion-icon name="heart-outline" *ngIf="!product.isFavourite" color="danger"></ion-icon>
+            <ion-icon  name="heart" *ngIf="product.isFavourite" color="danger"></ion-icon>
           </ion-buttons>
         </ion-card-content>
       </ion-col>

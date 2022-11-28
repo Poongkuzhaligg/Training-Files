@@ -9,14 +9,6 @@ const routes: Routes = [
     path: '',
     component: SettingsComponent,
   },
-  {
-    path: 'edit-profile',
-    component: EditProfileComponent,
-  },
-  {
-    path: 'change-password',
-    component: ChangePasswordComponent
-  },
   { path: '**', redirectTo: '' }
 
 ];
