@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Product } from '../model/product';
-import productData from 'src/assets/items/product.json';
+import { STORAGE_KEY } from '../config/storage-key';
 import { HttpClient } from '@angular/common/http';
 import { Storage } from '@capacitor/storage';
 import { environment } from 'src/environments/environment';
@@ -97,25 +97,25 @@ export class ProductsService {
 
   async setStorageProduct(product) {
     await Storage.set({
-      key: 'product',
+      key: STORAGE_KEY.userProducts,
       value: JSON.stringify(product)
     });
   }
 
   async getStorageProduct() {
-    const ret = await Storage.get({ key: 'product' });
+    const ret = await Storage.get({ key: STORAGE_KEY.userProducts });
     return JSON.parse(ret.value);
   }
 
   async setFavProductStorage(fProduct) {
     await Storage.set({
-      key: 'favProduct',
+      key: STORAGE_KEY.userFavProducts,
       value: JSON.stringify(fProduct)
     });
   }
 
   async getFavProductStorage() {
-    const ret = await Storage.get({ key: 'favProduct' });
+    const ret = await Storage.get({ key: STORAGE_KEY.userFavProducts });
     return JSON.parse(ret.value);
   }
 

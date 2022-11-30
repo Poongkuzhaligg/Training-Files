@@ -58,10 +58,11 @@ export class LoginComponent implements OnInit {
     if (deviceStatus === true) {
       this.accountServ.login(email, password).
         pipe(
-          map((res: AuthResponse) => {
+          map((res) => {
             // console.log(res);
             if (res.status === 'Success') {
-              this.accountServ.setCurrentUser(res.data);
+              this.accountServ.setCurrentUser(res.data.user);
+              this.accountServ.setUserToken(res.data.token);
               this.router.navigate(['/home']);
               return;
             }

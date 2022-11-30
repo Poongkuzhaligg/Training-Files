@@ -20,7 +20,7 @@
             <ion-card-content>
               <ion-list>
                 <ion-item >
-                  <ion-label for="email" position="floating">Email ID</ion-label>
+                  <ion-label color="secondary" for="email" position="floating">Email ID</ion-label>
                   <ion-input
                   type="email"
                   email="true"
@@ -33,7 +33,7 @@
                 <ion-text class="validation-text" *ngIf="loginForm.controls.email.touched && loginForm.controls.email.errors?.['pattern']">Enter a valid Email ID</ion-text>
 
                 <ion-item>
-                  <ion-label for="password" position="floating">Password</ion-label>
+                  <ion-label color="secondary" for="password" position="floating">Password</ion-label>
                   <ion-input
                   [type]="passwordType"
                   class="form-control"

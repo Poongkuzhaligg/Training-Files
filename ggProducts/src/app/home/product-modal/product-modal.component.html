@@ -1,13 +1,26 @@
 
 <ion-content color="light">
   <ion-text lines="none">
-    <ion-icon (click)="close()" color="dark" class="back-btn" name="arrow-back-outline"></ion-icon>
-    <ion-img [src]="openProduct.imgsrc"></ion-img>
+    <ion-text class="back-btn">
+      <ion-icon (click)="close()" color="dark" class="back-btn" name="arrow-back-outline"></ion-icon>
+    </ion-text>
     <ion-textarea color="tertiary" class="gray-box">
+      <ion-buttons
+          slot="end"
+          (click)="addFav($event, openProduct)"
+          class="favButton">
+            <ion-icon name="heart-outline" *ngIf="!openProduct.isFavourite" color="dark"></ion-icon>
+            <ion-icon  name="heart" *ngIf="openProduct.isFavourite" color="dark"></ion-icon>
+          </ion-buttons>
     </ion-textarea>
   </ion-text>
 
   <ion-grid>
+    <ion-row>
+      <ion-col>
+        <ion-img [src]="openProduct.imgsrc"></ion-img>
+      </ion-col>
+    </ion-row>
     <ion-row>
       <ion-col>
         <ion-card-subtitle color="light">{{openProduct.category.toUpperCase()}}</ion-card-subtitle>
@@ -25,11 +38,3 @@
   </ion-row>
   </ion-grid>
 </ion-content>
-<!-- <ion-footer>
-  <ion-toolbar color="dark">
-    <ion-title>PRODUCT</ion-title>
-    <ion-buttons slot="end">
-      <ion-button (click)="close()"><ion-icon name="close-outline"></ion-icon></ion-button>
-    </ion-buttons>
-  </ion-toolbar>
-</ion-footer> -->

@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { SplashScreen } from '@capacitor/splash-screen';
 import { LoadingController, ModalController, ViewDidEnter } from '@ionic/angular';
 import { Product } from 'src/app/model/product';
 import { User } from 'src/app/model/user';
@@ -26,7 +27,7 @@ export class ProductComponent implements OnInit {
     private loadingCtrl: LoadingController
   ) { }
 
-  ngOnInit() {
+  async ngOnInit() {
     this.accountServ.currrentProfile.subscribe(data => this.currentProfile = data);
     this.getProducts();
   }
@@ -106,5 +107,8 @@ export class ProductComponent implements OnInit {
 
     loading.present();
   }
+
+
+
 
 }

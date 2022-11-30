@@ -1,8 +1,28 @@
-.header-title {
+ion-title{
+  padding: 0;
   text-align: center;
-  padding-right: 40px;
+  font-size: 1.2rem;
   font-weight: 600;
+  margin-right: 20px;
+}
 
+ion-toolbar{
+  background-color: #ededed;
+}
+
+
+.profile{
+  background-color: #ededed;
+  margin-bottom: 10px;
+  justify-content: center;
+  padding-bottom: 30px;
+}
+
+ion-avatar{
+  margin: auto;
+  transform: translateX(10px);
+  width: 4.8rem;
+  height: 4.8rem;
 }
 
 ion-card-header {
@@ -39,11 +59,11 @@ ion-card-content{
   height: 1.3rem;
 }
 
-.done-btn{
-  margin-left: 10px;
-  border-bottom: 1px solid rgb(184, 184, 184);
-  margin-right: 10px;
+ion-card-title{
+  width: 40%;
+  margin-left: auto;
 }
+
 
 ion-item{
   margin: 5px;
@@ -58,20 +78,19 @@ ion-text{
   margin: 5px;
 }
 
+
 @media (max-width: 670px) {
 
   .ios {
     .header-title {
-    padding-right: 90px;
+    padding-left: 25px;
     }
   }
-
 }
 
-@media (max-width: 755px){
+@media (max-width: 740px){
   .header-title{
-    padding-right: 60px;
+    margin-right: 0;
   }
-
 
 }

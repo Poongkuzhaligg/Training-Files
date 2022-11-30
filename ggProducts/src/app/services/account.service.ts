@@ -7,16 +7,16 @@ import { environment } from 'src/environments/environment';
 import { AuthResponse } from '../model/account-model';
 import { STORAGE_KEY } from '../config/storage-key';
 import { BehaviorSubject, Observable } from 'rxjs';
+import { promise } from 'protractor';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AccountService {
   users: User[] = [];
-  currentUser: User;
+  currentUser;
   currrentProfile: BehaviorSubject<User> = new BehaviorSubject(null);
-
-  private readonly currentUserKey = STORAGE_KEY.currentUser;
+  currrentToken: BehaviorSubject<string> = new BehaviorSubject(null);
 
   constructor(
     private router: Router,
@@ -24,7 +24,7 @@ export class AccountService {
   }
 
   async loggedUser() {
-    const userResult = await Storage.get({ key: this.currentUserKey });
+    const userResult = await Storage.get({ key: STORAGE_KEY.currentUser });
     this.currentUser = JSON.parse(userResult.value);
     this.currrentProfile.next(this.currentUser);
     return this.currentUser;
@@ -51,15 +51,22 @@ export class AccountService {
 
   async setCurrentUser(loggedUser): Promise<void> {
     await Storage.set({
-      key: this.currentUserKey,
+      key: STORAGE_KEY.currentUser,
       value: JSON.stringify(loggedUser)
     });
     this.currrentProfile.next(loggedUser);
   }
 
+  async setUserToken(userToken: string): Promise<void> {
+    await Storage.set({
+      key: STORAGE_KEY.userToken,
+      value: JSON.stringify(userToken)
+    });
+  }
+
   async logout() {
     this.http.post(environment.apiUrl + 'user/logout', { withCredentials: true }).subscribe();
-    await Storage.remove({ key: this.currentUserKey });
+    await Storage.remove({ key: STORAGE_KEY.currentUser });
     this.router.navigate(['/account']);
   }
 

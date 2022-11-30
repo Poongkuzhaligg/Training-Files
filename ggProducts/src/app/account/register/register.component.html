@@ -21,7 +21,7 @@
             <ion-card-content>
               <ion-list>
                 <ion-item>
-                  <ion-label for="firstname" position="floating" >First Name</ion-label>
+                  <ion-label color="secondary" for="firstname" position="floating" >First Name</ion-label>
                   <ion-input
                   type="firstname"
                   class="form-control"
@@ -32,7 +32,7 @@
 
 
                 <ion-item>
-                  <ion-label for="lastname" position="floating">Last Name</ion-label>
+                  <ion-label color="secondary" for="lastname" position="floating">Last Name</ion-label>
                   <ion-input
                   type="lastname"
                   class="form-control"
@@ -42,7 +42,7 @@
                 <ion-text class="validation-text" *ngIf="regForm.controls.lastname.touched && regForm.controls.lastname.errors?.['required']">Last name is required</ion-text>
 
                 <ion-item>
-                  <ion-label for="email" position="floating">Email ID</ion-label>
+                  <ion-label color="secondary" for="email" position="floating">Email ID</ion-label>
                   <ion-input
                   type="email"
                   email="true"
@@ -54,7 +54,7 @@
                 <ion-text class="validation-text" *ngIf="regForm.controls.email.touched && regForm.controls.email.errors?.['pattern']">Enter a valid Email ID</ion-text>
 
                 <ion-item>
-                  <ion-label for="password" position="floating">Password</ion-label>
+                  <ion-label color="secondary" for="password" position="floating">Password</ion-label>
                   <ion-input
                   [type]="passwordType"
                   class="form-control"

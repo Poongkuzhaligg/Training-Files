@@ -52,11 +52,8 @@ export class EditProfileComponent implements OnInit {
 
     if (deviceStatus === true) {
       (this.accountServ.editForm(firstname, lastname, emailId)).subscribe((res: AuthResponse) => {
-        // console.log(res.data);
         if (res.status === 'Success') {
-          // console.log(res.data);
           this.accountServ.setCurrentUser(res.data);
-          // this.ngOnInit();
           this.presentToast('Profile updated successfully!', 'light');
           this.router.navigate(['home/settings']);
         }
