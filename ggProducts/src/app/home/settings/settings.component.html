@@ -3,7 +3,7 @@
     <img alt="Silhouette of a person's head" src="https://ionicframework.com/docs/img/demos/avatar.svg" />
   </ion-avatar>
   <ion-textarea>
-    <ion-card-subtitle>Hello</ion-card-subtitle>
+    <ion-card-subtitle>{{settingStrings.hello}}</ion-card-subtitle>
     <ion-card-content>
         <ion-text class="profile-name">{{currentProfile.firstname}} {{currentProfile.lastname}}</ion-text>
         <ion-icon class="profile-edit" name="pencil-outline" (click)="openModal('editProfileComponent')"></ion-icon>
@@ -14,29 +14,29 @@
 <ion-content>
   <ion-item (click)="openModal('changePasswordComponent')" lines="none">
     <ion-text class="menu-title" >
-      <ion-icon class="menu-icons" name="create-outline"></ion-icon>
-      CHANGE PASSWORD
+      <ion-icon class="menu-icons" name="lock-open-outline"></ion-icon>
+      {{settingStrings.changePassword}}
     </ion-text>
     <ion-icon slot="end" class="nav-arrow" color="secondary" name="chevron-forward-outline"></ion-icon>
   </ion-item>
   <ion-item (click)="openModal('helpComponent')" lines="none">
     <ion-text  class="menu-title">
       <ion-icon class="menu-icons" name="help-circle-outline"></ion-icon>
-      HELP
+      {{settingStrings.help}}
     </ion-text>
     <ion-icon slot="end" class="nav-arrow" color="secondary" name="chevron-forward-outline"></ion-icon>
   </ion-item>
   <ion-item lines="none">
     <ion-text (click)="openSite()">
-      <ion-icon class="menu-icons" name="shield-half"></ion-icon>
-      PRIVACY POLICY
+      <ion-icon class="menu-icons" name="shield-checkmark-outline"></ion-icon>
+      {{settingStrings.privacyPolicy}}
     </ion-text>
     <ion-icon slot="end" class="nav-arrow" color="secondary" name="chevron-forward-outline"></ion-icon>
   </ion-item>
   <ion-item (click)="logout()" lines="none">
     <ion-text class="menu-title">
       <ion-icon class="menu-icons" name="log-out-outline"></ion-icon>
-      LOGOUT
+      {{settingStrings.logout}}
     </ion-text>
     <ion-icon slot="end" class="nav-arrow" color="secondary" name="chevron-forward-outline"></ion-icon>
   </ion-item>

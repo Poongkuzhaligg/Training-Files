@@ -1,5 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { ModalController } from '@ionic/angular';
+import { ProductSKU } from 'src/app/config/storage-key';
 import { Product } from 'src/app/model/product';
 import { ProductsService } from 'src/app/services/products.service';
 
@@ -11,6 +12,7 @@ import { ProductsService } from 'src/app/services/products.service';
 export class ProductModalComponent implements OnInit {
   @Input() openProduct: Product;
   products: Product[] = [];
+  productSku = ProductSKU;
 
   constructor(private modalCtrl: ModalController,
     private productServ: ProductsService) { }

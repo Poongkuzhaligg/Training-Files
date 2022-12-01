@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { ModalController } from '@ionic/angular';
+import { AlertController, ModalController, ToastController } from '@ionic/angular';
 import { Browser } from '@capacitor/browser';
 
 @Injectable({
@@ -7,13 +7,35 @@ import { Browser } from '@capacitor/browser';
 })
 export class SharedService {
 
-  constructor(private modalCtrl: ModalController) { }
+  constructor(private modalController: ModalController,
+    private alertController: AlertController,
+    private toastController: ToastController,) { }
 
   async openModal(componentName) {
-    const modal = await this.modalCtrl.create({
+    const modal = await this.modalController.create({
       component: componentName,
     });
     modal.present();
+  }
+
+  async presentAlert() {
+    const alert = await this.alertController.create({
+      header: 'ALERT',
+      subHeader: 'Data Invalid!',
+      message: 'Try again',
+      buttons: ['OK'],
+    });
+    await alert.present();
+  }
+
+  async presentToast(toastMsg, toastColor) {
+    const toast = await this.toastController.create({
+      message: toastMsg,
+      duration: 1500,
+      position: 'top',
+      color: toastColor
+    });
+    await toast.present();
   }
 
   async openPrivacyPolicy() {

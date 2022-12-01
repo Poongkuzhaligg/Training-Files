@@ -1,33 +1,25 @@
 
 <ion-content color="light">
-  <ion-grid>
-    <ion-row>
-      <ion-col>
-          <ion-img src="assets/icon/ggt.png"></ion-img>
-          <ion-card-header>
-            <ion-card-title color="dark">GG PRODUCT CODES</ion-card-title>
-          </ion-card-header>
-          <ion-card-content>
-            <ion-card-title>
-              <ion-button shape="round" color="secondary" routerLink="../login">LOGIN</ion-button>
-            </ion-card-title>
-            <ion-card-title>
-              <ion-button shape="round" color="secondary" routerLink="../register">REGISTER</ion-button>
-            </ion-card-title>
-          </ion-card-content>
-      </ion-col>
-    </ion-row>
-  </ion-grid>
+  <ion-card-content>
+    <ion-img src="assets/icon/ggLogo.png"></ion-img>
+    <ion-card-header>
+      <ion-card-title color="dark"><b>{{appTitle.product}}</b> {{appTitle.codes}}</ion-card-title>
+    </ion-card-header>
+      <ion-card-title class="sign-btn">
+        <ion-button color="dark" routerLink="../login">{{landingStrings.login}}</ion-button>
+        <ion-button class="register" color="light" routerLink="../register">{{landingStrings.register}}</ion-button>
+      </ion-card-title>
+  </ion-card-content>
 </ion-content>
 
 <ion-footer>
-  <ion-toolbar color="dark">
-    <ion-card-title color="light" class="footer-title">
-      <ion-text>VERSION {{version}}</ion-text>|
-      <ion-text (click)="openSite()">PRIVACY POLICY</ion-text>|
-      <ion-text (click)="openHelp()" style="cursor:pointer ;">HELP</ion-text>
+  <ion-card-title>
+    <ion-text class="version" color="secondary">{{landingStrings.version}} {{version}}</ion-text>
+  </ion-card-title>
+    <ion-card-title color="dark" class="footer-title">
+      <ion-text (click)="openPrivacyPolicySite()" style="cursor:pointer;">{{landingStrings.privacy}}</ion-text>|
+      <ion-text (click)="openHelp()" style="cursor:pointer;">{{landingStrings.help}}</ion-text>
     </ion-card-title>
-  </ion-toolbar>
 </ion-footer>
 
 

@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { HelpComponent } from 'src/app/shared/help/help.component';
 import { SharedService } from 'src/app/services/shared.service';
 import { environment } from 'src/environments/environment';
+import { ACCOUNT_PAGE, AppTitle } from 'src/app/config/constants';
 
 @Component({
   selector: 'app-landing-page',
@@ -10,16 +11,18 @@ import { environment } from 'src/environments/environment';
 })
 export class LandingPageComponent implements OnInit {
   version = environment.version;
+  landingStrings = ACCOUNT_PAGE;
+  appTitle = AppTitle;
 
-  constructor(private sharedServ: SharedService) { }
+  constructor(private sharedService: SharedService) { }
 
   ngOnInit() { }
 
   openHelp() {
-    this.sharedServ.openModal(HelpComponent);
+    this.sharedService.openModal(HelpComponent);
   }
 
-  async openSite() {
-    await this.sharedServ.openPrivacyPolicy();
+  async openPrivacyPolicySite() {
+    await this.sharedService.openPrivacyPolicy();
   };
 }

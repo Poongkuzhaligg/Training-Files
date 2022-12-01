@@ -1,6 +1,6 @@
 
 <ion-content *ngIf="favProducts?.length === 0">
-  <ion-card-title class="nofav" color="medium">No favourite products to show!!</ion-card-title>
+  <ion-card-title class="nofav" color="dark">{{notFound.noFavorites}}</ion-card-title>
 </ion-content>
 
 <ion-content *ngIf="favProducts.length > 0">

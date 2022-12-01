@@ -1,11 +1,13 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { AlertController, MenuController, ModalController, ToastController } from '@ionic/angular';
+import { ModalController } from '@ionic/angular';
 import { AccountService } from 'src/app/services/account.service';
-// import { BackendAccountService } from 'src/app/services/backendAccount.service';
 import { User } from 'src/app/model/user';
-import { AuthResponse } from 'src/app/model/account-model';
+import { ApiStatus, AuthResponse } from 'src/app/model/account-model';
 import { Router } from '@angular/router';
+import { EmailPattern, FormLabelName, SaveBtn, TOAST_MESSAGE, VALIDATION_TEXT } from 'src/app/config/storage-key';
+import { APP_PAGE_TITLE } from 'src/app/config/constants';
+import { SharedService } from 'src/app/services/shared.service';
 
 @Component({
   selector: 'app-edit-profile',
@@ -13,8 +15,13 @@ import { Router } from '@angular/router';
   styleUrls: ['./edit-profile.component.scss'],
 })
 export class EditProfileComponent implements OnInit {
+  pageTitle = APP_PAGE_TITLE;
+  validationText = VALIDATION_TEXT;
+  formLabel = FormLabelName;
   editForm: FormGroup;
+  saveBtn = SaveBtn;
   currentUser: User;
+  isDirty = false;
   passwordoldType = 'password';
   passwordnewType = 'password';
   passwordType = 'password';
@@ -24,25 +31,26 @@ export class EditProfileComponent implements OnInit {
 
   constructor(
     private formBuilder: FormBuilder,
-    private accountServ: AccountService,
-    private alertController: AlertController,
-    private toastController: ToastController,
+    private accountService: AccountService,
+    private sharedService: SharedService,
     private router: Router,
     private modalCtrl: ModalController
   ) { }
 
   async ngOnInit() {
-    this.accountServ.currrentProfile.subscribe(data => this.currentUser = data);
+    this.accountService.currrentProfile.subscribe(data => this.currentUser = data);
     this.editForm = this.formBuilder.group({
       firstname: ['', Validators.required],
       lastname: ['', [Validators.required]],
-      email: ['', [Validators.required, Validators.email, Validators.pattern('^[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$')]],
+      email: ['', [Validators.required, Validators.email, Validators.pattern(EmailPattern.pattern)]],
     });
+    this.editForm.valueChanges.subscribe(e => { this.isDirty = true; console.log(this.editForm.valueChanges); });
+
   }
 
   onSubmit() {
     if (this.editForm.invalid) {
-      this.presentAlert();
+      this.sharedService.presentAlert();
       return;
     }
     const firstname = this.editForm.value.firstname;
@@ -51,46 +59,31 @@ export class EditProfileComponent implements OnInit {
     const deviceStatus: boolean = navigator.onLine;
 
     if (deviceStatus === true) {
-      (this.accountServ.editForm(firstname, lastname, emailId)).subscribe((res: AuthResponse) => {
-        if (res.status === 'Success') {
-          this.accountServ.setCurrentUser(res.data);
-          this.presentToast('Profile updated successfully!', 'light');
+      (this.accountService.editForm(firstname, lastname, emailId)).subscribe((res: AuthResponse) => {
+        if (res.status === ApiStatus.success) {
+          this.accountService.setCurrentUser(res.data);
+          this.sharedService.presentToast(TOAST_MESSAGE.profileUpdated, TOAST_MESSAGE.lightColor);
           this.router.navigate(['home/settings']);
         }
         else {
-          this.presentToast('Sorry, Try again!', 'danger');
+          this.sharedService.presentToast(TOAST_MESSAGE.tryAgain, TOAST_MESSAGE.dangerColor);
         }
       }, err => {
-        // console.error('editprofile', err);
         throw (err);
       });
     } else {
-      this.presentToast('You\'re offline! Check your Internet connection.', 'danger');
+      this.sharedService.presentToast(TOAST_MESSAGE.offline, TOAST_MESSAGE.dangerColor);
     }
-    this.editForm.reset();
   }
 
-  async presentAlert() {
-    const alert = await this.alertController.create({
-      header: 'ALERT',
-      subHeader: 'Data Invalid!',
-      message: 'Try again',
-      buttons: ['OK'],
-    });
-    await alert.present();
-  }
-
-  async presentToast(toastMsg, toastColor) {
-    const toast = await this.toastController.create({
-      message: toastMsg,
-      duration: 1500,
-      position: 'top',
-      color: toastColor
-    });
-    await toast.present();
+  ionViewWillLeave() {
+    if (this.isDirty === true) {
+      confirm('There are changes you have made to the page. If you quit, you will lose your changes.');
+    }
   }
 
   close() {
+    this.editForm.reset();
     this.modalCtrl.dismiss();
   }
 

@@ -1,6 +1,10 @@
+ion-card-content{
+  margin-top: 10%;
+}
+
 ion-img {
-  width: 15rem;
-  height: 15rem;
+  width: 5rem;
+  height: 5rem;
   margin: auto
 }
 
@@ -13,32 +17,50 @@ ion-card-title{
 
 ion-card-header {
   padding-top: 0;
+  margin-bottom: 60px;
 }
 
 ion-button{
-  width: 10rem;
+  width: 16rem;
   height: 3rem;
+  margin: auto;
   font-size: 1rem;
-  padding-left: 5px;
+  margin-bottom: 15px;
 }
 
-ion-card-content{
-  margin: auto;
-  padding-top: 40px;
+ion-button{
+  --border-radius: 5px;
+}
+
+.sign-btn{
+  display: grid;
 }
 
 ion-text {
   font-size: 0.8rem;
-  padding-right: 10px;
+  padding-right: 5px;
+}
+
+.register{
+  border: 1px solid #404040;
 }
 
 .footer-title{
   font-size: 1rem;
+  margin-bottom: 15px;
+}
+
+.version{
+  font-size: 0.8rem;
 }
 
 
 @media (max-width: 670px) {
+  ion-card-content{
+    margin-top: 30%;
+  }
+
   ion-card-title{
-    font-size: 1.9rem;
+    font-size: 1.3rem;
   }
 }

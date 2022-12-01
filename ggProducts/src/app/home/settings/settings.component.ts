@@ -5,6 +5,7 @@ import { SharedService } from 'src/app/services/shared.service';
 import { ChangePasswordComponent } from './change-password/change-password.component';
 import { EditProfileComponent } from './edit-profile/edit-profile.component';
 import { HelpComponent } from '../../shared/help/help.component';
+import { SettingPage } from 'src/app/config/constants';
 
 @Component({
   selector: 'app-settings',
@@ -12,6 +13,7 @@ import { HelpComponent } from '../../shared/help/help.component';
   styleUrls: ['./settings.component.scss'],
 })
 export class SettingsComponent implements OnInit {
+  settingStrings = SettingPage;
   currentProfile: User;
   mapper = {
     helpComponent: HelpComponent,
@@ -20,7 +22,7 @@ export class SettingsComponent implements OnInit {
   };
 
   constructor(private accountServ: AccountService,
-    private sharedServ: SharedService
+    private sharedService: SharedService
   ) { }
 
   ngOnInit() {
@@ -29,23 +31,23 @@ export class SettingsComponent implements OnInit {
 
   openModal(componentName) {
     const component = this.mapper[componentName];
-    this.sharedServ.openModal(component);
+    this.sharedService.openModal(component);
   }
 
   openEditProfileModal() {
-    this.sharedServ.openModal(ChangePasswordComponent);
+    this.sharedService.openModal(ChangePasswordComponent);
   }
 
   openchangePassModal() {
-    this.sharedServ.openModal(ChangePasswordComponent);
+    this.sharedService.openModal(ChangePasswordComponent);
   }
 
   openHelpModal() {
-    this.sharedServ.openModal(ChangePasswordComponent);
+    this.sharedService.openModal(ChangePasswordComponent);
   }
 
   async openSite() {
-    await this.sharedServ.openPrivacyPolicy();
+    await this.sharedService.openPrivacyPolicy();
   };
 
   logout() {

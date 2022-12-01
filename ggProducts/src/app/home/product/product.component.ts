@@ -1,10 +1,11 @@
 import { Component, OnInit } from '@angular/core';
-import { SplashScreen } from '@capacitor/splash-screen';
-import { LoadingController, ModalController, ViewDidEnter } from '@ionic/angular';
+import { LoadingController } from '@ionic/angular';
+import { NotFoundText, ProductCategory } from 'src/app/config/storage-key';
 import { Product } from 'src/app/model/product';
 import { User } from 'src/app/model/user';
 import { AccountService } from 'src/app/services/account.service';
 import { ProductsService } from 'src/app/services/products.service';
+import categoryList from 'src/assets/items/categoryList.json';
 
 @Component({
   selector: 'app-product',
@@ -12,10 +13,11 @@ import { ProductsService } from 'src/app/services/products.service';
   styleUrls: ['./product.component.scss'],
 })
 export class ProductComponent implements OnInit {
+  notFound = NotFoundText;
+  categoryList = categoryList;
+  categories: string[] = [];
   searchTerm: string;
-  categoryKitchen = false;
-  categoryHealth = false;
-  categoryFitness = false;
+  category = ProductCategory;
   products: Product[] = [];
   categoryProducts: Product[] = [];
   searchProduct = false;
@@ -49,48 +51,27 @@ export class ProductComponent implements OnInit {
       || product.code.includes(this.searchTerm);
   }
 
-
   selectCategory(category) {
-    if (category === 'health and wellness') {
-      this.categoryHealth = !this.categoryHealth;
-    }
-    else if (category === 'Fitness') {
-      this.categoryFitness = !this.categoryFitness;
+    console.log(category);
+    if (!this.categories.includes(category)) {
+      this.categories.push(category);
     }
     else {
-      this.categoryKitchen = !this.categoryKitchen;
+      const index = this.categories.indexOf(category);
+      this.categories.splice(index, 1);
     }
     this.getProducts();
-    this.categoryProducts = this.products;
-    this.categorizeProducts();
+    this.filterCategories(this.categories);
     if (this.searchTerm !== undefined) {
       this.onFilterValueChange();
     }
   }
 
-  categorizeProducts() {
-    if (this.categoryHealth === true && this.categoryFitness === true && this.categoryKitchen === false) {
-      this.categoryProducts = this.products.filter(p => (p.category === 'health and wellness') || (p.category === 'Fitness'));
-      this.products = this.categoryProducts;
-    }
-    else if (this.categoryHealth === true && this.categoryFitness === false && this.categoryKitchen === false) {
-      this.categoryProducts = this.products.filter(p => p.category === ('health and wellness'));
-      this.products = this.categoryProducts;
-    }
-    else if (this.categoryHealth === false && this.categoryFitness === true && this.categoryKitchen === true) {
-      this.categoryProducts = this.products.filter(p => p.category === ('Fitness') || (p.category === 'Kitchen and home'));
-      this.products = this.categoryProducts;
-    }
-    else if (this.categoryHealth === false && this.categoryFitness === false && this.categoryKitchen === true) {
-      this.categoryProducts = this.products.filter(p => p.category === ('Kitchen and home'));
-      this.products = this.categoryProducts;
-    }
-    else if (this.categoryHealth === false && this.categoryFitness === true && this.categoryKitchen === false) {
-      this.categoryProducts = this.products.filter(p => p.category === ('Fitness'));
-      this.products = this.categoryProducts;
-    }
-    else if (this.categoryHealth === true && this.categoryFitness === false && this.categoryKitchen === true) {
-      this.categoryProducts = this.products.filter(p => p.category === ('Kitchen and home') || (p.category === 'health and wellness'));
+  filterCategories(categories: string[]) {
+    if (categories.length > 0 && categories.length < 3) {
+      const category1 = categories[0];
+      const category2 = categories[1];
+      this.categoryProducts = this.products.filter(p => (p.category === category1) || (p.category === category2));
       this.products = this.categoryProducts;
     }
     else {
@@ -109,6 +90,6 @@ export class ProductComponent implements OnInit {
   }
 
 
-
-
 }
+
+

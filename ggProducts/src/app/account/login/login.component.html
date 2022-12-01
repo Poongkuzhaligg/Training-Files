@@ -1,73 +1,61 @@
-<ion-header>
-  <ion-toolbar color="dark">
+  <ion-toolbar color="light">
     <ion-buttons slot="start">
       <ion-icon routerLink='../landingPage' class="back-btn" name="arrow-back-outline"></ion-icon>
     </ion-buttons>
-    <ion-title>GG PRODUCT CODES</ion-title>
   </ion-toolbar>
-</ion-header>
-<ion-content color="tertiary">
-  <ion-grid>
-    <ion-row>
-      <ion-col sizeMd="6" offsetMd="3">
-        <ion-card>
-          <ion-card-header >
-            <ion-img  src="https://cdn.shopify.com/s/files/1/1088/6518/files/GG_Logo_fe76c075-d81c-42cc-96d2-e46f6af721d8_138x@2x.png?v=1631891100" style="width:150px ;"></ion-img>
-            <ion-card-title>GG Product Codes</ion-card-title>
-          </ion-card-header>
+  <ion-card-header>{{loginTitle.loginHello}}<br>{{loginTitle.loginTitle}}
+  </ion-card-header>
 
-          <form (ngSubmit)="onSubmit()" [formGroup]="loginForm">
-            <ion-card-content>
-              <ion-list>
-                <ion-item >
-                  <ion-label color="secondary" for="email" position="floating">Email ID</ion-label>
-                  <ion-input
-                  type="email"
-                  email="true"
-                  class="form-control"
-                  formControlName="email"
-                  [clearOnEdit]="false">
-                </ion-input>
-                </ion-item>
-                <ion-text class="validation-text" *ngIf="loginForm.controls.email.touched && loginForm.controls.email.errors?.['required']">Email is required</ion-text>
-                <ion-text class="validation-text" *ngIf="loginForm.controls.email.touched && loginForm.controls.email.errors?.['pattern']">Enter a valid Email ID</ion-text>
+<ion-content>
+  <form (ngSubmit)="onSubmit()" [formGroup]="loginForm">
+    <ion-card-content>
+      <ion-list>
+        <ion-item>
+          <ion-label color="secondary" for="email" position="floating">{{formLabel.email}}</ion-label>
+          <ion-input
+          type="email"
+          email="true"
+          class="form-control"
+          formControlName="email"
+          [clearOnEdit]="false">
+        </ion-input>
+        </ion-item>
+        <ion-text class="validation-text" *ngIf="loginForm.controls.email.touched && loginForm.controls.email.errors?.['required']">{{validationText.emailRequired}}</ion-text>
+        <ion-text class="validation-text" *ngIf="loginForm.controls.email.touched && loginForm.controls.email.errors?.['pattern']">{{validationText.emailPattern}}</ion-text>
 
-                <ion-item>
-                  <ion-label color="secondary" for="password" position="floating">Password</ion-label>
-                  <ion-input
-                  [type]="passwordType"
-                  class="form-control"
-                  formControlName="password"
-                  [clearOnEdit]="false">
-                </ion-input>
-                <ion-icon class="passwordIcon" slot="end" item-end [name]="passwordIcon" class="passwordIcon" (click)='hideShowPassword()'></ion-icon>
-                </ion-item>
+        <ion-item>
+          <ion-label color="secondary" for="password" position="floating">{{formLabel.password}}</ion-label>
+          <ion-input
+          [type]="passwordType"
+          class="form-control"
+          formControlName="password"
+          [clearOnEdit]="false">
+        </ion-input>
+        <ion-icon class="passwordIcon" slot="end" item-end [name]="passwordIcon" class="passwordIcon" (click)='hideShowPassword()'></ion-icon>
+        </ion-item>
 
-                <ion-text class="validation-text" *ngIf="loginForm.controls.password.touched && loginForm.controls.password.errors?.['required']">Password is required</ion-text>
-                <ion-text class="validation-text" *ngIf="loginForm.controls.password.touched && loginForm.controls.password.errors?.['minlength']">Password must have 6 characters</ion-text>
-              </ion-list>
-            </ion-card-content>
-            <ion-card-content>
-              <ion-card-title>
-                <ion-button color="secondary" type="submit">LOGIN</ion-button>
-              </ion-card-title>
-            </ion-card-content>
-            <hr>
-              <ion-card-title style="font-size:small;">Don’t have an account?<ion-text style="cursor:pointer;" color="primary" routerLink="../register"> Register</ion-text></ion-card-title>
-            <hr>
-            </form>
-        </ion-card>
-      </ion-col>
-    </ion-row>
-  </ion-grid>
+        <ion-text class="validation-text" *ngIf="loginForm.controls.password.touched && loginForm.controls.password.errors?.['required']">{{validationText.passwordRequired}}</ion-text>
+        <ion-text class="validation-text" *ngIf="loginForm.controls.password.touched && loginForm.controls.password.errors?.['minlength']">{{validationText.passwordLength}}</ion-text>
+      </ion-list>
+    </ion-card-content>
+    <ion-card-content>
+      <ion-card-title>
+        <ion-button expand="full" color="dark" type="submit">{{landingStrings.login}}</ion-button>
+      </ion-card-title>
+    </ion-card-content>
+    <hr>
+      <ion-card-title style="font-size:small;">{{suggestion.donthaveAccount}}<ion-text style="cursor:pointer;" color="dark" routerLink="../register"><b>{{suggestion.register}}</b></ion-text></ion-card-title>
+    <hr>
+  </form>
 </ion-content>
 
 <ion-footer>
-  <ion-toolbar color="dark">
-    <ion-card-title class="footer-title" color="light" class="toolbar">
-      <ion-text>VERSION {{version}}</ion-text>|
-      <ion-text (click)="openSite()">PRIVACY POLICY</ion-text>|
-      <ion-text (click)="openHelp()" style="cursor:pointer ;">HELP</ion-text>
+  <ion-card-title>
+    <ion-text class="version" color="secondary">{{landingStrings.version}} {{version}}</ion-text>
+  </ion-card-title>
+    <ion-card-title color="dark" class="footer-title">
+      <ion-text (click)="openPrivacyPolicySite()" style="cursor:pointer;">{{landingStrings.privacy}}</ion-text>|
+      <ion-text (click)="openHelp()" style="cursor:pointer;">{{landingStrings.help}}</ion-text>
     </ion-card-title>
-  </ion-toolbar>
 </ion-footer>
+

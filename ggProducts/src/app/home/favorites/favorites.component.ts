@@ -1,6 +1,7 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ModalController } from '@ionic/angular';
 import { BehaviorSubject } from 'rxjs';
+import { NotFoundText } from 'src/app/config/storage-key';
 import { ProductsService } from 'src/app/services/products.service';
 import { Product } from '../../model/product';
 import { ProductModalComponent } from '../product-modal/product-modal.component';
@@ -11,6 +12,7 @@ import { ProductModalComponent } from '../product-modal/product-modal.component'
   styleUrls: ['./favorites.component.scss'],
 })
 export class FavoritesComponent implements OnInit {
+  notFound = NotFoundText;
   products: Product[];
   favProducts: Product[] = [];
   nofav = true;

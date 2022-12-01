@@ -8,7 +8,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AccountModule } from './account/account.module';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { SharedModule } from './shared/shared.module';
-import { JwtInterceptor } from './Authentication/jwt.interceptor';
+import { JwtInterceptor } from './Helpers/jwt.interceptor';
 
 @NgModule({
   declarations:
@@ -27,7 +27,7 @@ import { JwtInterceptor } from './Authentication/jwt.interceptor';
     ],
   providers: [
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy },
-    { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
+    // { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
   ],
   bootstrap: [AppComponent],
 })

@@ -4,16 +4,16 @@
       <ion-buttons slot="start">
         <ion-icon (click)="close()" class="back-btn" name="arrow-back-outline"></ion-icon>
     </ion-buttons>
-      <ion-title class="header-title">CONTACT</ion-title>
+      <ion-title class="header-title">{{pageTitle.helpPage}}</ion-title>
     </ion-toolbar>
   </ion-header>
   <ion-content>
     <ion-img src="assets/icon/ggCircleLogo.svg"></ion-img>
-    <ion-card-title class="title" color="dark">Have a question? We’re here for you.<br>Contact us and we'll be happy to help.</ion-card-title>
+    <ion-card-title class="title" color="dark">{{helpDetails.helpQuestion}}<br>{{helpDetails.contactUs}}</ion-card-title>
     <ion-card-content>
-      <ion-text>User Manual: </ion-text><a href="https://greatergoods.com/">Greater Goods</a><br />
-      <ion-text>Phone: </ion-text><a href="tel:866.991.8494">866.991.8494</a><br />
-      <ion-text>Email: </ion-text><a href="mailto:info@greatergoods.com">info@greatgoods.com</a><br />
+      <ion-text>{{helpDetails.manual}}</ion-text><a href="https://greatergoods.com/">{{pageTitle.companyName}}</a><br />
+      <ion-text>{{helpDetails.phone}}</ion-text><a href="tel:866.991.8494">{{helpDetails.contactNo}}</a><br />
+      <ion-text>{{helpDetails.email}}</ion-text><a href="mailto:info@greatergoods.com">{{helpDetails.contactMail}}</a><br />
     </ion-card-content>
   </ion-content>
 

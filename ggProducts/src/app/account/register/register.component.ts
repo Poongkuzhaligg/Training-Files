@@ -3,13 +3,14 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { User } from 'src/app/model/user';
 import { AccountService } from 'src/app/services/account.service';
-
-import { AlertController, ToastController } from '@ionic/angular';
 import { SharedService } from 'src/app/services/shared.service';
 import { catchError, map } from 'rxjs/operators';
 import { AuthResponse } from 'src/app/model/account-model';
 import { HelpComponent } from 'src/app/shared/help/help.component';
 import { environment } from 'src/environments/environment';
+import { AccountPageTitle, ACCOUNT_PAGE, SuggestionStrings } from 'src/app/config/constants';
+import { EmailPattern, FormLabelName, TOAST_MESSAGE, VALIDATION_TEXT } from 'src/app/config/storage-key';
+import { CheckDataComponent } from 'src/app/model/check-Data';
 
 @Component({
   selector: 'app-register',
@@ -17,8 +18,14 @@ import { environment } from 'src/environments/environment';
   styleUrls: ['./register.component.scss'],
 })
 export class RegisterComponent implements OnInit {
+  landingStrings = ACCOUNT_PAGE;
+  validationText = VALIDATION_TEXT;
+  formLabel = FormLabelName;
+  registerTitle = AccountPageTitle;
+  suggestion = SuggestionStrings;
   regForm: FormGroup;
   version = environment.version;
+  isDirty = false;
   passwordType = 'password';
   passwordIcon = 'eye-off-outline';
   userDetails: User = {
@@ -29,18 +36,16 @@ export class RegisterComponent implements OnInit {
   };
   constructor(
     private formBuilder: FormBuilder,
-    private accountServ: AccountService,
-    private alertController: AlertController,
+    private accountService: AccountService,
     private router: Router,
-    private toastController: ToastController,
-    private sharedServ: SharedService
+    private sharedService: SharedService
   ) { }
 
   ngOnInit() {
     this.regForm = this.formBuilder.group({
       firstname: ['', Validators.required],
       lastname: ['', Validators.required],
-      email: ['', [Validators.required, Validators.email, Validators.pattern('^[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$')]],
+      email: ['', [Validators.required, Validators.email, Validators.pattern(EmailPattern.pattern)]],
       password: ['', [Validators.required, Validators.minLength(6)]]
     });
   }
@@ -50,70 +55,52 @@ export class RegisterComponent implements OnInit {
     this.passwordIcon = this.passwordIcon === 'eye-off-outline' ? 'eye-outline' : 'eye-off-outline';
   }
 
-
   onSubmit() {
     if (this.regForm.invalid) {
-      this.presentAlert('Try again!');
+      this.sharedService.presentAlert();
       return;
     }
     this.userDetails = Object.assign(this.userDetails, this.regForm.value);
     const deviceStatus: boolean = navigator.onLine;
     if (deviceStatus === true) {
-      this.accountServ.registerUser(this.userDetails.firstname, this.userDetails.lastname,
+      this.accountService.registerUser(this.userDetails.firstname, this.userDetails.lastname,
         this.userDetails.email, this.userDetails.password).
         pipe(
           map((res: AuthResponse) => {
             // console.log(res);
             if (res.status === 'Success') {
-              this.accountServ.setCurrentUser(res.data);
-              this.presentToast('Registration Successful!', 'success');
+              this.accountService.setCurrentUser(res.data);
+              this.sharedService.presentToast(TOAST_MESSAGE.registerSuccess, TOAST_MESSAGE.successColor);
               this.router.navigate(['../home']);
               return;
             }
           }),
           catchError((err) => {
             if (err.status === 504) {
-              this.presentToast('An error has occured, Please Try again, ', 'danger');
+              this.sharedService.presentToast(TOAST_MESSAGE[504], TOAST_MESSAGE.dangerColor);
               // console.error('504', err.status);
               throw (err);
             }
-            this.presentToast('Email already exists! Try again', 'danger');
+            this.sharedService.presentToast(TOAST_MESSAGE.emailExist, TOAST_MESSAGE.dangerColor);
             throw (err);
           }
           )).subscribe();
     } else {
-      this.presentToast('You\'re offline! Check your Internet connection.', 'danger');
+      this.sharedService.presentToast(TOAST_MESSAGE.offline, TOAST_MESSAGE.dangerColor);
     }
+  }
+
+  ionViewWillLeave() {
     this.regForm.reset();
   }
 
   async openHelp() {
-    this.sharedServ.openModal(HelpComponent);
+    this.sharedService.openModal(HelpComponent);
   }
 
-  async openSite() {
-    await this.sharedServ.openPrivacyPolicy();
+  async openPrivacyPolicySite() {
+    await this.sharedService.openPrivacyPolicy();
   };
-
-  async presentAlert(alertMessage) {
-    const alert = await this.alertController.create({
-      header: 'ALERT',
-      subHeader: 'Data Invalid!',
-      message: alertMessage,
-      buttons: ['OK'],
-    });
-    await alert.present();
-  }
-
-  async presentToast(messageIn: string, colorIn: string) {
-    const toast = await this.toastController.create({
-      message: messageIn,
-      duration: 2000,
-      position: 'top',
-      color: colorIn
-    });
-    await toast.present();
-  }
 
 }
 

@@ -8,21 +8,13 @@
                 ></ion-searchbar>
 
   <ion-item lines="none" color="tertiary">
-    <ion-chip (click)="selectCategory('Kitchen and home')" [ngClass]="{ 'hintChip': categoryKitchen === true }" >
-      <ion-label>KITCHEN & HOME</ion-label>
-    </ion-chip>
-    <ion-chip (click)="selectCategory('Fitness')"  [ngClass]="{ 'hintChip': categoryFitness === true }" >
-      <ion-label>FITNESS </ion-label>
-    </ion-chip>
-    <ion-chip (click)="selectCategory('health and wellness')"  [ngClass]="{ 'hintChip': categoryHealth === true }" >
-      <ion-label>HEALTH & WELLNESS</ion-label>
+    <ion-chip *ngFor="let category of categoryList" (click)="selectCategory(category.category)" [ngClass]="{ 'hintChip': categories.includes(category.category) === true }" >
+      <ion-label>{{category.categoryName}}</ion-label>
     </ion-chip>
   </ion-item>
 
   <ion-content [hidden]="searchProduct===false" color="tertiary">
-    <ion-card-header class="notfound">
-      Uh oh! <br>Product not Found!
-    </ion-card-header>
+    <ion-card-header class="notfound">{{notFound.notFound}}<br>{{notFound.noProducts}}</ion-card-header>
   </ion-content>
   <ion-content *ngIf="this.products" color="tertiary">
     <app-view-product *ngFor="let product of products | productFilter: searchTerm" [product]="product" ></app-view-product>

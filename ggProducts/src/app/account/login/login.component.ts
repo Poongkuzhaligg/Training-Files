@@ -2,13 +2,14 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { AccountService } from 'src/app/services/account.service';
-import { AlertController, ToastController } from '@ionic/angular';
-import { AuthResponse } from 'src/app/model/account-model';
+import { ApiStatus } from 'src/app/model/account-model';
 import { Router } from '@angular/router';
 import { SharedService } from 'src/app/services/shared.service';
 import { catchError, map } from 'rxjs/operators';
 import { HelpComponent } from 'src/app/shared/help/help.component';
 import { environment } from 'src/environments/environment';
+import { AccountPageTitle, ACCOUNT_PAGE, SuggestionStrings } from 'src/app/config/constants';
+import { EmailPattern, FormLabelName, TOAST_MESSAGE, VALIDATION_TEXT } from 'src/app/config/storage-key';
 
 @Component({
   selector: 'app-login',
@@ -16,24 +17,26 @@ import { environment } from 'src/environments/environment';
   styleUrls: ['./login.component.scss'],
 })
 export class LoginComponent implements OnInit {
+  suggestion = SuggestionStrings;
   loginForm: FormGroup;
+  loginTitle = AccountPageTitle;
   passwordType = 'password';
   passwordIcon = 'eye-off-outline';
   version = environment.version;
-
+  landingStrings = ACCOUNT_PAGE;
+  validationText = VALIDATION_TEXT;
+  formLabel = FormLabelName;
 
   constructor(
     private formBuilder: FormBuilder,
-    private accountServ: AccountService,
-    private alertController: AlertController,
+    private accountService: AccountService,
     private router: Router,
-    private toastController: ToastController,
-    private sharedServ: SharedService
+    private sharedService: SharedService
   ) { }
 
   ngOnInit() {
     this.loginForm = this.formBuilder.group({
-      email: ['peri@winkle.com', [Validators.required, Validators.email, Validators.pattern('^[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$')]],
+      email: ['peri@winkle.com', [Validators.required, Validators.email, Validators.pattern(EmailPattern.pattern)]],
       password: ['periperi', [Validators.required, Validators.minLength(6)]]
     });
 
@@ -47,70 +50,52 @@ export class LoginComponent implements OnInit {
   onSubmit() {
 
     if (this.loginForm.invalid) {
-      this.presentAlert('Try Again');
+      this.sharedService.presentAlert();
       return;
     }
-
     const email = this.loginForm.value.email;
     const password = this.loginForm.value.password;
-    const deviceStatus: boolean = navigator.onLine;
+    const deviceStatus: boolean = navigator?.onLine;
 
     if (deviceStatus === true) {
-      this.accountServ.login(email, password).
+      this.accountService.login(email, password).
         pipe(
-          map((res) => {
+          map((result) => {
             // console.log(res);
-            if (res.status === 'Success') {
-              this.accountServ.setCurrentUser(res.data.user);
-              this.accountServ.setUserToken(res.data.token);
+            if (result.status === ApiStatus.success) {
+              this.accountService.setCurrentUser(result.data.user);
+              this.accountService.setUserToken(result.data.token);
               this.router.navigate(['/home']);
               return;
             }
           }),
           catchError((err) => {
             if (err.status === 504) {
-              this.presentToast('An error has occured, Please Try again, ', 'danger');
+              this.sharedService.presentToast(TOAST_MESSAGE[504], TOAST_MESSAGE.dangerColor);
               // console.error('504', err.status);
               throw (err);
             }
-            this.presentToast('Sorry Invalid details, Try Registering', 'danger');
+            this.sharedService.presentToast(TOAST_MESSAGE.invalidUser, TOAST_MESSAGE.dangerColor);
             throw (err);
           }
           )).subscribe();
     } else {
-      this.presentToast('You\'re offline! Check your Internet connection.', 'danger');
+      this.sharedService.presentToast(TOAST_MESSAGE.offline, TOAST_MESSAGE.dangerColor);
     }
+  }
 
+  ionViewWillLeave() {
+    // this.loginForm
     this.loginForm.reset();
   }
 
   async openHelp() {
-    this.sharedServ.openModal(HelpComponent);
+    this.sharedService.openModal(HelpComponent);
   }
 
-  async openSite() {
-    await this.sharedServ.openPrivacyPolicy();
+  async openPrivacyPolicySite() {
+    await this.sharedService.openPrivacyPolicy();
   };
-
-  async presentAlert(alertMessage) {
-    const alert = await this.alertController.create({
-      header: 'ALERT',
-      subHeader: 'Data Invalid!',
-      message: alertMessage,
-      buttons: ['OK'],
-    });
-    await alert.present();
-  }
-
-  async presentToast(messageIn: string, colorIn: string) {
-    const toast = await this.toastController.create({
-      message: messageIn,
-      duration: 2000,
-      position: 'top',
-      color: colorIn
-    });
-    await toast.present();
-  }
 
 }
 

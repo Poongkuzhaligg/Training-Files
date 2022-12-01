@@ -4,10 +4,8 @@ import { Storage } from '@capacitor/storage';
 import { Router } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
-import { AuthResponse } from '../model/account-model';
 import { STORAGE_KEY } from '../config/storage-key';
 import { BehaviorSubject, Observable } from 'rxjs';
-import { promise } from 'protractor';
 
 @Injectable({
   providedIn: 'root'
@@ -67,6 +65,7 @@ export class AccountService {
   async logout() {
     this.http.post(environment.apiUrl + 'user/logout', { withCredentials: true }).subscribe();
     await Storage.remove({ key: STORAGE_KEY.currentUser });
+    await Storage.remove({ key: STORAGE_KEY.userToken });
     this.router.navigate(['/account']);
   }
 
