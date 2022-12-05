@@ -73,33 +73,14 @@ export class EditProfileComponent implements OnInit {
     }
   }
 
-
   async close() {
     if (!this.editForm.pristine) {
-      await this.showWarning();
+      await this.sharedService.showWarning();
     }
     if (this.editForm.pristine) {
       this.modalCtrl.dismiss();
     }
   }
 
-  async showWarning() {
-    const header = ALERT_MESSAGE.header;
-    const message = ALERT_MESSAGE.messageWarn;
-    const buttons = [
-      {
-        text: ALERT_MESSAGE.buttonCancel,
-        role: ALERT_MESSAGE.roleCancel,
-      },
-      {
-        text: ALERT_MESSAGE.buttonOk,
-        role: ALERT_MESSAGE.roleConfirm,
-        handler: () => {
-          this.editForm.reset();
-          this.modalCtrl.dismiss();
-        },
-      },
-    ];
-    this.sharedService.presentAlert(header, message, buttons);
-  }
+
 }

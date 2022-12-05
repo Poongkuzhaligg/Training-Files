@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { AlertController, ModalController, ToastController } from '@ionic/angular';
 import { Browser } from '@capacitor/browser';
+import { ALERT_MESSAGE } from '../config/storage-key';
 
 @Injectable({
   providedIn: 'root'
@@ -16,6 +17,25 @@ export class SharedService {
       component: componentName,
     });
     modal.present();
+  }
+
+  async showWarning() {
+    const header = ALERT_MESSAGE.header;
+    const message = ALERT_MESSAGE.messageWarn;
+    const buttons = [
+      {
+        text: ALERT_MESSAGE.buttonCancel,
+        role: ALERT_MESSAGE.roleCancel,
+      },
+      {
+        text: ALERT_MESSAGE.buttonOk,
+        role: ALERT_MESSAGE.roleConfirm,
+        handler: () => {
+          this.modalController.dismiss();
+        },
+      },
+    ];
+    this.presentAlert(header, message, buttons);
   }
 
   async presentAlert(header, message, buttons, subHeader?) {
@@ -38,8 +58,8 @@ export class SharedService {
     await toast.present();
   }
 
-  async openPrivacyPolicy() {
-    await Browser.open({ url: 'https://greatergoods.com/legal/privacy-policy' });
+  async openSite(link: string) {
+    await Browser.open({ url: link });
   }
 
 }

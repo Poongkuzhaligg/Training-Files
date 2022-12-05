@@ -17,7 +17,6 @@ export class ProductComponent implements OnInit {
   categoryList = categoryList;
   categories: string[] = [];
   searchTerm: string;
-  category = ProductCategory;
   products: Product[] = [];
   categoryProducts: Product[] = [];
   searchProduct = false;
@@ -84,7 +83,6 @@ export class ProductComponent implements OnInit {
       duration: 500,
       spinner: 'circles',
     });
-
     loading.present();
   }
 

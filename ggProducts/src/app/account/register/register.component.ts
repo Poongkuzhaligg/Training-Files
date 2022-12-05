@@ -98,10 +98,6 @@ export class RegisterComponent implements OnInit {
     this.sharedService.openModal(HelpComponent);
   }
 
-  async openPrivacyPolicySite() {
-    await this.sharedService.openPrivacyPolicy();
-  };
-
 }
 
 

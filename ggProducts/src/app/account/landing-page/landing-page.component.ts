@@ -23,6 +23,7 @@ export class LandingPageComponent implements OnInit {
   }
 
   async openPrivacyPolicySite() {
-    await this.sharedService.openPrivacyPolicy();
+    await this.sharedService.openSite('https://greatergoods.com/legal/privacy-policy');
   };
+
 }

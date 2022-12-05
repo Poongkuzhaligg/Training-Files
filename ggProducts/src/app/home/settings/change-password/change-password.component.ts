@@ -61,7 +61,6 @@ export class ChangePasswordComponent implements OnInit {
   }
 
   checkPasswords(group: FormGroup) {
-    // console.log(group.controls?.confirmPassword?.errors);
     const pass = group.controls.newPassword.value;
     const confirmPass = group.controls.confirmPassword.value;
     return pass === confirmPass ? null : { notSame: true };
@@ -94,31 +93,11 @@ export class ChangePasswordComponent implements OnInit {
 
   async close() {
     if (!this.changeForm.pristine) {
-      await this.showWarning();
+      await this.sharedService.showWarning();
     }
     if (this.changeForm.pristine) {
       this.modalCtrl.dismiss();
     }
-  }
-
-  async showWarning() {
-    const header = ALERT_MESSAGE.header;
-    const message = ALERT_MESSAGE.messageWarn;
-    const buttons = [
-      {
-        text: ALERT_MESSAGE.buttonCancel,
-        role: ALERT_MESSAGE.roleCancel,
-      },
-      {
-        text: ALERT_MESSAGE.buttonOk,
-        role: ALERT_MESSAGE.roleConfirm,
-        handler: () => {
-          this.changeForm.reset();
-          this.modalCtrl.dismiss();
-        },
-      },
-    ];
-    this.sharedService.presentAlert(header, message, buttons);
   }
 
 }

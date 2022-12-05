@@ -11,9 +11,9 @@
     <ion-img src="assets/icon/ggCircleLogo.svg"></ion-img>
     <ion-card-title class="title" color="dark">{{helpDetails.helpQuestion}}<br>{{helpDetails.contactUs}}</ion-card-title>
     <ion-card-content>
-      <ion-text>{{helpDetails.manual}}</ion-text><a href="https://greatergoods.com/">{{pageTitle.companyName}}</a><br />
+      <ion-text>{{helpDetails.manual}}</ion-text><a (click)="openCompanySite()">{{pageTitle.companyName}}</a><br />
       <ion-text>{{helpDetails.phone}}</ion-text><a href="tel:866.991.8494">{{helpDetails.contactNo}}</a><br />
-      <ion-text>{{helpDetails.email}}</ion-text><a href="mailto:info@greatergoods.com">{{helpDetails.contactMail}}</a><br />
+      <ion-text>{{helpDetails.email}}</ion-text><a (click)="openMailtoGG()">{{helpDetails.contactMail}}</a><br />
     </ion-card-content>
   </ion-content>
 

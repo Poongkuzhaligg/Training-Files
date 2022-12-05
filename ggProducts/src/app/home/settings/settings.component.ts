@@ -47,7 +47,7 @@ export class SettingsComponent implements OnInit {
   }
 
   async openSite() {
-    await this.sharedService.openPrivacyPolicy();
+    await this.sharedService.openSite('https://greatergoods.com/legal/privacy-policy');
   };
 
   logout() {
