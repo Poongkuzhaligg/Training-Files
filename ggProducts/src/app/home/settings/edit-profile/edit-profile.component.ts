@@ -5,7 +5,7 @@ import { AccountService } from 'src/app/services/account.service';
 import { User } from 'src/app/model/user';
 import { ApiStatus, AuthResponse } from 'src/app/model/account-model';
 import { Router } from '@angular/router';
-import { EmailPattern, FormLabelName, SaveBtn, TOAST_MESSAGE, VALIDATION_TEXT } from 'src/app/config/storage-key';
+import { ALERT_MESSAGE, EmailPattern, FormLabelName, SaveBtn, TOAST_MESSAGE, VALIDATION_TEXT } from 'src/app/config/storage-key';
 import { APP_PAGE_TITLE } from 'src/app/config/constants';
 import { SharedService } from 'src/app/services/shared.service';
 
@@ -21,7 +21,6 @@ export class EditProfileComponent implements OnInit {
   editForm: FormGroup;
   saveBtn = SaveBtn;
   currentUser: User;
-  isDirty = false;
   passwordoldType = 'password';
   passwordnewType = 'password';
   passwordType = 'password';
@@ -44,13 +43,11 @@ export class EditProfileComponent implements OnInit {
       lastname: ['', [Validators.required]],
       email: ['', [Validators.required, Validators.email, Validators.pattern(EmailPattern.pattern)]],
     });
-    this.editForm.valueChanges.subscribe(e => { this.isDirty = true; console.log(this.editForm.valueChanges); });
-
   }
 
   onSubmit() {
     if (this.editForm.invalid) {
-      this.sharedService.presentAlert();
+      this.sharedService.presentAlert(ALERT_MESSAGE.header, ALERT_MESSAGE.messageTry, ALERT_MESSAGE.buttonOk, ALERT_MESSAGE.subHeader);
       return;
     }
     const firstname = this.editForm.value.firstname;
@@ -76,15 +73,33 @@ export class EditProfileComponent implements OnInit {
     }
   }
 
-  ionViewWillLeave() {
-    if (this.isDirty === true) {
-      confirm('There are changes you have made to the page. If you quit, you will lose your changes.');
+
+  async close() {
+    if (!this.editForm.pristine) {
+      await this.showWarning();
+    }
+    if (this.editForm.pristine) {
+      this.modalCtrl.dismiss();
     }
   }
 
-  close() {
-    this.editForm.reset();
-    this.modalCtrl.dismiss();
+  async showWarning() {
+    const header = ALERT_MESSAGE.header;
+    const message = ALERT_MESSAGE.messageWarn;
+    const buttons = [
+      {
+        text: ALERT_MESSAGE.buttonCancel,
+        role: ALERT_MESSAGE.roleCancel,
+      },
+      {
+        text: ALERT_MESSAGE.buttonOk,
+        role: ALERT_MESSAGE.roleConfirm,
+        handler: () => {
+          this.editForm.reset();
+          this.modalCtrl.dismiss();
+        },
+      },
+    ];
+    this.sharedService.presentAlert(header, message, buttons);
   }
-
 }

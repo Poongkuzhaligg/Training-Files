@@ -15,21 +15,21 @@ export class ProductModalComponent implements OnInit {
   productSku = ProductSKU;
 
   constructor(private modalCtrl: ModalController,
-    private productServ: ProductsService) { }
+    private productService: ProductsService) { }
 
   ngOnInit() {
     this.getProducts();
   }
 
   getProducts() {
-    this.productServ.products.subscribe(res => this.products = res);
+    this.productService.products.subscribe(res => this.products = res);
   }
 
   addFav(favProd: Product) {
     console.log('works');
     favProd.isFavourite = !favProd.isFavourite;
-    this.productServ.addFavorite(favProd);
-    this.productServ.setStorageProduct(this.products);
+    this.productService.addFavorite(favProd);
+    this.productService.setStorageProduct(this.products);
   }
 
   close() {

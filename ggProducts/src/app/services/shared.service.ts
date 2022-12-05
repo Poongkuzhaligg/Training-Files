@@ -18,14 +18,14 @@ export class SharedService {
     modal.present();
   }
 
-  async presentAlert() {
+  async presentAlert(header, message, buttons, subHeader?) {
     const alert = await this.alertController.create({
-      header: 'ALERT',
-      subHeader: 'Data Invalid!',
-      message: 'Try again',
-      buttons: ['OK'],
+      header,
+      message,
+      subHeader,
+      buttons,
     });
-    await alert.present();
+    return alert.present();
   }
 
   async presentToast(toastMsg, toastColor) {

@@ -76,3 +76,14 @@ export const TOAST_MESSAGE = {
   dangerColor: 'danger',
   lightColor: 'light'
 };
+
+export const ALERT_MESSAGE = {
+  header: 'ALERT',
+  messageTry: 'Try Again!',
+  messageWarn: 'There are changes you have made to the page. If you quit, you will lose your changes.',
+  buttonOk: 'OK',
+  buttonCancel: 'CANCEL',
+  roleCancel: 'cancel',
+  roleConfirm: 'confirm',
+  subHeader: 'Data Invalid!'
+};

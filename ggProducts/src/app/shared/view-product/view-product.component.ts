@@ -15,7 +15,7 @@ export class ViewProductComponent implements OnInit {
   products: Product[] = [];
   productSku = ProductSKU;
 
-  constructor(private productServ: ProductsService,
+  constructor(private productService: ProductsService,
     private modalCtrl: ModalController) { }
 
   ngOnInit() {
@@ -23,14 +23,14 @@ export class ViewProductComponent implements OnInit {
   }
 
   getProducts() {
-    this.productServ.products.subscribe(res => this.products = res);
+    this.productService.products.subscribe(res => this.products = res);
   }
 
   addFav(event: Event, favProd: Product) {
     event.stopPropagation();
     favProd.isFavourite = !favProd.isFavourite;
-    this.productServ.addFavorite(favProd);
-    this.productServ.setStorageProduct(this.product);
+    this.productService.addFavorite(favProd);
+    this.productService.setStorageProduct(this.product);
   }
 
   async openModal(openProduct: Product) {

@@ -24,18 +24,18 @@ export class ProductComponent implements OnInit {
   isFavourite = false;
   currentProfile: User;
 
-  constructor(private productServ: ProductsService,
-    private accountServ: AccountService,
+  constructor(private productService: ProductsService,
+    private accountService: AccountService,
     private loadingCtrl: LoadingController
   ) { }
 
   async ngOnInit() {
-    this.accountServ.currrentProfile.subscribe(data => this.currentProfile = data);
+    this.accountService.currrentProfile.subscribe(data => this.currentProfile = data);
     this.getProducts();
   }
 
   getProducts() {
-    this.productServ.products.subscribe(res => this.products = res);
+    this.productService.products.subscribe(res => this.products = res);
   }
 
   onFilterValueChange() {
@@ -51,8 +51,7 @@ export class ProductComponent implements OnInit {
       || product.code.includes(this.searchTerm);
   }
 
-  selectCategory(category) {
-    console.log(category);
+  selectCategory(category: string) {
     if (!this.categories.includes(category)) {
       this.categories.push(category);
     }

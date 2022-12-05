@@ -21,12 +21,12 @@ export class SettingsComponent implements OnInit {
     editProfileComponent: EditProfileComponent
   };
 
-  constructor(private accountServ: AccountService,
+  constructor(private accountService: AccountService,
     private sharedService: SharedService
   ) { }
 
   ngOnInit() {
-    this.accountServ.currrentProfile.subscribe(data => this.currentProfile = data);
+    this.accountService.currrentProfile.subscribe(data => this.currentProfile = data);
   }
 
   openModal(componentName) {
@@ -51,7 +51,7 @@ export class SettingsComponent implements OnInit {
   };
 
   logout() {
-    this.accountServ.logout();
+    this.accountService.logout();
   }
 
 }

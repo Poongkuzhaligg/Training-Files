@@ -18,7 +18,7 @@ export class FavoritesComponent implements OnInit {
   nofav = true;
 
   constructor(
-    private productServ: ProductsService,
+    private productService: ProductsService,
   ) { }
 
   ngOnInit() {
@@ -26,7 +26,7 @@ export class FavoritesComponent implements OnInit {
   }
 
   async getFavProducts() {
-    this.productServ.favproducts.subscribe((res: Product[]) => {
+    this.productService.favproducts.subscribe((res: Product[]) => {
       if (!!res) {
         this.favProducts = res;
       } else {

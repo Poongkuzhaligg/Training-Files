@@ -3,7 +3,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { ModalController } from '@ionic/angular';
 import { APP_PAGE_TITLE } from 'src/app/config/constants';
-import { FormLabelName, SaveBtn, TOAST_MESSAGE, VALIDATION_TEXT } from 'src/app/config/storage-key';
+import { ALERT_MESSAGE, FormLabelName, SaveBtn, TOAST_MESSAGE, VALIDATION_TEXT } from 'src/app/config/storage-key';
 import { ApiStatus, AuthResponse } from 'src/app/model/account-model';
 import { User } from 'src/app/model/user';
 import { AccountService } from 'src/app/services/account.service';
@@ -21,7 +21,6 @@ export class ChangePasswordComponent implements OnInit {
   saveBtn = SaveBtn;
   changeForm: FormGroup;
   currentUser: User;
-  isDirty = false;
   passwordoldType = 'password';
   passwordnewType = 'password';
   passwordType = 'password';
@@ -31,20 +30,19 @@ export class ChangePasswordComponent implements OnInit {
 
   constructor(
     private formBuilder: FormBuilder,
-    private accountServ: AccountService,
+    private accountService: AccountService,
     private sharedService: SharedService,
     private router: Router,
     private modalCtrl: ModalController
   ) { }
 
   async ngOnInit() {
-    this.currentUser = await this.accountServ.loggedUser();
+    this.currentUser = await this.accountService.loggedUser();
     this.changeForm = this.formBuilder.group({
       oldPassword: ['', [Validators.required, Validators.minLength(6)]],
       newPassword: ['', [Validators.required, Validators.minLength(6)]],
       confirmPassword: ['', [Validators.required, Validators.minLength(6)]]
     }, { validator: this.checkPasswords });
-    this.changeForm.valueChanges.subscribe(e => this.isDirty = true);
   }
 
   hideShowPassword() {
@@ -72,17 +70,16 @@ export class ChangePasswordComponent implements OnInit {
 
   onSubmit() {
     if (this.changeForm.invalid) {
-      this.sharedService.presentAlert();
+      this.sharedService.presentAlert(ALERT_MESSAGE.header, ALERT_MESSAGE.messageTry, ALERT_MESSAGE.buttonOk, ALERT_MESSAGE.subHeader);
       return;
     }
     const password = this.changeForm.value.confirmPassword;
     const deviceStatus: boolean = navigator.onLine;
 
     if (deviceStatus === true) {
-      (this.accountServ.changePassword(password)).subscribe((res: AuthResponse) => {
-        // console.log(res);
+      (this.accountService.changePassword(password)).subscribe((res: AuthResponse) => {
         if (res.status === ApiStatus.success) {
-          this.accountServ.setCurrentUser(res.data);
+          this.accountService.setCurrentUser(res.data);
           this.sharedService.presentToast(TOAST_MESSAGE.passwordUpdated, TOAST_MESSAGE.lightColor);
           this.router.navigate(['home/settings']);
         }
@@ -95,15 +92,33 @@ export class ChangePasswordComponent implements OnInit {
     }
   }
 
-  ionViewWillLeave() {
-    if (this.isDirty === true) {
-      confirm('There are changes you have made to the page. If you quit, you will lose your changes.');
+  async close() {
+    if (!this.changeForm.pristine) {
+      await this.showWarning();
+    }
+    if (this.changeForm.pristine) {
+      this.modalCtrl.dismiss();
     }
   }
 
-  close() {
-    this.changeForm.reset();
-    this.modalCtrl.dismiss();
+  async showWarning() {
+    const header = ALERT_MESSAGE.header;
+    const message = ALERT_MESSAGE.messageWarn;
+    const buttons = [
+      {
+        text: ALERT_MESSAGE.buttonCancel,
+        role: ALERT_MESSAGE.roleCancel,
+      },
+      {
+        text: ALERT_MESSAGE.buttonOk,
+        role: ALERT_MESSAGE.roleConfirm,
+        handler: () => {
+          this.changeForm.reset();
+          this.modalCtrl.dismiss();
+        },
+      },
+    ];
+    this.sharedService.presentAlert(header, message, buttons);
   }
 
 }

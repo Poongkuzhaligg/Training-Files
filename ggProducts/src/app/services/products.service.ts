@@ -26,7 +26,7 @@ export class ProductsService {
     this.http.get(environment.apiUrl + 'product', { withCredentials: true })
       .subscribe(
         (res: Product[]) => {
-          console.log(res);
+          // console.log(res);
           this.products.next(res);
           this.setStorageProduct(res);
         },
@@ -48,7 +48,7 @@ export class ProductsService {
     return this.http.post(environment.apiUrl + 'product/favourite/userId', { withCredentials: true })
       .subscribe(
         (res: Product[]) => {
-          console.log(res);
+          // console.log(res);
           this.favproducts.next(res);
           this.setFavProductStorage(res);
         },
