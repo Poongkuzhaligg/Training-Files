@@ -1,13 +1,14 @@
   <ion-searchbar slot="fixed"
                 color="light"
                 [(ngModel)]="searchTerm"
+                class="nav_searchbar hiddenBtnContainer"
                 show-cancel-button="never"
                 spellcheck="True"
                 placeholder="Search Products"
                 (ngModelChange)="onFilterValueChange()"
                 ></ion-searchbar>
 
-  <ion-item lines="none" color="tertiary">
+  <ion-item lines="none">
     <ion-chip *ngFor="let category of categoryList" (click)="selectCategory(category.category)" [ngClass]="{ 'hintChip': categories.includes(category.category) === true }" >
       <ion-label>{{category.categoryName}}</ion-label>
     </ion-chip>

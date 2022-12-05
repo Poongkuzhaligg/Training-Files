@@ -71,16 +71,16 @@ export class LoginComponent implements OnInit {
           }),
           catchError((err) => {
             if (err.status === 504) {
-              this.sharedService.presentToast(TOAST_MESSAGE[504], TOAST_MESSAGE.dangerColor);
+              this.sharedService.presentToast(TOAST_MESSAGE[504], TOAST_MESSAGE.dangerColor, TOAST_MESSAGE.top);
               // console.error('504', err.status);
               throw (err);
             }
-            this.sharedService.presentToast(TOAST_MESSAGE.invalidUser, TOAST_MESSAGE.dangerColor);
+            this.sharedService.presentToast(TOAST_MESSAGE.invalidUser, TOAST_MESSAGE.dangerColor, TOAST_MESSAGE.top);
             throw (err);
           }
           )).subscribe();
     } else {
-      this.sharedService.presentToast(TOAST_MESSAGE.offline, TOAST_MESSAGE.dangerColor);
+      this.sharedService.presentToast(TOAST_MESSAGE.offline, TOAST_MESSAGE.dangerColor, TOAST_MESSAGE.top);
     }
   }
 

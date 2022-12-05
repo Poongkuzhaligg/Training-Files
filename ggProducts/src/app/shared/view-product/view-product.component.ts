@@ -4,6 +4,7 @@ import { ProductSKU } from 'src/app/config/storage-key';
 import { Product } from 'src/app/model/product';
 import { ProductsService } from 'src/app/services/products.service';
 import { ProductModalComponent } from '../../home/product-modal/product-modal.component';
+import { SharedService } from 'src/app/services/shared.service';
 
 @Component({
   selector: 'app-view-product',
@@ -16,6 +17,7 @@ export class ViewProductComponent implements OnInit {
   productSku = ProductSKU;
 
   constructor(private productService: ProductsService,
+    private sharedService: SharedService,
     private modalCtrl: ModalController) { }
 
   ngOnInit() {
@@ -29,6 +31,7 @@ export class ViewProductComponent implements OnInit {
   addFav(event: Event, favProd: Product) {
     event.stopPropagation();
     favProd.isFavourite = !favProd.isFavourite;
+    this.getProducts();
     this.productService.addFavorite(favProd);
     this.productService.setStorageProduct(this.product);
   }

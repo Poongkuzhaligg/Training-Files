@@ -32,7 +32,7 @@ export class ProductsService {
         },
         async err => {
           if (err.status === 504 || err.status === 500) {
-            this.sharedService.presentToast(TOAST_MESSAGE.tryAgain, TOAST_MESSAGE.dangerColor);
+            this.sharedService.presentToast(TOAST_MESSAGE.tryAgain, TOAST_MESSAGE.dangerColor, TOAST_MESSAGE.top);
             this.accountService.logout();
           }
           this.products.next(await this.getStorageProduct());
@@ -54,7 +54,7 @@ export class ProductsService {
         },
         async err => {
           if (err.status === 504 || err.status === 500) {
-            this.sharedService.presentToast(TOAST_MESSAGE.tryAgain, TOAST_MESSAGE.dangerColor);
+            this.sharedService.presentToast(TOAST_MESSAGE.tryAgain, TOAST_MESSAGE.dangerColor, TOAST_MESSAGE.top);
             this.accountService.logout();
           }
           this.favproducts.next(await this.getFavProductStorage());
@@ -67,19 +67,21 @@ export class ProductsService {
       const products = this.favproducts.value;
       if (favProd.isFavourite === true) {
         products.push(favProd);
+        this.sharedService.presentToast('Product added to favorites', TOAST_MESSAGE.secondary, TOAST_MESSAGE.top);
       }
       else {
         const index = products.indexOf(favProd);
         if (index >= 0) {
           products.splice(index, 1);
         }
+        this.sharedService.presentToast('Product removed from favorites', TOAST_MESSAGE.secondary, TOAST_MESSAGE.top);
       }
       this.favproducts.next(products);
       this.setStorageProduct(this.products.value);
       this.setFavProductStorage(this.favproducts.value);
     }, err => {
       if (err.status === 504 || err.status === 500) {
-        this.sharedService.presentToast(TOAST_MESSAGE.tryAgain, TOAST_MESSAGE.dangerColor);
+        this.sharedService.presentToast(TOAST_MESSAGE.tryAgain, TOAST_MESSAGE.dangerColor, TOAST_MESSAGE.top);
         this.accountService.logout();
       }
       const deviceStatus: boolean = navigator.onLine;

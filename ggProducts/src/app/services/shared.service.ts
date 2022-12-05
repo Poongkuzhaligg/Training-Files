@@ -48,12 +48,13 @@ export class SharedService {
     return alert.present();
   }
 
-  async presentToast(toastMsg, toastColor) {
+  async presentToast(toastMsg, toastColor, slot) {
     const toast = await this.toastController.create({
       message: toastMsg,
-      duration: 1500,
-      position: 'top',
-      color: toastColor
+      duration: 1300,
+      position: slot,
+      color: toastColor,
+      cssClass: 'toastMsg'
     });
     await toast.present();
   }

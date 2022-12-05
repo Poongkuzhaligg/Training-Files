@@ -26,7 +26,6 @@ export class ProductModalComponent implements OnInit {
   }
 
   addFav(favProd: Product) {
-    console.log('works');
     favProd.isFavourite = !favProd.isFavourite;
     this.productService.addFavorite(favProd);
     this.productService.setStorageProduct(this.products);

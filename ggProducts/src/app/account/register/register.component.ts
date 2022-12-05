@@ -70,23 +70,23 @@ export class RegisterComponent implements OnInit {
             // console.log(res);
             if (res.status === 'Success') {
               this.accountService.setCurrentUser(res.data);
-              this.sharedService.presentToast(TOAST_MESSAGE.registerSuccess, TOAST_MESSAGE.successColor);
+              this.sharedService.presentToast(TOAST_MESSAGE.registerSuccess, TOAST_MESSAGE.successColor, TOAST_MESSAGE.top);
               this.router.navigate(['../home']);
               return;
             }
           }),
           catchError((err) => {
             if (err.status === 504) {
-              this.sharedService.presentToast(TOAST_MESSAGE[504], TOAST_MESSAGE.dangerColor);
+              this.sharedService.presentToast(TOAST_MESSAGE[504], TOAST_MESSAGE.dangerColor, TOAST_MESSAGE.top);
               // console.error('504', err.status);
               throw (err);
             }
-            this.sharedService.presentToast(TOAST_MESSAGE.emailExist, TOAST_MESSAGE.dangerColor);
+            this.sharedService.presentToast(TOAST_MESSAGE.emailExist, TOAST_MESSAGE.dangerColor, TOAST_MESSAGE.top);
             throw (err);
           }
           )).subscribe();
     } else {
-      this.sharedService.presentToast(TOAST_MESSAGE.offline, TOAST_MESSAGE.dangerColor);
+      this.sharedService.presentToast(TOAST_MESSAGE.offline, TOAST_MESSAGE.dangerColor, TOAST_MESSAGE.top);
     }
   }
 

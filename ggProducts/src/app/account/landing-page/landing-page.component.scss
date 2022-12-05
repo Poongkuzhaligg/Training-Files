@@ -54,6 +54,9 @@ ion-text {
   font-size: 0.8rem;
 }
 
+ion-footer ::before{
+  background-image: none;
+}
 
 @media (max-width: 670px) {
   ion-card-content{

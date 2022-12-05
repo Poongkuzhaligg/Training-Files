@@ -79,15 +79,15 @@ export class ChangePasswordComponent implements OnInit {
       (this.accountService.changePassword(password)).subscribe((res: AuthResponse) => {
         if (res.status === ApiStatus.success) {
           this.accountService.setCurrentUser(res.data);
-          this.sharedService.presentToast(TOAST_MESSAGE.passwordUpdated, TOAST_MESSAGE.lightColor);
+          this.sharedService.presentToast(TOAST_MESSAGE.passwordUpdated, TOAST_MESSAGE.lightColor, TOAST_MESSAGE.top);
           this.router.navigate(['home/settings']);
         }
         else {
-          this.sharedService.presentToast(TOAST_MESSAGE.tryAgain, TOAST_MESSAGE.dangerColor);
+          this.sharedService.presentToast(TOAST_MESSAGE.tryAgain, TOAST_MESSAGE.dangerColor, TOAST_MESSAGE.top);
         }
       });
     } else {
-      this.sharedService.presentToast(TOAST_MESSAGE.offline, TOAST_MESSAGE.dangerColor);
+      this.sharedService.presentToast(TOAST_MESSAGE.offline, TOAST_MESSAGE.dangerColor, TOAST_MESSAGE.top);
     }
   }
 

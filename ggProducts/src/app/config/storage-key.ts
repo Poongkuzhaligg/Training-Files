@@ -74,7 +74,13 @@ export const TOAST_MESSAGE = {
   tryAgain: 'Sorry, Try again!',
   successColor: 'success',
   dangerColor: 'danger',
-  lightColor: 'light'
+  lightColor: 'light',
+  mediumColor: 'medium',
+  darkColor: 'dark',
+  top: 'top',
+  bottom: 'bottom',
+  middle: 'middle',
+  secondary: 'secondary'
 };
 
 export const ALERT_MESSAGE = {

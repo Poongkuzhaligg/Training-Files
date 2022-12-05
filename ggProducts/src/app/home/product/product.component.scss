@@ -1,8 +1,24 @@
 
 
 ion-searchbar{
-  padding: 25px 10px 25px 10px;
-  background-color: #ededed;
+  // margin: 25px 5px 25px 10px;
+  margin-top: 25px;
+  margin-left: 10px;
+  margin-bottom: 20px;
+  width: 94%;
+  height: 6%;
+  border-right: 2px solid gainsboro;
+  border-bottom: 2px solid gainsboro;
+  background-color: white;
+  // box-shadow: 2px 2px 2px 2px gainsboro;
+}
+
+.md{
+  ion-searchbar{
+    padding: 0;
+    padding-left: 0;
+    padding-right: 0;
+  }
 }
 
 .notfound{
@@ -22,7 +38,6 @@ ion-chip{
   color: white;
 }
 
-
 ion-icon {
   width: 1.3rem;
   height: 1.3rem;
@@ -39,26 +54,15 @@ ion-icon {
 
 ion-item{
   border-bottom: 1px solid gainsboro;
+  padding-bottom: 1rem;
 }
 
-@media (max-width: 667px) {
 
-  ion-searchbar{
-    padding: 15px 10px 20px 10px;
-  }
-
-}
-
-@media (max-width: 740px) {
-
-  .ios{
+@media (max-width: 740px){
+  .md{
     ion-searchbar{
-      padding-right: 25px;
-      padding-left: 25px;
-      padding-bottom: 20px;
+      padding-left: 0;
+      padding-right: 0;
     }
-
   }
-
 }
-

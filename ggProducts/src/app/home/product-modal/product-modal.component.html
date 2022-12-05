@@ -2,17 +2,16 @@
 <ion-content color="light">
   <ion-text lines="none">
     <ion-text class="back-btn">
+      <ion-buttons (click)="addFav( openProduct)">
+        <ion-icon name="heart-outline" *ngIf="!openProduct.isFavourite" color="dark"></ion-icon>
+        <ion-icon  name="heart" *ngIf="openProduct.isFavourite" color="dark"></ion-icon>
+      </ion-buttons>
       <ion-icon (click)="close()" color="dark" class="back-btn" name="arrow-back-outline"></ion-icon>
     </ion-text>
     <ion-textarea color="tertiary" class="gray-box">
-      <ion-buttons
-          (click)="addFav(openProduct)"
-          class="favButton">
-            <ion-icon name="heart-outline" *ngIf="!openProduct.isFavourite" color="dark"></ion-icon>
-            <ion-icon  name="heart" *ngIf="openProduct.isFavourite" color="dark"></ion-icon>
-          </ion-buttons>
     </ion-textarea>
   </ion-text>
+
 
   <ion-grid>
     <ion-row>

@@ -58,7 +58,8 @@ ion-img{
 
 .back-btn{
   cursor: pointer;
-  justify-content: end;
+  justify-content: space-between;
+  font-size: 1.3rem;
 }
 
 .gray-box{
@@ -72,11 +73,12 @@ ion-img{
 
 ion-icon{
   margin: 15px;
-  font-size: 1.6rem;
 }
 
 ion-buttons{
+  cursor: pointer;
   margin-right: 20px;
+  justify-content: end;
 }
 
 @media (max-width: 667px){
