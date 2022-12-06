@@ -6,8 +6,8 @@
 
 .toastMsg{
   text-align: center;
-  margin-top: 4%;
-  --ion-border-radius: 50px;
+  margin-top: 2%;
+  --border-radius: 40px;
 }
 
 
@@ -44,6 +44,12 @@
 
 }
 
+.md{
+  ion-footer::before{
+    background-image: none;
+  }
+
+}
 
 
 
