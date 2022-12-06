@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { ModalController } from '@ionic/angular';
-import { APP_PAGE_TITLE } from 'src/app/config/constants';
+import { APP_PAGE_TITLE, ShowPassword } from 'src/app/config/constants';
 import { ALERT_MESSAGE, FormLabelName, SaveBtn, TOAST_MESSAGE, VALIDATION_TEXT } from 'src/app/config/storage-key';
 import { ApiStatus, AuthResponse } from 'src/app/model/account-model';
 import { User } from 'src/app/model/user';
@@ -21,12 +21,12 @@ export class ChangePasswordComponent implements OnInit {
   saveBtn = SaveBtn;
   changeForm: FormGroup;
   currentUser: User;
-  passwordoldType = 'password';
-  passwordnewType = 'password';
-  passwordType = 'password';
-  passwordOldIcon = 'eye-off-outline';
-  passwordNewIcon = 'eye-off-outline';
-  passwordIcon = 'eye-off-outline';
+  passwordoldType = ShowPassword.typePassword;
+  passwordnewType = ShowPassword.typePassword;
+  passwordType = ShowPassword.typePassword;
+  passwordOldIcon = ShowPassword.eyeOff;
+  passwordNewIcon = ShowPassword.eyeOff;
+  passwordIcon = ShowPassword.eyeOff;
 
   constructor(
     private formBuilder: FormBuilder,
@@ -46,17 +46,17 @@ export class ChangePasswordComponent implements OnInit {
   }
 
   hideShowPassword() {
-    this.passwordType = this.passwordType === 'text' ? 'password' : 'text';
-    this.passwordIcon = this.passwordIcon === 'eye-off-outline' ? 'eye-outline' : 'eye-off-outline';
+    this.passwordType = this.passwordType === ShowPassword.typeText ? ShowPassword.typePassword : ShowPassword.typeText;
+    this.passwordIcon = this.passwordIcon === ShowPassword.eyeOff ? ShowPassword.eye : ShowPassword.eyeOff;
   }
 
   hideShowOldPassword() {
-    this.passwordoldType = this.passwordoldType === 'text' ? 'password' : 'text';
-    this.passwordOldIcon = this.passwordOldIcon === 'eye-off-outline' ? 'eye-outline' : 'eye-off-outline';
+    this.passwordoldType = this.passwordoldType === ShowPassword.typeText ? ShowPassword.typePassword : ShowPassword.typeText;
+    this.passwordOldIcon = this.passwordOldIcon === ShowPassword.eyeOff ? ShowPassword.eye : ShowPassword.eyeOff;
   }
   hideShowNewPassword() {
-    this.passwordnewType = this.passwordnewType === 'text' ? 'password' : 'text';
-    this.passwordNewIcon = this.passwordNewIcon === 'eye-off-outline' ? 'eye-outline' : 'eye-off-outline';
+    this.passwordnewType = this.passwordnewType === ShowPassword.typeText ? ShowPassword.typePassword : ShowPassword.typeText;
+    this.passwordNewIcon = this.passwordNewIcon === ShowPassword.eyeOff ? ShowPassword.eye : ShowPassword.eyeOff;
 
   }
 

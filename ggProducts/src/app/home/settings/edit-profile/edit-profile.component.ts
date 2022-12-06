@@ -21,12 +21,6 @@ export class EditProfileComponent implements OnInit {
   editForm: FormGroup;
   saveBtn = SaveBtn;
   currentUser: User;
-  passwordoldType = 'password';
-  passwordnewType = 'password';
-  passwordType = 'password';
-  passwordOldIcon = 'eye-off-outline';
-  passwordNewIcon = 'eye-off-outline';
-  passwordIcon = 'eye-off-outline';
 
   constructor(
     private formBuilder: FormBuilder,

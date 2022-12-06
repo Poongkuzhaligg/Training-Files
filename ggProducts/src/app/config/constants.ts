@@ -41,3 +41,10 @@ export enum SettingPage {
   privacyPolicy = 'PRIVACY POLICY',
   logout = 'LOGOUT'
 }
+
+export enum ShowPassword {
+  typePassword = 'password',
+  typeText = 'text',
+  eye = 'eye-outline',
+  eyeOff = 'eye-off-outline'
+}

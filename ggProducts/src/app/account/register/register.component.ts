@@ -8,7 +8,7 @@ import { catchError, map } from 'rxjs/operators';
 import { AuthResponse } from 'src/app/model/account-model';
 import { HelpComponent } from 'src/app/shared/help/help.component';
 import { environment } from 'src/environments/environment';
-import { AccountPageTitle, ACCOUNT_PAGE, SuggestionStrings } from 'src/app/config/constants';
+import { AccountPageTitle, ACCOUNT_PAGE, ShowPassword, SuggestionStrings } from 'src/app/config/constants';
 import { ALERT_MESSAGE, EmailPattern, FormLabelName, TOAST_MESSAGE, VALIDATION_TEXT } from 'src/app/config/storage-key';
 import { CheckDataComponent } from 'src/app/model/check-Data';
 
@@ -26,8 +26,8 @@ export class RegisterComponent implements OnInit {
   regForm: FormGroup;
   version = environment.version;
   isDirty = false;
-  passwordType = 'password';
-  passwordIcon = 'eye-off-outline';
+  passwordType = ShowPassword.typePassword;
+  passwordIcon = ShowPassword.eyeOff;
   userDetails: User = {
     firstname: '',
     lastname: '',
@@ -51,8 +51,8 @@ export class RegisterComponent implements OnInit {
   }
 
   hideShowPassword() {
-    this.passwordType = this.passwordType === 'text' ? 'password' : 'text';
-    this.passwordIcon = this.passwordIcon === 'eye-off-outline' ? 'eye-outline' : 'eye-off-outline';
+    this.passwordType = this.passwordType === ShowPassword.typeText ? ShowPassword.typePassword : ShowPassword.typeText;
+    this.passwordIcon = this.passwordIcon === ShowPassword.eyeOff ? ShowPassword.eye : ShowPassword.eyeOff;
   }
 
   onSubmit() {
